@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Project Brief Builder — Cashie</title>
-<meta name="description" content="Build your project brief step by step. One question at a time, with a live estimate and a ready-to-send summary.">
+<meta name="description" content="Build your project brief step by step. One question at a time, with a live project snapshot and a ready-to-send consulting-style summary.">
 <style>
   :root {
     --bg:          #182642;
@@ -18,6 +18,9 @@
     --plum-deep:   #7c5dfa;
     --cyan:        #e0ffff;
     --cream:       #c7e6ff;
+    --green:       #6ee7b7;
+    --amber:       #fcd34d;
+    --red:         #f87171;
     --radius:      18px;
     --maxw:        1080px;
     --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -25,9 +28,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background:
       radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.28), transparent 60%),
@@ -43,9 +44,7 @@
     text-rendering: optimizeLegibility;
     min-height: 100vh;
   }
-
   ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
-
   a { color: inherit; text-decoration: none; }
 
   /* ---------- Nav ---------- */
@@ -91,13 +90,20 @@
     transition: width .45s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 0 4px 4px 0;
   }
+  /* Progress text in nav */
+  .nav-progress-text {
+    font-size: 0.74rem; color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    display: none;
+  }
+  .nav-progress-text.visible { display: inline; }
 
-  /* ---------- Layout: wizard + estimate ---------- */
+  /* ---------- Layout: wizard + snapshot ---------- */
   .builder-layout {
     display: grid;
     grid-template-columns: 1fr 320px;
     gap: 32px;
-    padding: 56px 0 96px;
+    padding: 40px 0 96px;
     align-items: start;
   }
   @media (max-width: 860px) {
@@ -135,9 +141,7 @@
     border-radius: 999px; padding: 5px 14px;
     background: rgba(167,139,250,0.08);
   }
-  .step-counter .dots {
-    display: flex; gap: 6px;
-  }
+  .step-counter .dots { display: flex; gap: 6px; }
   .step-counter .dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: rgba(200,220,255,0.18);
@@ -159,7 +163,6 @@
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   .step-content h2 {
     font-family: var(--serif); font-weight: 500;
     font-size: clamp(1.6rem, 3.5vw, 2.3rem);
@@ -172,10 +175,7 @@
   }
 
   /* ---------- Option cards ---------- */
-  .option-grid {
-    display: grid; gap: 12px;
-    margin-bottom: 28px;
-  }
+  .option-grid { display: grid; gap: 12px; margin-bottom: 28px; }
   .option-card {
     display: flex; align-items: center; gap: 16px;
     padding: 18px 20px;
@@ -205,41 +205,37 @@
     background: rgba(167,139,250,0.12);
     border: 1px solid rgba(167,139,250,0.25);
   }
-  .option-card .label {
-    font-size: 1rem; font-weight: 600; color: var(--ink);
-    margin-bottom: 3px;
-  }
-  .option-card .desc {
-    font-size: 0.86rem; color: var(--ink-soft); line-height: 1.45;
-  }
+  .option-card .label { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .option-card .desc { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.45; }
   .option-card .check {
-    flex-shrink: 0;
-    margin-left: auto;
+    flex-shrink: 0; margin-left: auto;
     width: 24px; height: 24px; border-radius: 50%;
     border: 2px solid var(--panel-line);
     display: flex; align-items: center; justify-content: center;
     transition: all .2s ease;
   }
-  .option-card.selected .check {
-    border-color: var(--plum);
-    background: var(--plum);
-  }
-  .option-card.selected .check::after {
-    content: "✓"; color: #182642; font-size: 0.85rem; font-weight: 700;
-  }
+  .option-card.selected .check { border-color: var(--plum); background: var(--plum); }
+  .option-card.selected .check::after { content: "✓"; color: #182642; font-size: 0.85rem; font-weight: 700; }
   .option-card input[type="radio"] { display: none; }
 
-  /* ---------- Text inputs ---------- */
-  .input-field {
-    margin-bottom: 20px;
+  /* ---------- Unsupported card ---------- */
+  .option-card.unsupported {
+    opacity: 0.5; cursor: not-allowed;
   }
+  .option-card.unsupported:hover { transform: none; border-color: var(--panel-line); background: rgba(11,16,32,0.22); }
+  .option-card.unsupported .check {
+    border-color: var(--red); background: rgba(248,113,113,0.15);
+  }
+  .option-card.unsupported .check::after { content: "✕"; color: var(--red); font-size: 0.8rem; font-weight: 700; }
+  .option-card.unsupported .desc { color: var(--red); }
+
+  /* ---------- Text inputs ---------- */
+  .input-field { margin-bottom: 20px; }
   .input-field label {
     display: block; font-size: 0.88rem; font-weight: 600;
     color: var(--ink); margin-bottom: 7px;
   }
-  .input-field .hint {
-    font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 10px;
-  }
+  .input-field .hint { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 10px; }
   .input-field input[type="text"],
   .input-field textarea {
     width: 100%;
@@ -290,79 +286,127 @@
   .btn-ghost:not(:disabled):hover { border-color: var(--plum); color: var(--ink); }
   .btn-back { font-size: 0.88rem; }
 
-  /* ---------- Estimate panel ---------- */
-  .estimate-panel {
+  /* ---------- Snapshot panel ---------- */
+  .snapshot-panel {
     position: sticky; top: 88px;
     background: var(--panel);
     border: 1px solid var(--panel-line);
     border-radius: 20px;
-    padding: 28px 26px;
+    padding: 24px 22px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     overflow: hidden;
-    position: relative;
   }
-  .estimate-panel .est-glow {
+  .snapshot-panel .snap-glow {
     position: absolute; inset: auto -30% -60% -10%; height: 200px;
     background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.16), transparent 60%);
     pointer-events: none;
   }
-  .estimate-panel h3 {
+  .snapshot-panel h3 {
     font-family: var(--serif); font-weight: 500;
     font-size: 1.08rem; margin-bottom: 4px;
     position: relative;
   }
-  .estimate-panel .est-sub {
-    font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 22px;
+  .snapshot-panel .snap-sub {
+    font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 20px;
     position: relative;
   }
+
+  /* Estimate display */
+  .est-summary { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; position: relative; }
+  .est-summary .est-big {
+    font-family: var(--serif); font-size: 1.85rem; color: var(--cream); font-weight: 500; line-height: 1;
+  }
+  .est-summary .est-small { font-size: 0.85rem; color: var(--ink-soft); }
+  .est-summary .est-big.empty { color: var(--ink-mute); }
+
+  .est-label-mini {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 600;
+    margin-bottom: 16px; position: relative;
+  }
+
   .est-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 0;
+    padding: 12px 0;
     border-top: 1px solid var(--panel-line);
     position: relative;
   }
-  .est-row:last-of-type { border-bottom: 1px solid var(--panel-line); margin-bottom: 16px; }
-  .est-row .est-label {
-    font-size: 0.86rem; color: var(--ink-soft);
-  }
+  .est-row .est-label { font-size: 0.84rem; color: var(--ink-soft); }
   .est-row .est-value {
-    font-family: var(--serif); font-size: 1.05rem; color: var(--cream);
-    font-weight: 500;
+    font-family: var(--serif); font-size: 0.98rem; color: var(--cream); font-weight: 500;
+    text-align: right; max-width: 160px;
   }
-  .est-row .est-value.empty { color: var(--ink-mute); font-style: italic; font-size: 0.85rem; }
-  .est-summary {
-    display: flex; align-items: baseline; gap: 8px;
-    margin-bottom: 12px; position: relative;
+  .est-row .est-value.empty { color: var(--ink-mute); font-style: italic; font-size: 0.82rem; font-family: var(--sans); }
+
+  /* Budget fit badge */
+  .fit-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.80rem; font-weight: 600;
+    padding: 4px 10px; border-radius: 999px;
+    font-family: var(--sans);
   }
-  .est-summary .est-big {
-    font-family: var(--serif); font-size: 2rem; color: var(--cream); font-weight: 500;
-    line-height: 1;
+  .fit-badge.good { background: rgba(110,231,183,0.15); color: var(--green); border: 1px solid rgba(110,231,183,0.30); }
+  .fit-badge.warn { background: rgba(252,211,77,0.15); color: var(--amber); border: 1px solid rgba(252,211,77,0.30); }
+  .fit-badge.over { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.30); }
+
+  /* Confidence badge */
+  .conf-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 999px;
+    font-family: var(--sans);
   }
-  .est-summary .est-small {
-    font-size: 0.85rem; color: var(--ink-soft);
+  .conf-badge.high { background: rgba(110,231,183,0.12); color: var(--green); border: 1px solid rgba(110,231,183,0.25); }
+  .conf-badge.medium { background: rgba(252,211,77,0.12); color: var(--amber); border: 1px solid rgba(252,211,77,0.25); }
+  .conf-badge.low { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
+
+  /* Default snapshot content */
+  .snap-default { position: relative; }
+  .snap-default .snap-default-label {
+    font-size: 0.74rem; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 600;
+    margin-top: 16px; margin-bottom: 8px;
   }
-  .est-foot {
-    font-size: 0.80rem; color: var(--ink-mute); line-height: 1.5;
+  .snap-default ul {
+    margin: 0 0 14px; padding-left: 18px;
+    list-style: none;
+  }
+  .snap-default li {
+    font-size: 0.86rem; color: var(--ink-soft); line-height: 1.6;
+    position: relative; padding-left: 14px;
+  }
+  .snap-default li::before {
+    content: ""; position: absolute; left: 0; top: 0.65em;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--plum);
+  }
+
+  .snap-foot {
+    font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5;
     position: relative;
-    padding-top: 14px; border-top: 1px solid var(--panel-line);
+    padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--panel-line);
   }
+
+  /* ---------- Mobile snapshot ---------- */
+  .mobile-snapshot { display: none; }
   @media (max-width: 860px) {
-    .estimate-panel { display: none; }
-    .mobile-estimate { display: block; }
+    .snapshot-panel { display: none; }
+    .mobile-snapshot { display: block; }
   }
-  @media (min-width: 861px) {
-    .mobile-estimate { display: none; }
-  }
-  .mobile-estimate {
+  .mobile-snapshot {
     background: var(--panel);
     border: 1px solid var(--panel-line);
     border-radius: 16px;
-    padding: 18px 20px;
+    padding: 16px 18px;
     margin-bottom: 24px;
   }
-  .mobile-estimate .est-row { padding: 10px 0; }
-  .mobile-estimate .est-summary .est-big { font-size: 1.6rem; }
+  .mobile-snapshot h4 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 0.95rem; margin-bottom: 8px;
+  }
+  .mobile-snapshot .est-row { padding: 8px 0; }
+  .mobile-snapshot .est-summary .est-big { font-size: 1.5rem; }
 
   /* ---------- Summary screen ---------- */
   .summary-screen {
@@ -378,32 +422,50 @@
   .summary-screen .lede {
     color: var(--ink-soft); font-size: 1rem; margin-bottom: 28px;
   }
-  .summary-list {
-    display: grid; gap: 0;
+  .summary-brief {
     border: 1px solid var(--panel-line);
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 24px;
-  }
-  .summary-item {
-    display: flex; gap: 16px; align-items: baseline;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--panel-line);
     background: rgba(11,16,32,0.18);
   }
-  .summary-item:last-child { border-bottom: none; }
-  .summary-item .si-label {
-    flex-shrink: 0; width: 140px;
-    font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+  .brief-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(224,255,255,0.06));
+    border-bottom: 1px solid var(--panel-line);
+  }
+  .brief-header .brief-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.35rem; margin-bottom: 4px;
+  }
+  .brief-header .brief-sub {
+    font-size: 0.84rem; color: var(--ink-mute);
+  }
+  .brief-header .brief-badges {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
+  }
+  .brief-section { padding: 14px 24px; border-bottom: 1px solid var(--panel-line); }
+  .brief-section:last-child { border-bottom: none; }
+  .brief-section .bs-label {
+    font-size: 0.76rem; letter-spacing: 0.10em; text-transform: uppercase;
     color: var(--ink-mute); font-weight: 600;
+    margin-bottom: 4px;
   }
-  .summary-item .si-value {
-    font-size: 0.96rem; color: var(--ink); font-weight: 500;
+  .brief-section .bs-value {
+    font-size: 0.96rem; color: var(--ink);
   }
-  .summary-item .si-value.empty { color: var(--ink-mute); font-style: italic; font-weight: 400; }
-  .summary-actions {
-    display: flex; gap: 14px; flex-wrap: wrap;
+  .brief-section .bs-value.muted { color: var(--ink-mute); font-style: italic; }
+  .brief-section .bs-value.bold { font-weight: 600; font-family: var(--serif); font-size: 1.05rem; color: var(--cream); }
+  .brief-section .bs-list {
+    font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6;
+    padding-left: 16px; margin: 4px 0 0;
   }
+  .brief-section .bs-list li { list-style: none; position: relative; padding-left: 12px; }
+  .brief-section .bs-list li::before {
+    content: "·"; position: absolute; left: 0; color: var(--plum); font-weight: 700;
+  }
+
+  .summary-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .copy-feedback {
     display: none;
     font-size: 0.86rem; color: var(--cyan);
@@ -447,9 +509,22 @@
     display: flex; align-items: center; gap: 8px;
     font-size: 0.86rem; color: var(--ink-soft);
   }
-  .welcome-feature .wf-icon {
-    color: var(--plum); font-size: 1.1rem;
+  .welcome-feature .wf-icon { color: var(--plum); font-size: 1.1rem; }
+
+  /* ---------- Unsupported alert ---------- */
+  .unsupported-alert {
+    display: none;
+    background: rgba(248,113,113,0.12);
+    border: 1px solid rgba(248,113,113,0.30);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    animation: stepIn .3s ease;
   }
+  .unsupported-alert.show { display: block; }
+  .unsupported-alert strong { color: var(--red); }
 
   /* ---------- Footer ---------- */
   footer {
@@ -466,12 +541,12 @@
     .step-counter { padding: 22px 24px 0; }
     .nav-inner { padding: 0 18px; }
     .wrap { padding: 0 18px; }
-    .summary-item { flex-direction: column; gap: 4px; }
-    .summary-item .si-label { width: auto; }
+    .brief-section { padding: 12px 18px; }
+    .brief-header { padding: 16px 18px; }
     .welcome-screen { padding: 56px 24px; }
     .option-card { padding: 14px 16px; }
+    .nav-progress-text { display: none !important; }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .step-content, .summary-screen { animation: none; }
     html { scroll-behavior: auto; }
@@ -483,6 +558,7 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html"><span class="dot"></span> Cashie</a>
+    <span class="nav-progress-text" id="navProgressText"></span>
     <a class="nav-back" href="index.html">← Back to site</a>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -496,32 +572,17 @@
       <div id="wizardContent"></div>
     </div>
 
-    <!-- Estimate panel -->
-    <aside class="estimate-panel" id="estimatePanel">
-      <div class="est-glow"></div>
-      <h3>Live estimate</h3>
-      <p class="est-sub">Updates as you answer.</p>
-      <div class="est-summary" id="estSummary">
-        <span class="est-big" id="estPrice">—</span>
-        <span class="est-small" id="estPriceRange"></span>
+    <!-- Snapshot panel (desktop) -->
+    <aside class="snapshot-panel" id="snapshotPanel">
+      <div class="snap-glow"></div>
+      <h3 id="snapTitle">Project Snapshot</h3>
+      <p class="snap-sub" id="snapSub">Typical ranges for Cashie projects.</p>
+
+      <div id="snapContent">
+        <!-- Filled by JS -->
       </div>
-      <div class="est-row">
-        <span class="est-label">Build type</span>
-        <span class="est-value empty" id="estType">Not selected</span>
-      </div>
-      <div class="est-row">
-        <span class="est-label">Timeline</span>
-        <span class="est-value empty" id="estTimeline">Not selected</span>
-      </div>
-      <div class="est-row">
-        <span class="est-label">Platform</span>
-        <span class="est-value empty" id="estPlatform">Not selected</span>
-      </div>
-      <div class="est-row">
-        <span class="est-label">Complexity</span>
-        <span class="est-value empty" id="estSize">Not selected</span>
-      </div>
-      <p class="est-foot">Estimates are indicative only. You'll get a fixed quote after I review your brief.</p>
+
+      <p class="snap-foot" id="snapFoot">Estimates are indicative only. You'll get a fixed quote after I review your brief.</p>
     </aside>
   </div>
 </main>
@@ -535,17 +596,19 @@
 (function() {
   "use strict";
 
+  // ---- Unsupported configurations ----
+  var unsupportedPlatforms = ["ios", "android", "windows"];
+
   // ---- Step definitions ----
   var steps = [
     {
       id: "welcome",
       type: "welcome",
       title: "Build your project brief",
-      subtitle: "One question at a time.",
-      lede: "Answer a few quick questions about your project. You'll get a live estimate as you go, plus a ready-to-send summary at the end.",
+      lede: "Answer a few quick questions about your project. You'll get a live project snapshot as you go, plus a ready-to-send consulting-style brief at the end.",
       features: [
         { icon: "⚡", text: "60-second flow" },
-        { icon: "📊", text: "Live estimate" },
+        { icon: "📊", text: "Project snapshot" },
         { icon: "📋", text: "Copy-ready brief" }
       ],
       cta: "Start →"
@@ -590,7 +653,10 @@
         { value: "macos",       label: "macOS",           desc: "Apple desktop / laptop",     icon: "" },
         { value: "linux",       label: "Linux",           desc: "Ubuntu, Debian, etc.",      icon: "🐧" },
         { value: "mac-linux",   label: "macOS + Linux",    desc: "Both platforms",             icon: "💻" },
-        { value: "web-dashboard", label: "Web dashboard", desc: "Runs in the browser",         icon: "🌐" }
+        { value: "web-dashboard", label: "Web dashboard", desc: "Runs in the browser",         icon: "🌐" },
+        { value: "ios",         label: "iOS",              desc: "Not currently supported",     icon: "📱", unsupported: true },
+        { value: "android",     label: "Android",          desc: "Not currently supported",     icon: "📱", unsupported: true },
+        { value: "windows",     label: "Windows",          desc: "Not currently supported",     icon: "🪟", unsupported: true }
       ]
     },
     {
@@ -609,13 +675,13 @@
       id: "budget",
       type: "choice",
       question: "What's your budget range?",
-      lede: "A rough bracket helps shape the right scope. I quote fixed price either way.",
+      lede: "A rough bracket helps me check fit. I quote fixed price either way.",
       options: [
-        { value: "under-1k", label: "Under $1,000",  desc: "Quick script or simple page",    icon: "💵" },
-        { value: "1k-3k",    label: "$1,000 – $3,000", desc: "Standard small project",         icon: "💰" },
-        { value: "3k-5k",    label: "$3,000 – $5,000", desc: "Multi-feature build",            icon: "🏦" },
-        { value: "5k-10k",   label: "$5,000 – $10,000", desc: "Complex system or dashboard",    icon: "🏆" },
-        { value: "10k+",     label: "$10,000+",       desc: "Large or ongoing project",        icon: "💎" },
+        { value: "under-1k", label: "Under A$1,000",  desc: "Quick script or simple page",    icon: "💵" },
+        { value: "1k-3k",    label: "A$1,000 – A$3,000", desc: "Standard small project",         icon: "💰" },
+        { value: "3k-5k",    label: "A$3,000 – A$5,000", desc: "Multi-feature build",            icon: "🏦" },
+        { value: "5k-10k",   label: "A$5,000 – A$10,000", desc: "Complex system or dashboard",    icon: "🏆" },
+        { value: "10k+",     label: "A$10,000+",       desc: "Large or ongoing project",        icon: "💎" },
         { value: "not-sure", label: "Not sure yet",    desc: "I'll suggest a budget",           icon: "🤔" }
       ]
     },
@@ -639,6 +705,7 @@
       lede: "A sentence or two about the problem, the user, and what \"done\" looks like.",
       fields: [
         { id: "description", label: "Project description", hint: "e.g. I need a booking page that lets clients pick a service and send an enquiry…", type: "textarea", required: true },
+        { id: "features",    label: "Key features (optional)", hint: "List the main things the app needs to do — one per line.", type: "textarea", required: false },
         { id: "links",       label: "Links or examples (optional)", hint: "Existing site, competitor, sketches, Notion docs", type: "textarea", required: false }
       ]
     },
@@ -658,166 +725,357 @@
       id: "summary",
       type: "summary",
       question: "Your project brief",
-      lede: "Here's everything in one place. Copy it and send it through, or go back to edit."
+      lede: "Here's your consulting-style brief. Copy it and send it through, or go back to edit."
     }
   ];
 
   // ---- State ----
   var state = { stepIndex: 0, answers: {} };
-  var totalContentSteps = steps.length - 2; // exclude welcome and summary
+  var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
+  var totalContentSteps = contentSteps.length;
 
-  // ---- Estimate pricing map ----
-  var priceMap = {
+  // ---- Pricing engine — independent of customer budget ----
+  // Base prices in AUD per project type
+  var typePricing = {
+    "desktop-app":  { base: 3000, range: 5000, label: "Desktop app" },
+    "internal-tool": { base: 1200, range: 2300, label: "Internal tool" },
+    "automation":   { base: 600,  range: 1400, label: "Automation" },
+    "dashboard":    { base: 2800, range: 4200, label: "Dashboard" },
+    "website":      { base: 800,  range: 2200, label: "Website / landing page" },
+    "improvement":  { base: 1000, range: 4000, label: "Existing app improvement" },
+    "other":        { base: 1500, range: 3500, label: "Other" }
+  };
+
+  // Stack multipliers
+  var stackMultipliers = {
+    "python":  1.0,
+    "swift":   1.25,
+    "react":   1.15,
+    "node":    1.0,
+    "bash":    0.7,
+    "tauri":   1.2,
+    "mixed":   1.15,
+    "not-sure": 1.0
+  };
+
+  // Platform multipliers
+  var platformMultipliers = {
+    "macos": 1.0,
+    "linux": 0.95,
+    "mac-linux": 1.15,
+    "web-dashboard": 1.0,
+    "ios": 1.0,
+    "android": 1.0,
+    "windows": 1.0
+  };
+
+  // Size multipliers
+  var sizeMultipliers = {
+    "small": 0.5,
+    "medium": 1.0,
+    "large": 2.2,
+    "not-sure": 1.0
+  };
+
+  // Timeline urgency multipliers
+  var timelineMultipliers = {
+    "asap": 1.2,
+    "1-2-weeks": 1.05,
+    "1-month": 1.0,
+    "flexible": 0.95,
+    "exploring": 1.0
+  };
+
+  // Budget ranges for comparison (AUD)
+  var budgetRanges = {
+    "under-1k": { min: 0,    max: 1000 },
+    "1k-3k":    { min: 1000, max: 3000 },
+    "3k-5k":    { min: 3000, max: 5000 },
+    "5k-10k":   { min: 5000, max: 10000 },
+    "10k+":     { min: 10000, max: 999999 },
+    "not-sure": { min: null, max: null }
+  };
+
+  // Labels for display
+  var labels = {
     type: {
-      "desktop-app":  { min: "$2,000",  max: "$8,000+", label: "Desktop app" },
-      "internal-tool": { min: "$500",   max: "$3,500",  label: "Internal tool" },
-      "automation":   { min: "$300",   max: "$2,000",  label: "Automation" },
-      "dashboard":    { min: "$2,000",  max: "$7,000",  label: "Dashboard" },
-      "website":      { min: "$500",   max: "$3,000",  label: "Website" },
-      "improvement":  { min: "$500",   max: "$5,000",  label: "Improvement" },
-      "other":        { min: "—",      max: "—",       label: "Other" }
-    },
-    size: {
-      "small":    { label: "Small",     time: "1–3 days" },
-      "medium":   { label: "Medium",    time: "1–2 weeks" },
-      "large":    { label: "Large",     time: "1+ month" },
-      "not-sure": { label: "Not sure",  time: "—" }
-    },
-    platform: {
-      "macos":         "macOS",
-      "linux":         "Linux",
-      "mac-linux":     "macOS + Linux",
-      "web-dashboard": "Web dashboard"
-    },
-    timeline: {
-      "asap":      "ASAP",
-      "1-2-weeks": "1–2 weeks",
-      "1-month":   "Within a month",
-      "flexible":  "Flexible",
-      "exploring": "Just exploring"
-    },
-    budget: {
-      "under-1k": "Under $1,000",
-      "1k-3k":    "$1,000 – $3,000",
-      "3k-5k":    "$3,000 – $5,000",
-      "5k-10k":   "$5,000 – $10,000",
-      "10k+":     "$10,000+",
-      "not-sure": "Not sure yet"
+      "desktop-app": "Desktop app", "internal-tool": "Internal tool", "automation": "Automation",
+      "dashboard": "Dashboard", "website": "Website / landing page", "improvement": "Existing app improvement", "other": "Other"
     },
     stack: {
-      "python":   "Python",
-      "swift":    "Swift / macOS",
-      "react":    "React / TypeScript",
-      "node":     "Node.js",
-      "bash":     "Bash / CLI",
-      "tauri":    "Tauri desktop",
-      "mixed":    "Mixed codebase",
-      "not-sure": "Not sure yet"
+      "python": "Python", "swift": "Swift / macOS", "react": "React / TypeScript",
+      "node": "Node.js", "bash": "Bash / CLI", "tauri": "Tauri desktop",
+      "mixed": "Mixed codebase", "not-sure": "Not sure yet (I'll recommend)"
+    },
+    platform: {
+      "macos": "macOS", "linux": "Linux", "mac-linux": "macOS + Linux",
+      "web-dashboard": "Web dashboard", "ios": "iOS (unsupported)", "android": "Android (unsupported)", "windows": "Windows (unsupported)"
+    },
+    size: {
+      "small": "Small · 1–3 days", "medium": "Medium · 1–2 weeks",
+      "large": "Large · 1+ month", "not-sure": "Not sure"
+    },
+    budget: {
+      "under-1k": "Under A$1,000", "1k-3k": "A$1,000 – A$3,000",
+      "3k-5k": "A$3,000 – A$5,000", "5k-10k": "A$5,000 – A$10,000",
+      "10k+": "A$10,000+", "not-sure": "Not sure yet"
+    },
+    timeline: {
+      "asap": "ASAP", "1-2-weeks": "1–2 weeks", "1-month": "Within a month",
+      "flexible": "Flexible", "exploring": "Just exploring"
     }
   };
 
-  var elWizard   = document.getElementById("wizardContent");
-  var elProgress = document.getElementById("progressFill");
-  var elEstPrice = document.getElementById("estPrice");
-  var elEstRange = document.getElementById("estPriceRange");
-  var elEstType  = document.getElementById("estType");
-  var elEstTL    = document.getElementById("estTimeline");
-  var elEstPlat  = document.getElementById("estPlatform");
-  var elEstSize  = document.getElementById("estSize");
+  // ---- Calculate estimate independently ----
+  function calculateEstimate() {
+    var a = state.answers;
+    var typeData = typePricing[a.type];
+    if (!typeData) return null;
+
+    var base = typeData.base;
+    var range = typeData.range;
+
+    // Stack multiplier
+    var stackMult = stackMultipliers[a.stack] || 1.0;
+
+    // Platform multiplier
+    var platMult = platformMultipliers[a.platform] || 1.0;
+
+    // Size multiplier
+    var sizeMult = sizeMultipliers[a.size] || 1.0;
+
+    // Timeline multiplier
+    var tlMult = timelineMultipliers[a.timeline] || 1.0;
+
+    // Feature count modifier (from details.features textarea)
+    var featureCount = 0;
+    if (a.features && a.features.trim()) {
+      featureCount = a.features.trim().split("\n").filter(function(l){ return l.trim(); }).length;
+    }
+    var featureMult = 1.0 + (featureCount * 0.05); // +5% per feature
+
+    // Calculate
+    var minRaw = base * stackMult * platMult * sizeMult * tlMult * featureMult;
+    var maxRaw = minRaw + (range * sizeMult * stackMult);
+
+    // Round to nearest $100
+    var minVal = Math.round(minRaw / 100) * 100;
+    var maxVal = Math.round(maxRaw / 100) * 100;
+
+    // Clamp minimums
+    if (minVal < 300) minVal = 300;
+    if (maxVal < minVal + 400) maxVal = minVal + 400;
+
+    return {
+      min: minVal,
+      max: maxVal,
+      minStr: "A$" + minVal.toLocaleString(),
+      maxStr: "A$" + maxVal.toLocaleString(),
+      rangeStr: "A$" + minVal.toLocaleString() + "–A$" + maxVal.toLocaleString()
+    };
+  }
+
+  // ---- Budget fit analysis ----
+  function getBudgetFit() {
+    var est = calculateEstimate();
+    var a = state.answers;
+    if (!est) return null;
+    if (!a.budget || a.budget === "not-sure") return null;
+    var br = budgetRanges[a.budget];
+    if (!br) return null;
+
+    // Good match: budget overlaps with estimate range
+    if (br.max >= est.min * 0.85 && br.min <= est.max * 1.05) {
+      return { level: "good", label: "✓ Good Match", class: "good" };
+    }
+    // Stretch: budget is below estimate but not by much
+    if (br.max < est.min * 0.85 && br.max >= est.min * 0.55) {
+      return { level: "warn", label: "⚠ Stretch budget", class: "warn" };
+    }
+    // Over budget: budget is way below estimate
+    if (br.max < est.min * 0.55) {
+      return { level: "over", label: "⚠ Budget likely too low", class: "warn" };
+    }
+    // Budget much higher than estimate — still good
+    return { level: "good", label: "✓ Good Match", class: "good" };
+  }
+
+  // ---- Confidence score ----
+  function getConfidence() {
+    var a = state.answers;
+    var score = 0;
+    var maxScore = 0;
+
+    // Type selected
+    maxScore += 15;
+    if (a.type) score += 15;
+
+    // Stack certainty
+    maxScore += 15;
+    if (a.stack && a.stack !== "not-sure") score += 15;
+    else if (a.stack === "not-sure") score += 7;
+
+    // Platform selected
+    maxScore += 10;
+    if (a.platform && unsupportedPlatforms.indexOf(a.platform) === -1) score += 10;
+
+    // Size selected
+    maxScore += 10;
+    if (a.size && a.size !== "not-sure") score += 10;
+    else if (a.size === "not-sure") score += 5;
+
+    // Budget selected
+    maxScore += 10;
+    if (a.budget && a.budget !== "not-sure") score += 10;
+    else if (a.budget === "not-sure") score += 5;
+
+    // Timeline selected
+    maxScore += 10;
+    if (a.timeline) score += 10;
+
+    // Description detail
+    maxScore += 20;
+    if (a.description && a.description.trim()) {
+      var descLen = a.description.trim().length;
+      if (descLen > 100) score += 20;
+      else if (descLen > 40) score += 12;
+      else score += 6;
+    }
+
+    // Features list
+    maxScore += 10;
+    if (a.features && a.features.trim()) {
+      var featCount = a.features.trim().split("\n").filter(function(l){ return l.trim(); }).length;
+      if (featCount >= 3) score += 10;
+      else if (featCount >= 1) score += 5;
+    }
+
+    var pct = Math.round((score / maxScore) * 100);
+
+    if (pct >= 70) return { level: "high", label: "HIGH", pct: pct };
+    if (pct >= 40) return { level: "medium", label: "MEDIUM", pct: pct };
+    return { level: "low", label: "LOW", pct: pct };
+  }
+
+  // ---- DOM refs ----
+  var elWizard    = document.getElementById("wizardContent");
+  var elProgress  = document.getElementById("progressFill");
+  var elNavProg   = document.getElementById("navProgressText");
+  var elSnapTitle = document.getElementById("snapTitle");
+  var elSnapSub   = document.getElementById("snapSub");
+  var elSnap      = document.getElementById("snapContent");
+  var elSnapFoot  = document.getElementById("snapFoot");
 
   // ---- Helpers ----
   function esc(str) {
     return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
   }
 
-  function getStepName(step) {
-    if (step.type === "choice") {
-      var opt = step.options.find(function(o){ return o.value === state.answers[step.id]; });
-      return opt ? opt.label : "";
-    }
-    if (step.type === "text") {
-      return step.fields.map(function(f){
-        return state.answers[f.id] || "";
-      }).join(" / ").trim();
-    }
-    return "";
+  function fmtAUD(n) {
+    return "A$" + n.toLocaleString();
   }
 
-  // ---- Update progress bar ----
+  // ---- Update progress bar + nav text ----
   function updateProgress() {
     var idx = state.stepIndex;
-    // welcome = 0%, first content step = small %, summary = 100%
-    if (idx === 0) { elProgress.style.width = "0%"; return; }
-    if (idx === steps.length - 1) { elProgress.style.width = "100%"; return; }
+    if (idx === 0) {
+      elProgress.style.width = "0%";
+      elNavProg.textContent = "";
+      elNavProg.classList.remove("visible");
+      return;
+    }
+    if (idx === steps.length - 1) {
+      elProgress.style.width = "100%";
+      elNavProg.textContent = "Complete";
+      elNavProg.classList.add("visible");
+      return;
+    }
     var pct = Math.round((idx / (steps.length - 1)) * 100);
     elProgress.style.width = pct + "%";
+    var stepNum = getChoiceNumber(steps[idx]);
+    elNavProg.textContent = "Step " + stepNum + " of " + totalContentSteps + " · " + pct + "%";
+    elNavProg.classList.add("visible");
   }
 
-  // ---- Update estimate panel ----
-  function updateEstimate() {
+  // ---- Update snapshot panel ----
+  function updateSnapshot() {
     var a = state.answers;
+    var est = calculateEstimate();
+    var fit = getBudgetFit();
+    var conf = getConfidence();
 
-    // Build type
-    var typeData = priceMap.type[a.type];
-    if (typeData) {
-      elEstType.textContent = typeData.label;
-      elEstType.classList.remove("empty");
-      elEstPrice.textContent = typeData.min;
-      elEstRange.textContent = typeData.min !== "—" ? "– " + typeData.max : "";
+    // If no answers yet — show defaults
+    var hasAnyAnswer = Object.keys(a).length > 0 && (a.type || a.stack || a.platform || a.size || a.budget || a.timeline);
+
+    if (!hasAnyAnswer) {
+      elSnapSub.textContent = "Typical ranges for Cashie projects.";
+      var html = '';
+      html += '<div class="snap-default">';
+      html += '<div class="snap-default-label">Typical Projects</div>';
+      html += '<ul><li>Swift utilities</li><li>Tauri desktop apps</li><li>Internal dashboards</li><li>Automation tools</li></ul>';
+      html += '<div class="snap-default-label">Typical Investment</div>';
+      html += '<p style="font-family:var(--serif);font-size:1.4rem;color:var(--cream);margin:0 0 14px;">A$500–A$5,000</p>';
+      html += '<div class="snap-default-label">Typical Timeline</div>';
+      html += '<p style="font-family:var(--serif);font-size:1.05rem;color:var(--cream);margin:0;">1–4 weeks</p>';
+      html += '</div>';
+      elSnap.innerHTML = html;
+      elSnapFoot.style.display = "block";
+      return;
+    }
+
+    // Live snapshot with answers
+    elSnapSub.textContent = "Updates as you answer.";
+
+    var html = '';
+
+    // Estimate
+    html += '<div class="est-label-mini">Estimated Investment</div>';
+    html += '<div class="est-summary">';
+    if (est) {
+      html += '<span class="est-big">' + esc(est.minStr) + '</span>';
+      html += '<span class="est-small">– ' + esc(est.maxStr) + '</span>';
     } else {
-      elEstType.textContent = "Not selected";
-      elEstType.classList.add("empty");
-      elEstPrice.textContent = "—";
-      elEstRange.textContent = "";
+      html += '<span class="est-big empty">A$500–A$5,000</span>';
+      html += '<span class="est-small">typical range</span>';
+    }
+    html += '</div>';
+
+    // Stats rows
+    html += '<div class="est-row"><span class="est-label">Project</span><span class="est-value ' + (a.type ? '' : 'empty') + '">' + esc(a.type ? labels.type[a.type] : 'Not selected') + '</span></div>';
+    html += '<div class="est-row"><span class="est-label">Platform</span><span class="est-value ' + (a.platform ? '' : 'empty') + '">' + esc(a.platform ? labels.platform[a.platform] : 'Not selected') + '</span></div>';
+    html += '<div class="est-row"><span class="est-label">Stack</span><span class="est-value ' + (a.stack ? '' : 'empty') + '">' + esc(a.stack ? labels.stack[a.stack] : 'Not selected') + '</span></div>';
+    html += '<div class="est-row"><span class="est-label">Complexity</span><span class="est-value ' + (a.size ? '' : 'empty') + '">' + esc(a.size ? labels.size[a.size] : 'Not selected') + '</span></div>';
+    html += '<div class="est-row"><span class="est-label">Timeline</span><span class="est-value ' + (a.timeline ? '' : 'empty') + '">' + esc(a.timeline ? labels.timeline[a.timeline] : 'Not selected') + '</span></div>';
+
+    // Customer budget vs budget fit
+    if (a.budget && a.budget !== "not-sure") {
+      html += '<div class="est-row"><span class="est-label">Your Budget</span><span class="est-value">' + esc(labels.budget[a.budget]) + '</span></div>';
+      if (fit) {
+        html += '<div class="est-row"><span class="est-label">Budget Fit</span><span class="est-value"><span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span></span></div>';
+      }
     }
 
-    // Timeline
-    if (a.timeline && priceMap.timeline[a.timeline]) {
-      elEstTL.textContent = priceMap.timeline[a.timeline];
-      elEstTL.classList.remove("empty");
-    } else {
-      elEstTL.textContent = "Not selected";
-      elEstTL.classList.add("empty");
+    // Confidence score
+    if (conf) {
+      html += '<div class="est-row"><span class="est-label">Confidence</span><span class="est-value"><span class="conf-badge ' + esc(conf.level) + '">' + esc(conf.label) + ' · ' + conf.pct + '%</span></span></div>';
     }
 
-    // Platform
-    if (a.platform && priceMap.platform[a.platform]) {
-      elEstPlat.textContent = priceMap.platform[a.platform];
-      elEstPlat.classList.remove("empty");
-    } else {
-      elEstPlat.textContent = "Not selected";
-      elEstPlat.classList.add("empty");
-    }
-
-    // Complexity / size
-    if (a.size && priceMap.size[a.size]) {
-      elEstSize.textContent = priceMap.size[a.size].label + " · " + priceMap.size[a.size].time;
-      elEstSize.classList.remove("empty");
-    } else {
-      elEstSize.textContent = "Not selected";
-      elEstSize.classList.add("empty");
-    }
-
-    // Adjust price based on budget selection if available
-    if (a.budget && priceMap.budget[a.budget] && a.budget !== "not-sure") {
-      elEstPrice.textContent = priceMap.budget[a.budget];
-      elEstRange.textContent = "your range";
-    }
+    elSnap.innerHTML = html;
+    elSnapFoot.style.display = "block";
   }
 
   // ---- Render step dots ----
   function renderDots() {
     var step = steps[state.stepIndex];
     if (step.type === "welcome" || step.type === "summary") return "";
-    var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
-    var activeContentIdx = contentSteps.indexOf(step);
-    if (activeContentIdx < 0) return "";
+    var activeIdx = contentSteps.indexOf(step);
+    if (activeIdx < 0) return "";
 
     var html = '<div class="dots">';
     for (var i = 0; i < contentSteps.length; i++) {
       var cls = "";
-      if (i < activeContentIdx) cls = "done";
-      else if (i === activeContentIdx) cls = "active";
+      if (i < activeIdx) cls = "done";
+      else if (i === activeIdx) cls = "active";
       html += '<span class="dot ' + cls + '"></span>';
     }
     html += '</div>';
@@ -829,22 +1087,16 @@
     var step = steps[state.stepIndex];
     var html = "";
 
-    if (step.type === "welcome") {
-      html = renderWelcome(step);
-    } else if (step.type === "choice") {
-      html = renderChoice(step);
-    } else if (step.type === "text") {
-      html = renderTextStep(step);
-    } else if (step.type === "summary") {
-      html = renderSummary(step);
-    }
+    if (step.type === "welcome")          html = renderWelcome(step);
+    else if (step.type === "choice")      html = renderChoice(step);
+    else if (step.type === "text")         html = renderTextStep(step);
+    else if (step.type === "summary")      html = renderSummary(step);
 
     elWizard.innerHTML = html;
     attachHandlers();
     updateProgress();
-    updateEstimate();
+    updateSnapshot();
 
-    // Scroll to top of wizard
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -864,11 +1116,12 @@
   }
 
   function renderChoice(step) {
-    var counter = renderStepCounter(step);
+    var counter = renderDots();
     var optionsHtml = step.options.map(function(opt) {
       var selected = state.answers[step.id] === opt.value ? " selected" : "";
+      var unsup = opt.unsupported ? " unsupported" : "";
       return '' +
-        '<label class="option-card' + selected + '" data-value="' + esc(opt.value) + '">' +
+        '<label class="option-card' + selected + unsup + '" data-value="' + esc(opt.value) + '"' + (opt.unsupported ? '' : '') + '>' +
           '<span class="icon">' + opt.icon + '</span>' +
           '<span>' +
             '<div class="label">' + esc(opt.label) + '</div>' +
@@ -878,24 +1131,35 @@
         '</label>';
     }).join("");
 
+    // Check if current answer is unsupported
+    var showAlert = state.answers[step.id] && step.options.some(function(o) {
+      return o.value === state.answers[step.id] && o.unsupported;
+    });
+
+    var alertHtml = showAlert ? '<div class="unsupported-alert show"><strong>Not currently supported.</strong> I focus on macOS, Linux, and web dashboards. I don\'t take iOS, Android, or Windows-only projects. Feel free to pick a different platform, or describe it as "Other" in the first step.</div>' : '';
+
+    // If showing unsupported, the "Next" should be disabled
+    var nextDisabled = showAlert ? " disabled" : (state.answers[step.id] ? "" : " disabled");
+
     return '' +
       '<div class="step-counter">' +
         '<span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' +
         counter +
       '</div>' +
       '<div class="step-content">' +
+        alertHtml +
         '<h2>' + esc(step.question) + '</h2>' +
         '<p class="lede">' + esc(step.lede) + '</p>' +
         '<div class="option-grid">' + optionsHtml + '</div>' +
       '</div>' +
       '<div class="step-nav">' +
         '<button class="btn btn-ghost btn-back" data-action="back">← Back</button>' +
-        '<button class="btn btn-primary" data-action="next" disabled>Next →</button>' +
+        '<button class="btn btn-primary" data-action="next"' + nextDisabled + '>Next →</button>' +
       '</div>';
   }
 
   function renderTextStep(step) {
-    var counter = renderStepCounter(step);
+    var counter = renderDots();
     var fieldsHtml = step.fields.map(function(f) {
       var val = state.answers[f.id] || "";
       var tag = f.type === "textarea" ? "textarea" : 'input type="text"';
@@ -927,94 +1191,186 @@
   }
 
   function renderSummary(step) {
-    var rows = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; }).map(function(s) {
-      var label = "";
-      var value = "";
+    var a = state.answers;
+    var est = calculateEstimate();
+    var fit = getBudgetFit();
+    var conf = getConfidence();
 
-      if (s.type === "choice") {
-        label = s.question;
-        var opt = s.options.find(function(o){ return o.value === state.answers[s.id]; });
-        value = opt ? opt.label : "";
-      } else if (s.type === "text") {
-        label = s.question;
-        var parts = s.fields.map(function(f) {
-          var v = state.answers[f.id];
-          if (v && v.trim()) return f.label.split(" (")[0] + ": " + v;
-          return "";
-        }).filter(Boolean);
-        value = parts.join("\n");
-      }
+    // Build features list
+    var featuresList = "";
+    if (a.features && a.features.trim()) {
+      var feats = a.features.trim().split("\n").filter(function(l){ return l.trim(); });
+      featuresList = feats.map(function(f) {
+        return '<li>' + esc(f.trim()) + '</li>';
+      }).join("");
+    }
 
-      var isEmpty = !value || value.trim() === "";
-      return '' +
-        '<div class="summary-item">' +
-          '<span class="si-label">' + esc(label) + '</span>' +
-          '<span class="si-value' + (isEmpty ? " empty" : "") + '">' + (isEmpty ? "—" : esc(value)) + '</span>' +
-        '</div>';
-    }).join("");
+    // Build description
+    var descHtml = a.description && a.description.trim()
+      ? esc(a.description.trim())
+      : '<span class="muted">No description provided</span>';
 
-    return '' +
+    // Build links
+    var linksHtml = a.links && a.links.trim() ? esc(a.links.trim()) : '<span class="muted">None provided</span>';
+
+    // Contact
+    var contactHtml = "";
+    if (a.name) contactHtml += esc(a.name);
+    if (a.project) contactHtml += " · " + esc(a.project);
+    if (a["contact-method"]) contactHtml += " · " + esc(a["contact-method"]);
+    if (a["contact-details"]) contactHtml += " · " + esc(a["contact-details"]);
+    if (!contactHtml.trim()) contactHtml = '<span class="muted">Not provided</span>';
+
+    var html = '' +
       '<div class="step-counter">' +
         '<span class="pill">Summary</span>' +
       '</div>' +
       '<div class="summary-screen">' +
         '<h2>' + esc(step.question) + '</h2>' +
         '<p class="lede">' + esc(step.lede) + '</p>' +
-        '<div class="summary-list">' + rows + '</div>' +
-        '<div class="summary-actions">' +
-          '<button class="btn btn-primary" data-action="copy">📋 Copy brief</button>' +
-          '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
-          '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
-        '</div>' +
-        '<div class="copy-feedback" id="copyFeedback">✓ Brief copied to clipboard. Paste it anywhere.</div>' +
-      '</div>';
+        '<div class="summary-brief">';
+
+    // Brief header
+    html += '<div class="brief-header">';
+    html += '<div class="brief-title">Cashie Project Brief</div>';
+    html += '<div class="brief-sub">Generated by the Cashie Project Brief Builder</div>';
+    html += '<div class="brief-badges">';
+    if (conf) html += '<span class="conf-badge ' + esc(conf.level) + '">Confidence: ' + esc(conf.label) + '</span>';
+    if (fit)  html += '<span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span>';
+    html += '</div>';
+    html += '</div>';
+
+    // Project type
+    html += briefSection("Project", a.type ? labels.type[a.type] : '<span class="muted">Not specified</span>', a.type ? "" : "muted");
+
+    // Platform
+    html += briefSection("Platform", a.platform ? labels.platform[a.platform] : '<span class="muted">Not specified</span>', a.platform ? "" : "muted");
+
+    // Recommended Stack
+    html += briefSection("Recommended Stack", a.stack ? labels.stack[a.stack] : '<span class="muted">Not specified</span>', a.stack ? "" : "muted");
+
+    // Complexity
+    html += briefSection("Complexity", a.size ? labels.size[a.size] : '<span class="muted">Not specified</span>', a.size ? "" : "muted");
+
+    // Estimated Investment
+    if (est) {
+      html += briefSection("Estimated Investment", est.rangeStr, "bold");
+    } else {
+      html += briefSection("Estimated Investment", '<span class="muted">Insufficient data — needs project type</span>', "muted");
+    }
+
+    // Customer Budget
+    html += briefSection("Customer Budget", a.budget ? labels.budget[a.budget] : '<span class="muted">Not specified</span>', a.budget ? "" : "muted");
+
+    // Budget Fit
+    if (fit) {
+      html += briefSection("Budget Fit", '<span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span>', "");
+    } else if (a.budget && a.budget !== "not-sure" && !est) {
+      html += briefSection("Budget Fit", '<span class="muted">Needs more info</span>', "muted");
+    } else {
+      html += briefSection("Budget Fit", '<span class="muted">—</span>', "muted");
+    }
+
+    // Timeline
+    html += briefSection("Timeline", a.timeline ? labels.timeline[a.timeline] : '<span class="muted">Not specified</span>', a.timeline ? "" : "muted");
+
+    // Features
+    if (featuresList) {
+      html += '<div class="brief-section"><div class="bs-label">Features</div><ul class="bs-list">' + featuresList + '</ul></div>';
+    } else {
+      html += briefSection("Features", '<span class="muted">Not specified</span>', "muted");
+    }
+
+    // Project Notes
+    html += '<div class="brief-section"><div class="bs-label">Project Notes</div><div class="bs-value">' + descHtml + '</div></div>';
+
+    // Links
+    html += '<div class="brief-section"><div class="bs-label">Links / Examples</div><div class="bs-value">' + linksHtml + '</div></div>';
+
+    // Contact
+    html += '<div class="brief-section"><div class="bs-label">Contact</div><div class="bs-value">' + contactHtml + '</div></div>';
+
+    html += '</div>'; // close summary-brief
+
+    // Confidence detail
+    if (conf) {
+      html += '<div style="font-size:0.82rem;color:var(--ink-mute);margin:-12px 0 20px;padding:0 4px;">Confidence score: ' + conf.label + ' (' + conf.pct + '%) — based on completeness, stack certainty, and detail provided.</div>';
+    }
+
+    // Actions
+    html += '<div class="summary-actions">' +
+      '<button class="btn btn-primary" data-action="copy">📋 Copy brief</button>' +
+      '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
+      '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
+    '</div>' +
+    '<div class="copy-feedback" id="copyFeedback">✓ Brief copied to clipboard. Paste it anywhere.</div>' +
+    '</div>';
+
+    return html;
   }
 
-  function renderStepCounter(step) {
-    return renderDots();
+  function briefSection(label, value, extraClass) {
+    return '<div class="brief-section"><div class="bs-label">' + esc(label) + '</div><div class="bs-value ' + (extraClass || "") + '">' + value + '</div></div>';
   }
 
   function getChoiceNumber(step) {
-    var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
     return contentSteps.indexOf(step) + 1;
   }
 
   // ---- Event handlers ----
   function attachHandlers() {
-    // Start button
     var startBtn = elWizard.querySelector('[data-action="start"]');
     if (startBtn) { startBtn.addEventListener("click", function() { goNext(); }); }
 
-    // Back / Next / Restart / Copy
     var actions = elWizard.querySelectorAll('[data-action]');
     actions.forEach(function(btn) {
       var action = btn.getAttribute("data-action");
-      if (action === "back") { btn.addEventListener("click", goBack); }
-      else if (action === "next") { btn.addEventListener("click", goNext); }
-      else if (action === "restart") { btn.addEventListener("click", restart); }
-      else if (action === "copy") { btn.addEventListener("click", copyBrief); }
+      if (action === "back")         btn.addEventListener("click", goBack);
+      else if (action === "next")    btn.addEventListener("click", goNext);
+      else if (action === "restart") btn.addEventListener("click", restart);
+      else if (action === "copy")    btn.addEventListener("click", copyBrief);
     });
 
     // Option cards
     var cards = elWizard.querySelectorAll(".option-card");
     cards.forEach(function(card) {
-      card.addEventListener("click", function() {
+      // Skip unsupported platforms — they show the alert but don't select
+      var isUnsupported = card.classList.contains("unsupported");
+      card.addEventListener("click", function(e) {
+        e.preventDefault();
+        var val = card.getAttribute("data-value");
+        var step = steps[state.stepIndex];
+
+        // Check if this option is unsupported
+        var optData = step.options.find(function(o) { return o.value === val; });
+        if (optData && optData.unsupported) {
+          // Select it to show the alert, but disable Next
+          cards.forEach(function(c){ c.classList.remove("selected"); });
+          card.classList.add("selected");
+          state.answers[step.id] = val;
+          updateSnapshot();
+          // Re-render to show alert
+          render();
+          return;
+        }
+
         cards.forEach(function(c){ c.classList.remove("selected"); });
         card.classList.add("selected");
-        state.answers[steps[state.stepIndex].id] = card.getAttribute("data-value");
-        updateEstimate();
+        state.answers[step.id] = val;
+        updateSnapshot();
         var nextBtn = elWizard.querySelector('[data-action="next"]');
         if (nextBtn) nextBtn.disabled = false;
       });
     });
 
-    // Text inputs — enable/disable next based on required fields
+    // Text inputs
     var inputs = elWizard.querySelectorAll("[data-field]");
     if (inputs.length) {
       inputs.forEach(function(input) {
         input.addEventListener("input", function() {
           state.answers[input.getAttribute("data-field")] = input.value;
           updateNextBtnState();
+          updateSnapshot();
         });
       });
       updateNextBtnState();
@@ -1053,41 +1409,99 @@
     render();
   }
 
+  // ---- Copy brief (consulting-style output) ----
   function copyBrief() {
+    var a = state.answers;
+    var est = calculateEstimate();
+    var fit = getBudgetFit();
+    var conf = getConfidence();
+    var now = new Date();
+    var dateStr = now.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
+
     var lines = [];
-    lines.push("PROJECT BRIEF");
-    lines.push("=============");
+    lines.push("Cashie Project Brief");
+    lines.push("====================");
+    lines.push("Generated: " + dateStr);
     lines.push("");
 
-    steps.forEach(function(s) {
-      if (s.type === "choice") {
-        var opt = s.options.find(function(o){ return o.value === state.answers[s.id]; });
-        if (opt) lines.push(s.question + ": " + opt.label);
-      } else if (s.type === "text") {
-        s.fields.forEach(function(f) {
-          var v = state.answers[f.id];
-          if (v && v.trim()) lines.push(f.label.split(" (")[0] + ": " + v);
-        });
-      }
-    });
+    // Confidence
+    if (conf) {
+      lines.push("Confidence: " + conf.label + " (" + conf.pct + "%)");
+      lines.push("");
+    }
 
+    lines.push("Project");
+    lines.push(a.type ? labels.type[a.type] : "Not specified");
     lines.push("");
-    lines.push("Estimate: " + elEstPrice.textContent + (elEstRange.textContent ? " " + elEstRange.textContent : ""));
-    lines.push("Platform: " + elEstPlat.textContent);
-    lines.push("Timeline: " + elEstTL.textContent);
+
+    lines.push("Platform");
+    lines.push(a.platform ? labels.platform[a.platform] : "Not specified");
     lines.push("");
+
+    lines.push("Recommended Stack");
+    lines.push(a.stack ? labels.stack[a.stack] : "Not specified");
+    lines.push("");
+
+    lines.push("Complexity");
+    lines.push(a.size ? labels.size[a.size] : "Not specified");
+    lines.push("");
+
+    lines.push("Estimated Investment");
+    if (est) lines.push(est.rangeStr);
+    else     lines.push("Insufficient data");
+    lines.push("");
+
+    lines.push("Customer Budget");
+    lines.push(a.budget ? labels.budget[a.budget] : "Not specified");
+    lines.push("");
+
+    lines.push("Budget Fit");
+    if (fit)        lines.push(fit.label);
+    else if (est && a.budget && a.budget !== "not-sure") lines.push("See estimate vs budget above");
+    else            lines.push("—");
+    lines.push("");
+
+    lines.push("Timeline");
+    lines.push(a.timeline ? labels.timeline[a.timeline] : "Not specified");
+    lines.push("");
+
+    lines.push("Features");
+    if (a.features && a.features.trim()) {
+      a.features.trim().split("\n").forEach(function(f) {
+        if (f.trim()) lines.push("  · " + f.trim());
+      });
+    } else {
+      lines.push("Not specified");
+    }
+    lines.push("");
+
+    lines.push("Project Notes");
+    lines.push(a.description && a.description.trim() ? a.description.trim() : "Not provided");
+    lines.push("");
+
+    lines.push("Links / Examples");
+    lines.push(a.links && a.links.trim() ? a.links.trim() : "None provided");
+    lines.push("");
+
+    lines.push("Contact");
+    var contactParts = [];
+    if (a.name) contactParts.push(a.name);
+    if (a.project) contactParts.push(a.project);
+    if (a["contact-method"]) contactParts.push(a["contact-method"]);
+    if (a["contact-details"]) contactParts.push(a["contact-details"]);
+    lines.push(contactParts.length ? contactParts.join(" · ") : "Not provided");
+    lines.push("");
+
     lines.push("---");
     lines.push("Built with Cashie's Project Brief Builder");
+    lines.push("https://cashie1597.github.io/cashie-portfolio/apply.html");
 
     var brief = lines.join("\n");
 
-    // Try clipboard API, fallback to textarea
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(brief).then(function() {
         showCopyFeedback();
-      }).catch(function() {
-        fallbackCopy(brief);
-      });
+      }).catch(function() { fallbackCopy(brief); });
     } else {
       fallbackCopy(brief);
     }
