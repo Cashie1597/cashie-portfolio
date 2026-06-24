@@ -100,6 +100,11 @@
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: var(--ink-soft); max-width: 58ch; margin: 0 0 28px; line-height: 1.6;
   }
+  .scope-note {
+    font-size: 0.92rem; color: var(--ink-mute);
+    border-left: 2px solid var(--plum-deep); padding-left: 14px;
+    max-width: 58ch; margin: 0;
+  }
 
   /* ---------- Form section ---------- */
   section { padding: 64px 0 116px; }
@@ -296,6 +301,7 @@
       <div class="hero-tag reveal">Request a build</div>
       <h1 class="reveal">Tell me about your project.</h1>
       <p class="hero-sub reveal">Submit a build request and I'll review the scope, timeline and budget. If it's a good fit, I'll come back with a clear plan and fixed quote.</p>
+      <p class="scope-note reveal">I mainly build macOS and Linux apps, tools, dashboards, and automations. I’m not currently taking mobile apps, Windows-only apps, or large SaaS platforms.</p>
     </div>
   </section>
 
@@ -341,6 +347,29 @@
               <label><input type="radio" name="type" value="automation"> Automation</label>
               <label><input type="radio" name="type" value="dashboard"> Dashboard</label>
               <label><input type="radio" name="type" value="other"> Other</label>
+            </div>
+          </div>
+
+          <div class="field reveal">
+            <label>What codebase are we working with?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="codebase" value="new" checked> New build from scratch</label>
+              <label><input type="radio" name="codebase" value="existing"> Existing codebase</label>
+              <label><input type="radio" name="codebase" value="github"> GitHub repo</label>
+              <label><input type="radio" name="codebase" value="local-app"> Local app</label>
+              <label><input type="radio" name="codebase" value="website"> Website</label>
+              <label><input type="radio" name="codebase" value="script"> Automation/script</label>
+              <label><input type="radio" name="codebase" value="not-sure"> Not sure yet</label>
+            </div>
+          </div>
+
+          <div class="field reveal">
+            <label>What platform do you need?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="platform" value="macos" checked> macOS app</label>
+              <label><input type="radio" name="platform" value="linux"> Linux app/tool</label>
+              <label><input type="radio" name="platform" value="mac-linux"> Mac + Linux</label>
+              <label><input type="radio" name="platform" value="not-sure"> Not sure yet</label>
             </div>
           </div>
 
