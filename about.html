@@ -44,34 +44,6 @@
   ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
-
-  /* ---------- Nav ---------- */
-  header.nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    background: rgba(24,38,66,0.72);
-    border-bottom: 1px solid var(--panel-line);
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-  .brand {
-    font-family: var(--serif); font-size: 1.22rem; letter-spacing: 0.2px;
-    display: inline-flex; align-items: center; gap: 10px;
-  }
-  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--plum); }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a {
-    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-soft); transition: color .2s ease;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    border: 1px solid var(--panel-line); padding: 9px 18px; border-radius: 999px;
-    background: rgba(199,230,255,0.05); color: var(--cream) !important;
-  }
-  .nav-cta:hover { border-color: var(--plum); }
-  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
-
-  /* ---------- Scaffolding ---------- */
   section { padding: 100px 0; }
   .eyebrow {
     font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
@@ -90,18 +62,35 @@
     display: inline-flex; align-items: center; gap: 8px;
     padding: 13px 24px; border-radius: 999px;
     font-size: 0.92rem; font-weight: 500;
-    transition: transform .18s ease, background .2s ease, border-color .2s ease;
+    transition: transform .18s ease, border-color .2s ease, box-shadow .25s ease;
   }
   .btn-primary {
     background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.35) 100%);
     color: #182642;
   }
-  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(167,139,250,0.30); }
   .btn-ghost {
     border: 1px solid var(--panel-line); color: var(--ink);
     background: var(--panel);
   }
   .btn-ghost:hover { border-color: var(--plum); }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(24,38,66,0.72);
+    border-bottom: 1px solid var(--panel-line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { font-family: var(--serif); font-size: 1.22rem; letter-spacing: 0.2px; display: inline-flex; align-items: center; gap: 10px; }
+  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--plum); }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); transition: color .2s ease; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { border: 1px solid var(--panel-line); padding: 9px 18px; border-radius: 999px; background: rgba(199,230,255,0.05); color: var(--cream) !important; }
+  .nav-cta:hover { border-color: var(--plum); }
+  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
 
   /* ---------- Dev hero ---------- */
   .dev-hero { padding: 120px 0 84px; }
@@ -122,38 +111,39 @@
     font-size: clamp(1.3rem, 3vw, 1.9rem);
     color: var(--cream); margin: 0 0 36px; line-height: 1.2;
   }
-  .dev-hero .dev-tags {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;
-  }
+  .dev-hero .dev-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
   .dev-hero .dev-tag {
     font-size: 0.88rem; color: var(--ink-soft);
     border: 1px solid var(--panel-line); border-radius: 999px;
     padding: 6px 14px; background: var(--panel); letter-spacing: 0.01em;
   }
-  .dev-hero .dev-location {
-    font-size: 0.88rem; color: var(--ink-mute); margin-bottom: 36px;
-  }
+  .dev-hero .dev-location { font-size: 0.88rem; color: var(--ink-mute); margin-bottom: 36px; }
   .dev-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-  /* ---------- Philosophy ---------- */
-  .philosophy-list {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 48px;
+  /* ---------- Philosophy pull quotes ---------- */
+  .pull-quotes {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
   }
-  @media (max-width: 680px) { .philosophy-list { grid-template-columns: 1fr; gap: 0; } }
-  .philosophy-item {
-    display: flex; align-items: baseline; gap: 16px;
-    padding: 18px 0; border-bottom: 1px solid var(--panel-line);
+  @media (max-width: 680px) { .pull-quotes { grid-template-columns: 1fr; } }
+  .pull-quote {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 36px 32px;
+    position: relative; overflow: hidden;
+    transition: border-color .30s ease, transform .30s ease;
   }
-  .philosophy-item:last-child { border-bottom: none; }
-  .philosophy-item .ph-num {
-    font-family: var(--serif); font-size: 0.78rem; color: var(--plum);
-    letter-spacing: 0.08em; flex-shrink: 0; min-width: 28px;
+  .pull-quote:hover { border-color: rgba(167,139,250,0.35); transform: translateY(-3px); }
+  .pull-quote::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(167,139,250,0.4), transparent);
+    opacity: 0; transition: opacity .30s ease;
   }
-  .philosophy-item .ph-text {
-    font-size: 1.02rem; color: var(--ink); line-height: 1.5;
+  .pull-quote:hover::before { opacity: 1; }
+  .pull-quote p {
+    font-family: var(--serif); font-size: 1.45rem; color: var(--cream);
+    line-height: 1.35; font-weight: 500; letter-spacing: -0.01em;
   }
 
-  /* ---------- Technologies ---------- */
+  /* ---------- Technology cards ---------- */
   .tech-groups {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
   }
@@ -161,70 +151,160 @@
   @media (max-width: 560px) { .tech-groups { grid-template-columns: 1fr; } }
   .tech-group {
     background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 24px;
-    transition: border-color .22s ease;
+    border-radius: var(--radius); padding: 26px 24px;
+    transition: border-color .30s ease, transform .30s ease;
+    position: relative; overflow: hidden;
   }
-  .tech-group:hover { border-color: rgba(167,139,250,0.30); }
+  .tech-group:hover { border-color: rgba(167,139,250,0.30); transform: translateY(-2px); }
+  .tech-group::after {
+    content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, var(--plum-deep), transparent);
+    opacity: 0; transition: opacity .30s ease;
+  }
+  .tech-group:hover::after { opacity: 0.5; }
+  .tech-group .tg-icon { font-size: 1.4rem; margin-bottom: 10px; }
   .tech-group .tg-label {
     font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--plum); margin-bottom: 14px; font-weight: 600;
+    color: var(--plum); margin-bottom: 16px; font-weight: 600;
   }
   .tech-group .tg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .tech-chip {
-    font-size: 0.88rem; color: var(--ink);
+    font-size: 0.82rem; color: var(--ink);
     border: 1px solid var(--panel-line); border-radius: 8px;
-    padding: 6px 12px; background: rgba(199,230,255,0.04);
-    font-weight: 500; font-family: var(--sans);
+    padding: 7px 13px; background: rgba(199,230,255,0.04);
+    font-weight: 500; letter-spacing: 0.01em;
   }
 
-  /* ---------- Product cards ---------- */
+  /* ---------- Product cards (App Store style) ---------- */
   .dev-products-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   }
-  @media (max-width: 680px) { .dev-products-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .dev-products-grid { grid-template-columns: 1fr; } }
   .dev-product-card {
     background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 28px;
-    transition: border-color .22s ease, transform .22s ease;
+    border-radius: var(--radius); overflow: hidden;
+    transition: border-color .30s ease, transform .30s ease, box-shadow .30s ease;
     display: flex; flex-direction: column;
   }
-  .dev-product-card:hover { border-color: rgba(167,139,250,0.40); transform: translateY(-3px); }
+  .dev-product-card:hover {
+    border-color: rgba(167,139,250,0.40);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.30);
+  }
+  .dev-product-card .dp-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 20px 22px 16px;
+  }
   .dev-product-card .dp-icon {
-    width: 44px; height: 44px; border-radius: 12px;
+    width: 40px; height: 40px; border-radius: 10px;
     background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; margin-bottom: 16px;
+    font-size: 1.2rem; flex-shrink: 0;
   }
   .dev-product-card h3 {
-    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
-    margin: 0 0 8px; letter-spacing: -0.01em;
+    font-family: var(--serif); font-weight: 500; font-size: 1.15rem;
+    margin: 0; letter-spacing: -0.01em;
   }
-  .dev-product-card p { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 14px; line-height: 1.5; }
-  .dev-product-card .dp-link {
-    font-size: 0.82rem; color: var(--plum); letter-spacing: 0.02em;
-    margin-top: auto;
+  .dev-product-card .dp-status {
+    margin-left: auto; font-size: 0.66rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px; letter-spacing: 0.04em;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
   }
+  .dev-product-card .dp-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .dp-status.active { background: rgba(110,231,183,0.12); color: #6ee7b7; }
+  .dp-status.active::before { background: #6ee7b7; box-shadow: 0 0 8px rgba(110,231,183,0.4); }
+  .dp-status.dev { background: rgba(167,139,250,0.12); color: var(--plum); }
+  .dp-status.dev::before { background: var(--plum); }
+  .dp-status.live { background: rgba(224,255,255,0.08); color: var(--cyan); }
+  .dp-status.live::before { background: var(--cyan); }
+  .dev-product-card .dp-screenshot {
+    height: 180px; overflow: hidden; position: relative;
+    border-top: 1px solid var(--panel-line); border-bottom: 1px solid var(--panel-line);
+  }
+  .dev-product-card:hover .dp-screenshot { }
 
-  /* ---------- Current focus ---------- */
-  .focus-timeline { display: flex; flex-direction: column; gap: 44px; }
-  .focus-block .focus-label {
-    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--plum); margin-bottom: 14px; font-weight: 600;
-    display: flex; align-items: center; gap: 12px;
+  /* Faux screenshot mini styles */
+  .mini-faux { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; }
+  .mini-plum {
+    background: #0e1120; color: #9dabcc;
+    flex-direction: column; gap: 8px; padding: 16px;
   }
-  .focus-block .focus-label::before {
-    content: ""; width: 8px; height: 8px; border-radius: 50%;
+  .mini-plum .mp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; width: 100%; }
+  .mini-plum .mp-tile {
+    background: rgba(18,22,40,0.8); border: 1px solid rgba(120,140,255,0.12); border-radius: 8px;
+    height: 36px; display: flex; align-items: center; justify-content: center; font-size: 1.0rem;
   }
-  .focus-block.now .focus-label::before { background: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,0.4); }
-  .focus-block.recent .focus-label::before { background: var(--plum); }
-  .focus-block.planned .focus-label::before { background: var(--ink-mute); }
-  .focus-items {
-    display: flex; flex-direction: column; gap: 8px;
-    padding-left: 20px; border-left: 1px solid var(--panel-line);
-    margin-left: 3px;
+  .mini-recto {
+    background: #16181d; padding: 16px 20px; align-items: flex-start; justify-content: flex-start; gap: 0;
   }
-  .focus-item {
-    font-size: 1.0rem; color: var(--ink); padding: 6px 0;
+  .mini-recto .mr-text { font-family: "Charter",Georgia,serif; color: #b8bcc4; font-size: 0.65rem; line-height: 1.7; text-align: left; }
+  .mini-recto .mr-title { font-family: "Charter",Georgia,serif; color: #e7e9ee; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+  .mini-recto .mr-code { background: #0f1115; border: 1px solid #2a2e37; border-radius: 6px; padding: 4px 8px; margin-top: 6px; font-family: monospace; font-size: 0.55rem; color: #7c5cff; }
+  .mini-runtime {
+    background: #0b0d17; flex-direction: column; gap: 6px; padding: 12px;
+  }
+  .mini-runtime .mr-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 100%; }
+  .mini-runtime .mr-stat { background: rgba(18,22,40,0.75); border: 1px solid rgba(120,140,255,0.12); border-radius: 6px; padding: 6px; }
+  .mini-runtime .mr-stat .mr-v { font-size: 0.82rem; font-weight: 700; color: #4ade80; }
+  .mini-runtime .mr-stat:nth-child(2) .mr-v { color: #7b8cff; }
+  .mini-runtime .mr-stat:nth-child(3) .mr-v { color: #22d3ee; }
+  .mini-runtime .mr-stat .mr-l { font-size: 0.48rem; color: #8890a8; text-transform: uppercase; }
+  .mini-runtime .mr-bars { display: flex; flex-direction: column; gap: 3px; width: 100%; margin-top: 2px; }
+  .mini-runtime .mr-bar { display: flex; align-items: center; gap: 6px; }
+  .mini-runtime .mr-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+  .mini-runtime .mr-dot.gray { background: #555a6e; }
+  .mini-runtime .mr-bar span { font-size: 0.5rem; color: #8890a8; }
+  .mini-brief {
+    background: #182642; flex-direction: column; gap: 6px; padding: 14px; align-items: stretch;
+  }
+  .mini-brief .mb-bar { height: 2px; background: rgba(11,16,32,0.4); border-radius: 2px; overflow: hidden; }
+  .mini-brief .mb-bar-fill { height: 100%; width: 25%; background: linear-gradient(90deg,var(--plum),var(--cyan)); border-radius: 2px; }
+  .mini-brief .mb-option { border: 1.5px solid rgba(200,220,255,0.18); border-radius: 8px; padding: 6px 10px; display: flex; align-items: center; gap: 8px; }
+  .mini-brief .mb-option.sel { border-color: var(--plum); background: rgba(167,139,250,0.08); }
+  .mini-brief .mb-icon { width: 22px; height: 22px; border-radius: 6px; background: rgba(167,139,250,0.12); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+  .mini-brief .mb-label { font-size: 0.58rem; color: var(--ink); font-weight: 600; }
+  .mini-brief .mb-check { margin-left: auto; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(200,220,255,0.18); }
+  .mini-brief .mb-option.sel .mb-check { border-color: var(--plum); background: var(--plum); }
+
+  .dev-product-card .dp-body { padding: 18px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .dev-product-card .dp-body p { color: var(--ink-soft); font-size: 0.88rem; margin: 0 0 14px; line-height: 1.5; }
+  .dev-product-card .dp-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .dev-product-card .dp-link { font-size: 0.82rem; color: var(--plum); letter-spacing: 0.02em; margin-top: auto; }
+  .dp-badge {
+    font-size: 0.68rem; padding: 3px 9px; border-radius: 6px;
+    background: rgba(199,230,255,0.06); border: 1px solid var(--panel-line);
+    color: var(--ink-soft); font-weight: 500; letter-spacing: 0.01em;
+  }
+  .dp-badge.plum { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.20); color: var(--plum); }
+
+  /* ---------- Current focus (progress bars) ---------- */
+  .focus-cards { display: flex; flex-direction: column; gap: 18px; }
+  .focus-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 22px 24px;
+    display: flex; align-items: center; gap: 18px;
+    transition: border-color .25s ease;
+  }
+  .focus-card:hover { border-color: rgba(167,139,250,0.25); }
+  .focus-card .fc-info { flex-shrink: 0; min-width: 200px; }
+  .focus-card .fc-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .focus-card .fc-status { font-size: 0.74rem; color: var(--ink-mute); letter-spacing: 0.03em; }
+  .focus-card .fc-bar-wrap { flex: 1; }
+  .focus-card .fc-bar-track {
+    height: 8px; background: rgba(11,16,32,0.4); border-radius: 999px; overflow: hidden;
+  }
+  .focus-card .fc-bar-fill {
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--plum), var(--plum-deep), var(--cyan));
+    width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .focus-card .fc-bar-fill.green { background: linear-gradient(90deg, #4ade80, var(--plum)); }
+  .focus-card .fc-bar-fill.muted { background: linear-gradient(90deg, var(--ink-mute), var(--ink-mute)); }
+  .focus-card .fc-pct { font-family: var(--serif); font-size: 0.92rem; color: var(--cream); margin-left: 16px; min-width: 40px; text-align: right; }
+  @media (max-width: 560px) {
+    .focus-card { flex-direction: column; align-items: stretch; gap: 10px; }
+    .focus-card .fc-info { min-width: auto; }
+    .focus-card .fc-pct { margin-left: 0; text-align: left; }
   }
 
   /* ---------- Principles ---------- */
@@ -235,57 +315,77 @@
   @media (max-width: 480px) { .principles-grid { grid-template-columns: 1fr; } }
   .principle {
     background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 28px 24px;
-    transition: border-color .22s ease;
-  }
-  .principle:hover { border-color: rgba(167,139,250,0.30); }
-  .principle p {
-    font-family: var(--serif); font-size: 1.12rem; color: var(--cream);
-    margin: 0; line-height: 1.4; font-weight: 500; letter-spacing: -0.01em;
-  }
-
-  /* ---------- Studio timeline ---------- */
-  .milestones { display: flex; flex-direction: column; gap: 0; }
-  .milestone {
-    display: flex; align-items: center; gap: 22px; padding: 20px 0;
-    position: relative;
-  }
-  .milestone .ms-dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--plum); box-shadow: 0 0 8px rgba(167,139,250,0.3);
-    flex-shrink: 0; z-index: 1; position: relative;
-  }
-  .milestone:not(:last-child)::after {
-    content: ""; position: absolute; left: 5px; top: 50%; bottom: -20px;
-    width: 2px; background: var(--panel-line);
-  }
-  .milestone .ms-label {
-    font-family: var(--serif); font-size: 1.12rem; color: var(--ink); font-weight: 500;
-  }
-  .milestone .ms-sub {
-    font-size: 0.8rem; color: var(--ink-mute); margin-left: auto; letter-spacing: 0.04em;
-  }
-
-  /* ---------- Open source ---------- */
-  .oss-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 36px 32px;
+    border-radius: var(--radius); padding: 30px 26px;
+    transition: border-color .30s ease, transform .30s ease;
     position: relative; overflow: hidden;
   }
-  .oss-card .oss-glow {
-    position: absolute; inset: -30% 60% auto -10%; height: 220px;
-    background: radial-gradient(circle at 30% 30%, rgba(167,139,250,0.16), transparent 60%);
-    pointer-events: none;
+  .principle:hover { border-color: rgba(167,139,250,0.30); transform: translateY(-2px); }
+  .principle::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(167,139,250,0.35), transparent);
+    opacity: 0; transition: opacity .30s ease;
   }
-  .oss-inner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
-  .oss-card h3 {
-    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
-    margin: 0 0 6px;
+  .principle:hover::before { opacity: 1; }
+  .principle p {
+    font-family: var(--serif); font-size: 1.18rem; color: var(--cream);
+    margin: 0; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em;
   }
-  .oss-card p { color: var(--ink-soft); font-size: 0.92rem; margin: 0; line-height: 1.5; max-width: 48ch; }
-  .oss-stats { display: flex; gap: 36px; margin: 4px 0; }
-  .oss-stat .num { font-family: var(--serif); font-size: 1.6rem; color: var(--cream); display: block; }
-  .oss-stat .lbl { font-size: 0.76rem; color: var(--ink-mute); letter-spacing: 0.04em; }
+
+  /* ---------- Studio timeline (milestone cards) ---------- */
+  .milestone-cards { display: flex; flex-direction: column; gap: 12px; }
+  .milestone-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: 14px; padding: 22px 26px;
+    display: flex; align-items: center; gap: 20px;
+    transition: border-color .25s ease, transform .25s ease;
+    position: relative;
+  }
+  .milestone-card:hover { border-color: rgba(167,139,250,0.25); transform: translateX(4px); }
+  .milestone-card .mc-year {
+    font-family: var(--serif); font-size: 0.82rem; color: var(--plum);
+    letter-spacing: 0.08em; min-width: 80px; flex-shrink: 0;
+  }
+  .milestone-card .mc-content { flex: 1; }
+  .milestone-card .mc-title {
+    font-family: var(--serif); font-size: 1.08rem; color: var(--ink);
+    font-weight: 500; margin-bottom: 2px;
+  }
+  .milestone-card .mc-desc { font-size: 0.84rem; color: var(--ink-mute); }
+  .milestone-card:not(:last-child)::after {
+    content: ""; position: absolute; bottom: -13px; left: 26px;
+    width: 2px; height: 12px; background: var(--panel-line);
+  }
+
+  /* ---------- Open source repo cards ---------- */
+  .oss-repos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 28px; }
+  @media (max-width: 680px) { .oss-repos { grid-template-columns: 1fr; } }
+  .oss-repo-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: 14px; padding: 22px 24px;
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .oss-repo-card:hover { border-color: rgba(167,139,250,0.30); transform: translateY(-2px); }
+  .oss-repo-card .or-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .oss-repo-card .or-lang-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .oss-repo-card .or-lang-dot.html { background: #e34c26; }
+  .oss-repo-card .or-lang-dot.python { background: #3572A5; }
+  .oss-repo-card .or-lang-dot.typescript { background: #3178c6; }
+  .oss-repo-card .or-lang-dot.none { background: var(--ink-mute); }
+  .oss-repo-card .or-name {
+    font-family: var(--serif); font-size: 1.02rem; font-weight: 500;
+    color: var(--ink);
+  }
+  .oss-repo-card .or-desc {
+    font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.5;
+    min-height: 2.5em;
+  }
+  .oss-repo-card .or-footer {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .oss-repo-card .or-meta { font-size: 0.76rem; color: var(--ink-mute); letter-spacing: 0.02em; }
+  .oss-repo-card .or-link { font-size: 0.78rem; color: var(--plum); letter-spacing: 0.02em; }
 
   /* ---------- Contact ---------- */
   .contact-card {
@@ -324,7 +424,7 @@
   footer .brand { font-size: 1rem; color: var(--ink-soft); }
   footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
 
-  /* ---------- Reveal ---------- */
+  /* ---------- Reveal + motion ---------- */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
@@ -375,15 +475,12 @@
     <div class="wrap">
       <p class="eyebrow reveal">Philosophy</p>
       <h2 class="section-title reveal">How I approach software.</h2>
-      <p class="section-lede reveal">Six principles that shape every build. No marketing fluff — just how I actually work.</p>
 
-      <div class="philosophy-list">
-        <div class="philosophy-item reveal"><span class="ph-num">01</span><span class="ph-text">Native first. If it runs on the platform, it should feel like it belongs there.</span></div>
-        <div class="philosophy-item reveal"><span class="ph-num">02</span><span class="ph-text">Simple software. One job, done well. No feature creep, no bloat.</span></div>
-        <div class="philosophy-item reveal"><span class="ph-num">03</span><span class="ph-text">Automation over repetition. If I do it twice, the third time is a script.</span></div>
-        <div class="philosophy-item reveal"><span class="ph-num">04</span><span class="ph-text">Maintainable systems. Code I can still understand six months later.</span></div>
-        <div class="philosophy-item reveal"><span class="ph-num">05</span><span class="ph-text">Finish before expanding. Ship v1, then decide if v2 is worth it.</span></div>
-        <div class="philosophy-item reveal"><span class="ph-num">06</span><span class="ph-text">Build tools I actually use. If it doesn't earn its place, it doesn't ship.</span></div>
+      <div class="pull-quotes">
+        <div class="pull-quote reveal"><p>Native first, or not at all.</p></div>
+        <div class="pull-quote reveal"><p>Simple software scales further.</p></div>
+        <div class="pull-quote reveal"><p>Automation over repetition.</p></div>
+        <div class="pull-quote reveal"><p>Finish before expanding.</p></div>
       </div>
     </div>
   </section>
@@ -393,10 +490,10 @@
     <div class="wrap">
       <p class="eyebrow reveal">Technologies</p>
       <h2 class="section-title reveal">What I build with.</h2>
-      <p class="section-lede reveal">A focused stack. Native where it matters, cross-platform where it helps, automation where it counts.</p>
 
       <div class="tech-groups">
         <div class="tech-group reveal">
+          <div class="tg-icon">🖥</div>
           <div class="tg-label">Native</div>
           <div class="tg-chips">
             <span class="tech-chip">Swift</span>
@@ -405,13 +502,15 @@
           </div>
         </div>
         <div class="tech-group reveal">
+          <div class="tg-icon">⚡</div>
           <div class="tg-label">Cross-platform</div>
           <div class="tg-chips">
-            <span class="tech-chip">Tauri</span>
             <span class="tech-chip">Rust</span>
+            <span class="tech-chip">Tauri</span>
           </div>
         </div>
         <div class="tech-group reveal">
+          <div class="tg-icon">⚙</div>
           <div class="tg-label">Automation</div>
           <div class="tg-chips">
             <span class="tech-chip">Python</span>
@@ -419,6 +518,7 @@
           </div>
         </div>
         <div class="tech-group reveal">
+          <div class="tg-icon">📐</div>
           <div class="tg-label">Frontend</div>
           <div class="tg-chips">
             <span class="tech-chip">HTML</span>
@@ -427,11 +527,12 @@
           </div>
         </div>
         <div class="tech-group reveal">
+          <div class="tg-icon">🔧</div>
           <div class="tg-label">Infrastructure</div>
           <div class="tg-chips">
+            <span class="tech-chip">Linux</span>
             <span class="tech-chip">Git</span>
             <span class="tech-chip">GitHub</span>
-            <span class="tech-chip">Linux</span>
             <span class="tech-chip">macOS</span>
           </div>
         </div>
@@ -447,63 +548,185 @@
       <p class="section-lede reveal">Real software, in active development. Each product solves a specific problem.</p>
 
       <div class="dev-products-grid">
+
+        <!-- PLUM OS -->
         <a class="dev-product-card reveal" href="products.html#plum-os">
-          <div class="dp-icon">⚡</div>
-          <h3>PLUM OS</h3>
-          <p>Operator-focused productivity ecosystem for macOS. Native tools that work together.</p>
-          <span class="dp-link">Learn more →</span>
+          <div class="dp-header">
+            <div class="dp-icon">⚡</div>
+            <h3>PLUM OS</h3>
+            <span class="dp-status dev">In Development</span>
+          </div>
+          <div class="dp-screenshot">
+            <div class="mini-faux mini-plum">
+              <div class="mp-grid">
+                <div class="mp-tile">📋</div>
+                <div class="mp-tile">🖼</div>
+                <div class="mp-tile">🧹</div>
+                <div class="mp-tile">📊</div>
+                <div class="mp-tile">📄</div>
+                <div class="mp-tile">⚡</div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-body">
+            <p>Operator-focused productivity ecosystem for macOS. Native tools that work together.</p>
+            <div class="dp-badges">
+              <span class="dp-badge plum">macOS</span>
+              <span class="dp-badge">Swift</span>
+              <span class="dp-badge">SwiftUI</span>
+            </div>
+            <span class="dp-link">Learn more →</span>
+          </div>
         </a>
+
+        <!-- Recto -->
         <a class="dev-product-card reveal" href="products.html#standalone">
-          <div class="dp-icon">📖</div>
-          <h3>Recto</h3>
-          <p>Native desktop markdown reader focused on speed and simplicity. Built with Tauri and Rust.</p>
-          <span class="dp-link">Learn more →</span>
+          <div class="dp-header">
+            <div class="dp-icon">📖</div>
+            <h3>Recto</h3>
+            <span class="dp-status live">Preview</span>
+          </div>
+          <div class="dp-screenshot">
+            <div class="mini-faux mini-recto" style="flex-direction: column; align-items: flex-start;">
+              <div class="mr-title">Recto</div>
+              <div class="mr-text">A native desktop markdown reader focused on speed and simplicity.</div>
+              <div class="mr-code">fn load_theme(name) -> Theme</div>
+            </div>
+          </div>
+          <div class="dp-body">
+            <p>Native desktop markdown reader focused on speed and simplicity.</p>
+            <div class="dp-badges">
+              <span class="dp-badge plum">macOS</span>
+              <span class="dp-badge plum">Linux</span>
+              <span class="dp-badge">Rust</span>
+              <span class="dp-badge">Tauri</span>
+            </div>
+            <span class="dp-link">Learn more →</span>
+          </div>
         </a>
+
+        <!-- Runtime Dashboard -->
         <a class="dev-product-card reveal" href="products.html#standalone">
-          <div class="dp-icon">📊</div>
-          <h3>Runtime Dashboard</h3>
-          <p>Internal operations dashboard for monitoring projects, agents and infrastructure.</p>
-          <span class="dp-link">Learn more →</span>
+          <div class="dp-header">
+            <div class="dp-icon">📊</div>
+            <h3>Runtime Dashboard</h3>
+            <span class="dp-status active">Active</span>
+          </div>
+          <div class="dp-screenshot">
+            <div class="mini-faux mini-runtime">
+              <div class="mr-stats">
+                <div class="mr-stat"><div class="mr-v">6</div><div class="mr-l">Agents</div></div>
+                <div class="mr-stat"><div class="mr-v">24</div><div class="mr-l">Repos</div></div>
+                <div class="mr-stat"><div class="mr-v">42%</div><div class="mr-l">Load</div></div>
+              </div>
+              <div class="mr-bars">
+                <div class="mr-bar"><span class="mr-dot"></span><span>build-runner 12m</span></div>
+                <div class="mr-bar"><span class="mr-dot"></span><span>git-sync 3m</span></div>
+                <div class="mr-bar"><span class="mr-dot gray"></span><span>test-suite idle</span></div>
+                <div class="mr-bar"><span class="mr-dot gray"></span><span>deploy-bot off</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="dp-body">
+            <p>Internal operations dashboard for monitoring projects, agents and infrastructure.</p>
+            <div class="dp-badges">
+              <span class="dp-badge plum">macOS</span>
+              <span class="dp-badge plum">Linux</span>
+              <span class="dp-badge">Python</span>
+              <span class="dp-badge">Bash</span>
+            </div>
+            <span class="dp-link">Learn more →</span>
+          </div>
         </a>
+
+        <!-- Project Brief Builder -->
         <a class="dev-product-card reveal" href="apply.html">
-          <div class="dp-icon">📋</div>
-          <h3>Project Brief Builder</h3>
-          <p>Interactive client onboarding and project scoping workflow with live estimation.</p>
-          <span class="dp-link">Try it →</span>
+          <div class="dp-header">
+            <div class="dp-icon">📋</div>
+            <h3>Project Brief Builder</h3>
+            <span class="dp-status live">Live</span>
+          </div>
+          <div class="dp-screenshot">
+            <div class="mini-faux mini-brief">
+              <div class="mb-bar"><div class="mb-bar-fill"></div></div>
+              <div class="mb-option sel">
+                <span class="mb-icon">🖥</span>
+                <span class="mb-label">Desktop app</span>
+                <span class="mb-check"></span>
+              </div>
+              <div class="mb-option">
+                <span class="mb-icon">📊</span>
+                <span class="mb-label">Dashboard</span>
+                <span class="mb-check"></span>
+              </div>
+              <div class="mb-option">
+                <span class="mb-icon">⚙</span>
+                <span class="mb-label">Automation</span>
+                <span class="mb-check"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dp-body">
+            <p>Interactive client onboarding and project scoping workflow with live estimation.</p>
+            <div class="dp-badges">
+              <span class="dp-badge">HTML</span>
+              <span class="dp-badge">CSS</span>
+              <span class="dp-badge">JavaScript</span>
+            </div>
+            <span class="dp-link">Try it →</span>
+          </div>
         </a>
+
       </div>
     </div>
   </section>
 
-  <!-- CURRENT FOCUS -->
+  <!-- CURRENT FOCUS (progress bars) -->
   <section id="focus">
     <div class="wrap">
       <p class="eyebrow reveal">Current focus</p>
       <h2 class="section-title reveal">What I'm working on.</h2>
-      <p class="section-lede reveal">A snapshot of active work, recent finishes and what's planned next.</p>
 
-      <div class="focus-timeline">
-        <div class="focus-block now reveal">
-          <div class="focus-label">Now Building</div>
-          <div class="focus-items">
-            <div class="focus-item">Recto — native markdown reader</div>
-            <div class="focus-item">PLUM OS — productivity ecosystem</div>
-            <div class="focus-item">Cashie.dev — studio platform and portfolio</div>
+      <div class="focus-cards">
+        <div class="focus-card reveal">
+          <div class="fc-info">
+            <div class="fc-name">Recto</div>
+            <div class="fc-status">Preview</div>
           </div>
+          <div class="fc-bar-wrap"><div class="fc-bar-track"><div class="fc-bar-fill" data-pct="80"></div></div></div>
+          <div class="fc-pct">80%</div>
         </div>
-        <div class="focus-block recent reveal">
-          <div class="focus-label">Recently Finished</div>
-          <div class="focus-items">
-            <div class="focus-item">Portfolio redesign and architecture refactor</div>
-            <div class="focus-item">Project Brief Builder v2 with live estimation</div>
+        <div class="focus-card reveal">
+          <div class="fc-info">
+            <div class="fc-name">PLUM OS</div>
+            <div class="fc-status">Active Development</div>
           </div>
+          <div class="fc-bar-wrap"><div class="fc-bar-track"><div class="fc-bar-fill green" data-pct="60"></div></div></div>
+          <div class="fc-pct">60%</div>
         </div>
-        <div class="focus-block planned reveal">
-          <div class="focus-label">Planned</div>
-          <div class="focus-items">
-            <div class="focus-item">PlumDocs — lightweight document viewer</div>
-            <div class="focus-item">PlumWatch — menu bar system monitor</div>
+        <div class="focus-card reveal">
+          <div class="fc-info">
+            <div class="fc-name">Cashie.dev</div>
+            <div class="fc-status">Continuous</div>
           </div>
+          <div class="fc-bar-wrap"><div class="fc-bar-track"><div class="fc-bar-fill" data-pct="100"></div></div></div>
+          <div class="fc-pct">100%</div>
+        </div>
+        <div class="focus-card reveal">
+          <div class="fc-info">
+            <div class="fc-name">PlumDocs</div>
+            <div class="fc-status">Planned</div>
+          </div>
+          <div class="fc-bar-wrap"><div class="fc-bar-track"><div class="fc-bar-fill muted" data-pct="15"></div></div></div>
+          <div class="fc-pct">15%</div>
+        </div>
+        <div class="focus-card reveal">
+          <div class="fc-info">
+            <div class="fc-name">PlumWatch</div>
+            <div class="fc-status">Planned</div>
+          </div>
+          <div class="fc-bar-wrap"><div class="fc-bar-track"><div class="fc-bar-fill muted" data-pct="10"></div></div></div>
+          <div class="fc-pct">10%</div>
         </div>
       </div>
     </div>
@@ -514,7 +737,6 @@
     <div class="wrap">
       <p class="eyebrow reveal">Principles</p>
       <h2 class="section-title reveal">What I believe.</h2>
-      <p class="section-lede reveal">Not rules — convictions. The things I won't compromise on.</p>
 
       <div class="principles-grid">
         <div class="principle reveal"><p>Native over bloated.</p></div>
@@ -527,45 +749,115 @@
     </div>
   </section>
 
-  <!-- STUDIO TIMELINE -->
+  <!-- STUDIO TIMELINE (milestone cards) -->
   <section id="timeline">
     <div class="wrap">
       <p class="eyebrow reveal">Studio timeline</p>
       <h2 class="section-title reveal">The path so far.</h2>
-      <p class="section-lede reveal">Key milestones in building Cashie.dev.</p>
 
-      <div class="milestones">
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Started building software</span><span class="ms-sub">The beginning</span></div>
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">First desktop apps</span><span class="ms-sub">Native macOS</span></div>
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">PLUM OS</span><span class="ms-sub">Ecosystem launched</span></div>
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Recto</span><span class="ms-sub">Native reader</span></div>
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Cashie.dev</span><span class="ms-sub">Studio platform</span></div>
-        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Future</span><span class="ms-sub">What's next</span></div>
+      <div class="milestone-cards">
+        <div class="milestone-card reveal">
+          <div class="mc-year">2024</div>
+          <div class="mc-content">
+            <div class="mc-title">Started building software</div>
+            <div class="mc-desc">First tools, scripts and automation experiments</div>
+          </div>
+        </div>
+        <div class="milestone-card reveal">
+          <div class="mc-year">2025</div>
+          <div class="mc-content">
+            <div class="mc-title">First desktop apps</div>
+            <div class="mc-desc">Native macOS utilities — clipboard, wallpaper, system tools</div>
+          </div>
+        </div>
+        <div class="milestone-card reveal">
+          <div class="mc-year">2025</div>
+          <div class="mc-content">
+            <div class="mc-title">PLUM OS</div>
+            <div class="mc-desc">Operator-focused productivity ecosystem launched</div>
+          </div>
+        </div>
+        <div class="milestone-card reveal">
+          <div class="mc-year">2026</div>
+          <div class="mc-content">
+            <div class="mc-title">Recto</div>
+            <div class="mc-desc">Native markdown reader built with Tauri and Rust</div>
+          </div>
+        </div>
+        <div class="milestone-card reveal">
+          <div class="mc-year">Current</div>
+          <div class="mc-content">
+            <div class="mc-title">Cashie.dev</div>
+            <div class="mc-desc">Independent software studio platform and portfolio</div>
+          </div>
+        </div>
+        <div class="milestone-card reveal">
+          <div class="mc-year">Future</div>
+          <div class="mc-content">
+            <div class="mc-title">What's next</div>
+            <div class="mc-desc">PlumDocs, PlumWatch and beyond</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- OPEN SOURCE -->
+  <!-- OPEN SOURCE (repo cards) -->
   <section id="opensource">
     <div class="wrap">
       <p class="eyebrow reveal">Open source</p>
       <h2 class="section-title reveal">On GitHub.</h2>
       <p class="section-lede reveal">GitHub supports the work — it doesn't define it. The products are the portfolio.</p>
 
-      <div class="oss-card reveal">
-        <div class="oss-glow"></div>
-        <div class="oss-inner">
-          <div>
-            <h3>Public repositories</h3>
-            <p>Original work, tools and products. Forks are kept private unless they contain custom modifications.</p>
-            <div class="oss-stats">
-              <div class="oss-stat"><span class="num">5</span><span class="lbl">Public repos</span></div>
-              <div class="oss-stat"><span class="num">4</span><span class="lbl">Products</span></div>
-              <div class="oss-stat"><span class="num">2</span><span class="lbl">Languages</span></div>
-            </div>
+      <div class="oss-repos">
+        <a class="oss-repo-card reveal" href="https://github.com/Cashie1597/cashie-portfolio" target="_blank" rel="noopener">
+          <div class="or-header">
+            <span class="or-lang-dot html"></span>
+            <span class="or-name">cashie-portfolio</span>
           </div>
-          <a class="btn btn-ghost" href="https://github.com/Cashie1597" target="_blank" rel="noopener">View on GitHub →</a>
-        </div>
+          <div class="or-desc">Portfolio and project brief builder for Cashie.dev</div>
+          <div class="or-footer">
+            <span class="or-meta">HTML · Updated Jun 2026</span>
+            <span class="or-link">View on GitHub →</span>
+          </div>
+        </a>
+        <a class="oss-repo-card reveal" href="https://github.com/Cashie1597/Project-Overseer" target="_blank" rel="noopener">
+          <div class="or-header">
+            <span class="or-lang-dot python"></span>
+            <span class="or-name">Project-Overseer</span>
+          </div>
+          <div class="or-desc">Terminal-based project and infrastructure monitoring tool</div>
+          <div class="or-footer">
+            <span class="or-meta">Python · Updated May 2026</span>
+            <span class="or-link">View on GitHub →</span>
+          </div>
+        </a>
+        <a class="oss-repo-card reveal" href="https://github.com/Cashie1597/nexa-browser" target="_blank" rel="noopener">
+          <div class="or-header">
+            <span class="or-lang-dot none"></span>
+            <span class="or-name">nexa-browser</span>
+          </div>
+          <div class="or-desc">Privacy-first SwiftUI browser with AI search and built-in shields</div>
+          <div class="or-footer">
+            <span class="or-meta">SwiftUI · Updated Apr 2026</span>
+            <span class="or-link">View on GitHub →</span>
+          </div>
+        </a>
+        <a class="oss-repo-card reveal" href="https://github.com/Cashie1597/aimentalhealthteam" target="_blank" rel="noopener">
+          <div class="or-header">
+            <span class="or-lang-dot typescript"></span>
+            <span class="or-name">aimentalhealthteam</span>
+          </div>
+          <div class="or-desc">Mental health platform with nurse support and database schema</div>
+          <div class="or-footer">
+            <span class="or-meta">TypeScript · Updated Apr 2026</span>
+            <span class="or-link">View on GitHub →</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align:center;">
+        <a class="btn btn-ghost" href="https://github.com/Cashie1597" target="_blank" rel="noopener">View full profile on GitHub →</a>
       </div>
     </div>
   </section>
@@ -599,7 +891,7 @@
 </footer>
 
 <script>
-  // Lightweight scroll reveal — no dependencies.
+  // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -609,6 +901,19 @@
     el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms';
     io.observe(el);
   });
+
+  // Animate progress bars when visible
+  const bars = document.querySelectorAll('.fc-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const pct = e.target.getAttribute('data-pct');
+        e.target.style.width = pct + '%';
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach((b) => barObserver.observe(b));
 </script>
 
 </body>
