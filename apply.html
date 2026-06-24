@@ -185,6 +185,93 @@
     html { scroll-behavior: auto; }
   }
 
+  /* ---------- Form inputs ---------- */
+  .request-form { display: grid; gap: 22px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-size: 0.9rem; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .field .hint {
+    font-size: 0.85rem; color: var(--ink-soft); margin: 0; line-height: 1.5;
+  }
+  .field input[type="text"],
+  .field input[type="url"],
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: rgba(11, 16, 32, 0.28);
+    border: 1px solid var(--panel-line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.98rem;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--ink-mute); }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--plum);
+    background: rgba(11, 16, 32, 0.38);
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.12);
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%2395a7cc' stroke-width='1.5' d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 42px;
+  }
+  .field select option { background: var(--bg); color: var(--ink); }
+
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+  .radio-group label {
+    font-weight: 400;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--panel-line);
+    border-radius: 999px;
+    background: rgba(11, 16, 32, 0.22);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .radio-group label:hover { border-color: var(--plum); }
+  .radio-group input[type="radio"] {
+    appearance: none;
+    width: 16px; height: 16px;
+    border: 1px solid var(--ink-mute);
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+  }
+  .radio-group input[type="radio"]:checked {
+    border-color: var(--plum);
+    background: var(--plum);
+    box-shadow: inset 0 0 0 3px rgba(11,16,32,0.8);
+  }
+
+  .form-actions { margin-top: 8px; }
+  .form-note {
+    margin-top: 18px; font-size: 0.86rem; color: var(--ink-soft);
+  }
+  .form-note a { color: var(--cream); border-bottom: 1px solid var(--panel-line); }
+  .form-note a:hover { border-color: var(--plum); }
+
+  .form-success {
+    display: none;
+    border: 1px solid var(--panel-line);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: rgba(11, 16, 32, 0.28);
+  }
+  .form-success h3 { margin: 0 0 10px; font-family: var(--serif); font-weight: 500; }
+  .form-success p { margin: 0; color: var(--ink-soft); }
+
   @media (max-width: 560px) {
     .form-card { padding: 40px 26px; }
   }
@@ -219,48 +306,89 @@
         <div class="glow"></div>
         <p class="eyebrow">Build Request</p>
         <h2>Project application</h2>
-        <p class="lede">The form below will be replaced with a Tally embed soon. For now, use it as a checklist of what to include when you reach out.</p>
+        <p class="lede">Fill in the details below. This form is a preview — submissions will be connected to Tally soon. In the meantime, you can also reach me on WhatsApp or iMessage.</p>
 
-        <div class="placeholder">
-          <p>Application form coming here</p>
-          <!-- TODO: Replace href with real Tally link -->
-          <a class="btn btn-primary" href="#">Open application form</a>
+        <div class="form-success" id="formSuccess">
+          <h3>Request received</h3>
+          <p>Thanks for the details. This form is not yet connected to a backend, so nothing was submitted. To move forward, message me on WhatsApp or iMessage at <a href="https://wa.me/61468771070">+61 468 771 070</a>.</p>
         </div>
 
-        <div class="questions">
-          <div class="q reveal">
-            <label>Your name</label>
-            <p>Who should I address the reply to?</p>
+        <!-- TODO: Replace action with Tally embed URL or form backend when ready -->
+        <form class="request-form" id="buildRequestForm" action="#" method="post">
+          <div class="field reveal">
+            <label for="name">Your name</label>
+            <p class="hint">Who should I address the reply to?</p>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
           </div>
-          <div class="q reveal">
-            <label>Business or project name</label>
-            <p>The company, product, or working title this build is for.</p>
+
+          <div class="field reveal">
+            <label for="project">Business or project name</label>
+            <p class="hint">The company, product, or working title this build is for.</p>
+            <input type="text" id="project" name="project" placeholder="Acme Studio">
           </div>
-          <div class="q reveal">
-            <label>What do you want built?</label>
-            <p>Describe the problem, the user, and what "done" looks like in a sentence or two.</p>
+
+          <div class="field reveal">
+            <label for="description">What do you want built?</label>
+            <p class="hint">Describe the problem, the user, and what "done" looks like in a sentence or two.</p>
+            <textarea id="description" name="description" placeholder="I need a booking page that lets clients pick a service and send an enquiry..." required></textarea>
           </div>
-          <div class="q reveal">
+
+          <div class="field reveal">
             <label>What kind of build is it?</label>
-            <p>Website · web app · admin dashboard · automation/script · Mac menu bar utility · something else.</p>
+            <div class="radio-group">
+              <label><input type="radio" name="type" value="website" checked> Website</label>
+              <label><input type="radio" name="type" value="app"> App</label>
+              <label><input type="radio" name="type" value="automation"> Automation</label>
+              <label><input type="radio" name="type" value="dashboard"> Dashboard</label>
+              <label><input type="radio" name="type" value="other"> Other</label>
+            </div>
           </div>
-          <div class="q reveal">
-            <label>Budget range</label>
-            <p>A rough bracket is enough. I quote fixed price, but budget helps me shape the right scope.</p>
+
+          <div class="field reveal">
+            <label for="budget">Budget range</label>
+            <p class="hint">A rough bracket is enough. I quote fixed price, but budget helps me shape the right scope.</p>
+            <select id="budget" name="budget" required>
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-1k">Under $1,000</option>
+              <option value="1k-3k">$1,000 – $3,000</option>
+              <option value="3k-5k">$3,000 – $5,000</option>
+              <option value="5k-10k">$5,000 – $10,000</option>
+              <option value="10k+">$10,000+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
           </div>
-          <div class="q reveal">
-            <label>Timeline</label>
-            <p>When do you need it? Urgent, flexible, or just exploring?</p>
+
+          <div class="field reveal">
+            <label for="timeline">Timeline</label>
+            <p class="hint">When do you need it? Urgent, flexible, or just exploring?</p>
+            <select id="timeline" name="timeline" required>
+              <option value="" disabled selected>Select a timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-2-weeks">1–2 weeks</option>
+              <option value="1-month">Within a month</option>
+              <option value="flexible">Flexible</option>
+              <option value="exploring">Just exploring</option>
+            </select>
           </div>
-          <div class="q reveal">
-            <label>Links or examples</label>
-            <p>Existing site, competitor examples, sketches, Notion docs — anything that adds context.</p>
+
+          <div class="field reveal">
+            <label for="links">Links or examples</label>
+            <p class="hint">Existing site, competitor examples, sketches, Notion docs — anything that adds context.</p>
+            <textarea id="links" name="links" placeholder="https://example.com, competitor site, rough notes..."></textarea>
           </div>
-          <div class="q reveal">
-            <label>Best contact method</label>
-            <p>WhatsApp or iMessage on +61 468 771 070, or let me know another preferred way to reach you. I'll reply with next steps.</p>
+
+          <div class="field reveal">
+            <label for="contact">Preferred contact method</label>
+            <p class="hint">WhatsApp or iMessage on +61 468 771 070, or let me know another preferred way to reach you.</p>
+            <input type="text" id="contact" name="contact" placeholder="WhatsApp on +61 468 771 070" required>
           </div>
-        </div>
+
+          <div class="form-actions reveal">
+            <button type="submit" class="btn btn-primary">Send build request →</button>
+          </div>
+
+          <p class="form-note reveal">No data is collected or stored by this preview form. Submissions will be routed through Tally once the integration is live.</p>
+        </form>
       </div>
     </div>
   </section>
@@ -282,6 +410,18 @@
     el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms';
     io.observe(el);
   });
+
+  // Preview form handler — no backend, no local storage, no submission
+  const form = document.getElementById('buildRequestForm');
+  const success = document.getElementById('formSuccess');
+  if (form && success) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.style.display = 'none';
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 </script>
 
 </body>
