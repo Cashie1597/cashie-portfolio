@@ -22,3 +22,12 @@ coverage/
 *.log
 *.tmp
 .DS_Store
+
+# Removed internal dashboard/offload files from public portfolio repo
+upload-dashboard.html
+cashie_r2_upload_status.html
+storage-data.js
+storage-refresh.sh
+*dashboard*
+*r2_upload*
+.claude/
