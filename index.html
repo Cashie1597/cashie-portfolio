@@ -7,16 +7,16 @@
 <meta name="description" content="Cashie builds small business websites, booking pages, admin dashboards, automations and Mac utilities. Based in Sydney.">
 <style>
   :root {
-    --bg:          #16110f;
-    --bg-soft:     #1d1715;
-    --panel:       rgba(43, 33, 31, 0.55);
-    --panel-line:  rgba(231, 210, 196, 0.10);
-    --ink:         #f3e9df;
-    --ink-soft:    #c9b7a8;
-    --ink-mute:    #968577;
-    --plum:        #b08a9e;
-    --plum-deep:   #8c6479;
-    --cream:       #ecd9bf;
+    --bg:          #0b1020;
+    --bg-soft:     #10162a;
+    --panel:       rgba(24, 34, 64, 0.52);
+    --panel-line:  rgba(190, 210, 255, 0.12);
+    --ink:         #f1f5ff;
+    --ink-soft:    #b8c8e8;
+    --ink-mute:    #7686a8;
+    --plum:        #a78bfa;
+    --plum-deep:   #7c5dfa;
+    --cream:       #c7e6ff;
     --radius:      18px;
     --maxw:        1140px;
     --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -30,8 +30,8 @@
   body {
     margin: 0;
     background:
-      radial-gradient(1200px 600px at 78% -8%, rgba(176,138,158,0.16), transparent 60%),
-      radial-gradient(900px 520px at -5% 12%, rgba(140,100,121,0.12), transparent 55%),
+      radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.18), transparent 60%),
+      radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.13), transparent 55%),
       var(--bg);
     color: var(--ink);
     font-family: var(--sans);
@@ -41,7 +41,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  ::selection { background: rgba(176,138,158,0.35); color: #fff; }
+  ::selection { background: rgba(167,139,250,0.35); color: #fff; }
 
   a { color: inherit; text-decoration: none; }
 
@@ -52,7 +52,7 @@
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    background: rgba(22,17,15,0.62);
+    background: rgba(11,16,32,0.72);
     border-bottom: 1px solid var(--panel-line);
   }
   .nav-inner {
@@ -67,7 +67,7 @@
   .brand .dot {
     width: 9px; height: 9px; border-radius: 50%;
     background: var(--plum);
-    box-shadow: 0 0 14px 2px rgba(176,138,158,0.6);
+    box-shadow: 0 0 14px 2px rgba(167,139,250,0.65);
   }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a {
@@ -78,7 +78,7 @@
   .nav-cta {
     border: 1px solid var(--panel-line);
     padding: 9px 18px; border-radius: 999px;
-    background: rgba(236,217,191,0.04);
+    background: rgba(199,230,255,0.05);
     color: var(--cream) !important;
   }
   .nav-cta:hover { border-color: var(--plum); }
@@ -112,7 +112,7 @@
     padding: 7px 15px; margin-bottom: 34px;
     background: var(--panel);
   }
-  .hero-tag .pip { width:7px; height:7px; border-radius:50%; background:#7fbf8e; box-shadow:0 0 10px #7fbf8e; }
+  .hero-tag .pip { width:7px; height:7px; border-radius:50%; background:#7dd3fc; box-shadow:0 0 10px #7dd3fc; }
   .hero h1 {
     font-family: var(--serif); font-weight: 500;
     font-size: clamp(2.6rem, 6.6vw, 5rem);
@@ -133,7 +133,7 @@
   }
   .btn-primary {
     background: linear-gradient(180deg, var(--plum), var(--plum-deep));
-    color: #1a1310;
+    color: #0b1020;
   }
   .btn-primary:hover { transform: translateY(-2px); }
   .btn-ghost {
@@ -164,11 +164,11 @@
     position: relative; overflow: hidden;
     transition: transform .22s ease, border-color .22s ease;
   }
-  .card:hover { transform: translateY(-4px); border-color: rgba(176,138,158,0.4); }
+  .card:hover { transform: translateY(-4px); border-color: rgba(167,139,250,0.45); }
   .card.feature { grid-column: 1 / -1; }
   .card .glow {
     position: absolute; inset: -40% 50% auto -10%; height: 220px;
-    background: radial-gradient(circle, rgba(176,138,158,0.18), transparent 70%);
+    background: radial-gradient(circle, rgba(167,139,250,0.20), transparent 70%);
     pointer-events: none;
   }
   .card-top {
@@ -183,7 +183,7 @@
   .tag {
     font-size: 0.74rem; color: var(--ink-soft);
     border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 5px 12px; background: rgba(236,217,191,0.03);
+    padding: 5px 12px; background: rgba(199,230,255,0.04);
   }
   .badge-platform {
     font-size: 0.72rem; color: var(--cream); letter-spacing: 0.05em;
@@ -199,7 +199,7 @@
     border-radius: var(--radius); padding: 26px 24px;
     transition: border-color .2s ease, background .2s ease;
   }
-  .svc:hover { border-color: rgba(176,138,158,0.35); background: rgba(43,33,31,0.7); }
+  .svc:hover { border-color: rgba(167,139,250,0.40); background: rgba(24,34,64,0.68); }
   .svc .no { font-family: var(--serif); font-size: 0.95rem; color: var(--plum); margin-bottom: 14px; }
   .svc h3 { font-size: 1.12rem; margin: 0 0 9px; font-weight: 600; letter-spacing: -0.01em; }
   .svc p { color: var(--ink-soft); margin: 0; font-size: 0.92rem; line-height: 1.55; }
@@ -227,7 +227,7 @@
   }
   .contact-card .glow {
     position: absolute; inset: auto -10% -50% 40%; height: 300px;
-    background: radial-gradient(circle, rgba(176,138,158,0.2), transparent 70%);
+    background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 70%);
   }
   .contact-card h2 {
     font-family: var(--serif); font-weight: 500;
