@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Brief Builder — Cashie</title>
+<title>Project Brief Builder — Cashie.dev</title>
 <meta name="description" content="Build your project brief step by step. One question at a time, with a live project snapshot and a ready-to-send consulting-style summary.">
 <style>
   :root {
@@ -75,6 +75,20 @@
     color: var(--ink-soft); transition: color .2s ease;
   }
   .nav-back:hover { color: var(--ink); }
+  .nav-links-apply { display: flex; gap: 24px; align-items: center; }
+  .nav-links-apply a {
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); transition: color .2s ease;
+  }
+  .nav-links-apply a:hover { color: var(--ink); }
+  .nav-links-apply a.nav-cta {
+    border: 1px solid var(--panel-line);
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(199,230,255,0.05);
+    color: var(--cream) !important;
+  }
+  .nav-links-apply a.nav-cta:hover { border-color: var(--plum); }
+  @media (max-width: 760px) { .nav-links-apply { display: none; } }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
@@ -557,7 +571,13 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html"><span class="dot"></span> Cashie</a>
+    <a class="brand" href="index.html"><span class="dot"></span> Cashie.dev</a>
+    <nav class="nav-links-apply">
+      <a href="products.html">Products</a>
+      <a href="index.html#services">Services</a>
+      <a href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
+      <a href="about.html">About</a>
+    </nav>
     <span class="nav-progress-text" id="navProgressText"></span>
     <a class="nav-back" href="index.html">← Back to site</a>
   </div>
@@ -588,7 +608,7 @@
 </main>
 
 <footer>
-  <span class="brand"><span class="dot"></span> Cashie — Sydney</span>
+  <span class="brand"><span class="dot"></span> Cashie.dev — Sydney</span>
   <span>Brief Builder · No data stored</span>
 </footer>
 

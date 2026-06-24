@@ -3,17 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cashie.dev — Independent software builder, Sydney</title>
-<meta name="description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation. Based in Sydney.">
-<link rel="canonical" href="https://cashie1597.github.io/cashie-portfolio/">
-<meta name="theme-color" content="#182642">
-<meta property="og:title" content="Cashie.dev — Independent software builder, Sydney">
-<meta property="og:description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://cashie1597.github.io/cashie-portfolio/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cashie.dev — Independent software builder, Sydney">
-<meta name="twitter:description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation.">
+<title>Products — Cashie.dev</title>
+<meta name="description" content="Native macOS apps, Linux applications and standalone products built by Cashie.dev.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -114,28 +105,7 @@
     color: var(--ink-soft); max-width: 56ch; margin: 0 0 56px; font-size: 1.05rem;
   }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 92px 0 96px; position: relative; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.8rem; color: var(--ink-soft);
-    border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 7px 15px; margin-bottom: 34px;
-    background: var(--panel);
-  }
-  .hero-tag .pip { width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); }
-  .hero h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2.6rem, 6.6vw, 5rem);
-    line-height: 1.04; letter-spacing: -0.02em;
-    margin: 0 0 28px; max-width: 16ch;
-  }
-  .hero h1 em { font-style: italic; color: var(--cream); }
-  .hero-sub {
-    font-size: clamp(1.05rem, 2vw, 1.32rem);
-    color: var(--ink-soft); max-width: 60ch; margin: 0 0 40px; line-height: 1.6;
-  }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  /* ---------- Buttons ---------- */
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 26px; border-radius: 999px;
@@ -152,13 +122,6 @@
     background: var(--panel);
   }
   .btn-ghost:hover { border-color: var(--plum); }
-  .hero-meta {
-    margin-top: 64px; display: flex; flex-wrap: wrap; gap: 44px;
-    border-top: 1px solid var(--panel-line); padding-top: 34px;
-  }
-  .hero-meta .stat { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta .num { font-family: var(--serif); font-size: 1.7rem; color: var(--cream); }
-  .hero-meta .lbl { font-size: 0.82rem; color: var(--ink-mute); letter-spacing: 0.04em; }
 
   /* ---------- Work (premium) ---------- */
   .work-premium-grid {
@@ -362,66 +325,6 @@
     .faux-brief .fb-snap { display: none; }
   }
 
-  /* ---------- Services ---------- */
-  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 880px) { .svc-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } }
-  .svc {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 26px 24px;
-    transition: border-color .2s ease, background .2s ease;
-  }
-  .svc:hover { border-color: rgba(167,139,250,0.40); background: rgba(50,70,120,0.62); }
-  .svc .no { font-family: var(--serif); font-size: 0.95rem; color: var(--plum); margin-bottom: 14px; }
-  .svc h3 { font-size: 1.12rem; margin: 0 0 9px; font-weight: 600; letter-spacing: -0.01em; }
-  .svc p { color: var(--ink-soft); margin: 0; font-size: 0.92rem; line-height: 1.55; }
-
-  /* ---------- Process ---------- */
-  .process-band { background: var(--bg-soft); border-top: 1px solid var(--panel-line); border-bottom: 1px solid var(--panel-line); }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  @media (max-width: 880px) { .steps { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
-  .step { position: relative; padding-top: 30px; }
-  .step::before {
-    content: ""; position: absolute; top: 0; left: 0; width: 38px; height: 2px;
-    background: linear-gradient(90deg, var(--plum), transparent);
-  }
-  .step .step-n { font-family: var(--serif); font-size: 0.85rem; color: var(--plum); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin: 0 0 10px; }
-  .step p { color: var(--ink-soft); margin: 0; font-size: 0.94rem; line-height: 1.55; }
-
-  /* ---------- FAQ ---------- */
-  .faq-grid { display: grid; gap: 16px; }
-  .faq {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 22px 24px;
-  }
-  .faq h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.08rem; margin: 0 0 8px; letter-spacing: -0.01em;
-  }
-  .faq p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; line-height: 1.55; }
-
-  /* ---------- Trust ---------- */
-  .trust-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 32px 34px;
-  }
-  .trust-card ul {
-    margin: 0; padding: 0;
-    list-style: none;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px;
-  }
-  @media (max-width: 560px) { .trust-card ul { grid-template-columns: 1fr; } }
-  .trust-card li {
-    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
-    padding-left: 22px; position: relative;
-  }
-  .trust-card li::before {
-    content: "✓"; position: absolute; left: 0; top: 1px;
-    color: var(--plum); font-size: 0.85rem; font-weight: 600;
-  }
-
   /* ---------- Contact ---------- */
   .contact-card {
     background: var(--panel); border: 1px solid var(--panel-line);
@@ -460,59 +363,6 @@
   footer .brand { font-size: 1rem; color: var(--ink-soft); }
   footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
 
-  /* ---------- Ecosystem card ---------- */
-  .ecosystem-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: 26px; padding: 48px; overflow: hidden; position: relative;
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    transition: border-color .30s ease, transform .30s ease;
-  }
-  .ecosystem-card:hover { border-color: rgba(167,139,250,0.35); }
-  .ecosystem-card .ecosystem-glow {
-    position: absolute; inset: -30% 50% auto -10%; height: 280px;
-    background: radial-gradient(circle at 30% 30%, rgba(167,139,250,0.20), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(224,255,255,0.12), transparent 55%);
-    pointer-events: none;
-  }
-  .ecosystem-card-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-    position: relative;
-  }
-  @media (max-width: 760px) {
-    .ecosystem-card { padding: 32px 28px; }
-    .ecosystem-card-inner { grid-template-columns: 1fr; gap: 28px; }
-  }
-  .ecosystem-brand {
-    font-family: var(--serif); font-size: 2.2rem; font-weight: 500;
-    letter-spacing: -0.01em; margin: 0 0 14px; color: var(--cream);
-  }
-  .ecosystem-card-inner p { color: var(--ink-soft); font-size: 1rem; margin: 0 0 24px; line-height: 1.6; }
-  .ecosystem-preview-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-  }
-  .ecosystem-app-pip {
-    background: rgba(11,16,32,0.40); border: 1px solid var(--panel-line);
-    border-radius: 14px; padding: 16px 10px; text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    transition: border-color .20s ease;
-  }
-  .ecosystem-app-pip:hover { border-color: rgba(167,139,250,0.30); }
-  .ecosystem-app-pip .pip-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.22);
-    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-  }
-  .ecosystem-app-pip .pip-name { font-size: 0.74rem; color: var(--ink-soft); font-weight: 500; }
-
-  /* ---------- See all link ---------- */
-  .see-all-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.92rem; color: var(--plum); letter-spacing: 0.02em;
-    margin: 48px auto 0; justify-content: center; width: 100%;
-    transition: gap .20s ease, color .20s ease;
-  }
-  .see-all-link:hover { gap: 12px; color: var(--cream); }
-
   /* ---------- Reveal ---------- */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -520,16 +370,63 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
   }
+
+  /* ---------- PlumSuite grid ---------- */
+  .plum-suite-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+  @media (max-width: 680px) { .plum-suite-grid { grid-template-columns: 1fr; } }
+
+  .plum-app-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 24px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color .22s ease, transform .22s ease;
+  }
+  .plum-app-card:hover { border-color: rgba(167,139,250,0.40); transform: translateY(-3px); }
+
+  .plum-app-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .plum-app-card h3 {
+    font-family: var(--serif); font-weight: 500; font-size: 1.2rem;
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .plum-app-card p { color: var(--ink-soft); margin: 0; font-size: 0.9rem; line-height: 1.5; }
+  .plum-app-card .learn-more {
+    font-size: 0.82rem; color: var(--plum); letter-spacing: 0.04em;
+    margin-top: auto; padding-top: 8px;
+  }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
+    padding: 3px 10px; border-radius: 999px; width: fit-content;
+  }
+  .status-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .status-available { background: rgba(110,231,183,0.12); color: #6ee7b7; }
+  .status-available::before { background: #6ee7b7; box-shadow: 0 0 8px rgba(110,231,183,0.4); }
+  .status-dev { background: rgba(167,139,250,0.12); color: var(--plum); }
+  .status-dev::before { background: var(--plum); }
+  .status-soon { background: rgba(149,167,204,0.12); color: var(--ink-mute); }
+  .status-soon::before { background: var(--ink-mute); }
+
+  .plum-suite-heading {
+    font-family: var(--serif); font-weight: 500; font-size: 1.3rem;
+    margin: 0 0 24px; letter-spacing: -0.01em; color: var(--cream);
+  }
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top"><span class="dot"></span> Cashie.dev</a>
+    <a class="brand" href="index.html"><span class="dot"></span> Cashie.dev</a>
     <nav class="nav-links">
       <a href="products.html">Products</a>
-      <a href="#services">Services</a>
+      <a href="index.html#services">Services</a>
       <a class="nav-cta" href="apply.html">Start a Project</a>
       <a href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
       <a href="about.html">About</a>
@@ -539,59 +436,82 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- PAGE HEADER -->
+  <section>
     <div class="wrap">
-      <div class="hero-tag reveal"><span class="pip"></span> Independent software studio · Sydney, AU</div>
-      <h1 class="reveal">Native apps. Dashboards.<br><em>Automation systems.</em></h1>
-      <p class="hero-sub reveal">Built for macOS, Linux and modern workflows. Cashie.dev is an independent software studio building focused tools that ship and stay in use.</p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="apply.html">Start a Project →</a>
-        <a class="btn btn-ghost" href="products.html">Explore products</a>
-      </div>
-      <div class="hero-meta reveal">
-        <div class="stat"><span class="num">Native apps</span><span class="lbl">macOS + Linux</span></div>
-        <div class="stat"><span class="num">Dashboards</span><span class="lbl">Real-time operations</span></div>
-        <div class="stat"><span class="num">Automation</span><span class="lbl">Scripts &amp; workflows</span></div>
-        <div class="stat"><span class="num">Fixed price</span><span class="lbl">Quoted up front</span></div>
-      </div>
+      <p class="eyebrow reveal">Products</p>
+      <h2 class="section-title reveal">Software I've built and am building.</h2>
+      <p class="section-lede reveal">Native apps, dashboards and automation tools. Each one solves a specific problem — no filler.</p>
     </div>
   </section>
 
-  <!-- ECOSYSTEM: PLUM OS -->
-  <section id="ecosystem">
+  <!-- PLUM OS -->
+  <section id="plum-os">
     <div class="wrap">
       <p class="eyebrow reveal">Ecosystem</p>
       <h2 class="section-title reveal">PLUM OS</h2>
       <p class="section-lede reveal">A growing ecosystem of native productivity tools, automation utilities and operator-focused software.</p>
 
-      <div class="ecosystem-card reveal">
-        <div class="ecosystem-glow"></div>
-        <div class="ecosystem-card-inner">
-          <div>
-            <h3 class="ecosystem-brand">PLUM OS</h3>
-            <p>A growing ecosystem of native productivity tools, automation utilities and operator-focused software. Built for macOS, designed for people who run things.</p>
-            <a class="btn btn-ghost" href="products.html#plum-os">Explore PLUM OS →</a>
-          </div>
-          <div class="ecosystem-preview-grid">
-            <div class="ecosystem-app-pip"><span class="pip-icon">📋</span><span class="pip-name">PlumClip</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">🖼</span><span class="pip-name">PlumWall</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">🧹</span><span class="pip-name">PlumSweep</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">📊</span><span class="pip-name">PlumWatch</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">📄</span><span class="pip-name">PlumDocs</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">⚡</span><span class="pip-name">PlumCore</span></div>
-          </div>
-        </div>
+      <h3 class="plum-suite-heading reveal">PlumSuite</h3>
+
+      <div class="plum-suite-grid">
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">📋</div>
+          <h3>PlumClip</h3>
+          <p>Clipboard history manager</p>
+          <span class="status-badge status-available">Available</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
+
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">🖼</div>
+          <h3>PlumWall</h3>
+          <p>Multi-display wallpaper manager</p>
+          <span class="status-badge status-available">Available</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
+
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">🧹</div>
+          <h3>PlumSweep</h3>
+          <p>System cleanup and disk utility</p>
+          <span class="status-badge status-dev">In Development</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
+
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">📊</div>
+          <h3>PlumWatch</h3>
+          <p>Menu bar system monitor</p>
+          <span class="status-badge status-dev">In Development</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
+
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">📄</div>
+          <h3>PlumDocs</h3>
+          <p>Lightweight document viewer</p>
+          <span class="status-badge status-soon">Coming Soon</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
+
+        <article class="plum-app-card reveal">
+          <div class="plum-app-icon">⚡</div>
+          <h3>PlumCore</h3>
+          <p>Central hub for PlumSuite tools</p>
+          <span class="status-badge status-soon">Coming Soon</span>
+          <a class="learn-more" href="#">Learn more →</a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- WORK -->
-  <section id="work">
+  <!-- STANDALONE PRODUCTS -->
+  <section id="standalone">
     <div class="wrap">
-      <p class="eyebrow reveal">Featured products</p>
-      <h2 class="section-title reveal">Shipped software.</h2>
-      <p class="section-lede reveal">Real software, running in production — not mockups, not concepts.</p>
+      <p class="eyebrow reveal">Standalone Products</p>
+      <h2 class="section-title reveal">Products that stand on their own.</h2>
+      <p class="section-lede reveal">Separate from any ecosystem — built to solve one problem well.</p>
 
       <div class="work-premium-grid">
 
@@ -751,76 +671,7 @@
 
       </div>
 
-      <a class="see-all-link reveal" href="products.html">See all products →</a>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="wrap">
-      <p class="eyebrow reveal">Services</p>
-      <h2 class="section-title reveal">What I build.</h2>
-      <p class="section-lede reveal">Scoped, fixed-price, and built to be handed over. Native apps, dashboards and automation for macOS and Linux.</p>
-
-      <div class="svc-grid">
-        <div class="svc reveal">
-          <div class="no">01</div>
-          <h3>Native macOS Apps</h3>
-          <p>Menu bar utilities, clipboard tools and native desktop apps built with Swift and Tauri. Small, focused, fast.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">02</div>
-          <h3>Linux Applications</h3>
-          <p>Command-line tools, desktop utilities and automation scripts for Linux workflows. Built to run quietly in the background.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">03</div>
-          <h3>Internal Dashboards</h3>
-          <p>Real-time operations dashboards for monitoring projects, agents and infrastructure. One screen to see what's running.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">04</div>
-          <h3>Workflow Automation</h3>
-          <p>Scripts and systems that handle repetitive work — syncing, exporting, reporting, deploying. Set once, run on its own.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">05</div>
-          <h3>Custom Internal Tools</h3>
-          <p>Bespoke tools built around how your team actually operates. Not off-the-shelf — fitted to the problem.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="process-band">
-    <div class="wrap">
-      <p class="eyebrow reveal">How it works</p>
-      <h2 class="section-title reveal">A simple request-first process.</h2>
-      <p class="section-lede reveal">You send the details, I scope the smallest useful version, then I build it in clear passes.</p>
-
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-n">STEP 01</div>
-          <h3>Request</h3>
-          <p>You tell me what you need using the request form. I review it and decide whether it is a good fit.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 02</div>
-          <h3>Scope</h3>
-          <p>If it is a fit, I send back a proposed scope, timeline, and fixed quote.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 03</div>
-          <h3>Build</h3>
-          <p>I build in short passes and share progress as I go.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 04</div>
-          <h3>Hand-off</h3>
-          <p>You get the working result, plain setup instructions, and a short window for final tweaks.</p>
-        </div>
-      </div>
+      <p class="reveal" style="text-align:center;margin-top:48px;color:var(--ink-mute);font-size:0.9rem;">More standalone products coming.</p>
     </div>
   </section>
 
