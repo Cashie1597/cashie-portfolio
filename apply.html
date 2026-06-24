@@ -267,6 +267,25 @@
   .form-note a { color: var(--cream); border-bottom: 1px solid var(--panel-line); }
   .form-note a:hover { border-color: var(--plum); }
 
+  .scope-fit {
+    border: 1px solid var(--panel-line);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: rgba(11, 16, 32, 0.22);
+    margin-bottom: 28px;
+  }
+  .scope-fit h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.25rem; margin: 0 0 16px; letter-spacing: -0.01em;
+  }
+  .scope-fit ul {
+    margin: 0 0 20px; padding-left: 20px;
+    color: var(--ink-soft);
+  }
+  .scope-fit li { margin-bottom: 8px; line-height: 1.5; }
+  .scope-fit li::marker { color: var(--plum); }
+  .scope-fit .muted { color: var(--ink-mute); font-size: 0.9rem; margin: 0 0 10px; }
+
   .form-success {
     display: none;
     border: 1px solid var(--panel-line);
@@ -340,12 +359,14 @@
           </div>
 
           <div class="field reveal">
-            <label>What category is this build?</label>
+            <label>What are you trying to build?</label>
             <div class="radio-group">
-              <label><input type="radio" name="type" value="website" checked> Website</label>
-              <label><input type="radio" name="type" value="app"> App</label>
+              <label><input type="radio" name="type" value="desktop-app" checked> Desktop app</label>
+              <label><input type="radio" name="type" value="internal-tool"> Internal tool</label>
               <label><input type="radio" name="type" value="automation"> Automation</label>
               <label><input type="radio" name="type" value="dashboard"> Dashboard</label>
+              <label><input type="radio" name="type" value="website"> Website / landing page</label>
+              <label><input type="radio" name="type" value="improvement"> Existing app improvement</label>
               <label><input type="radio" name="type" value="other"> Other</label>
             </div>
           </div>
@@ -371,6 +392,27 @@
               <label><input type="radio" name="platform" value="linux"> Linux</label>
               <label><input type="radio" name="platform" value="mac-linux"> macOS + Linux</label>
               <label><input type="radio" name="platform" value="web-dashboard"> Web dashboard</label>
+            </div>
+          </div>
+
+          <div class="field reveal">
+            <label>Project size</label>
+            <div class="radio-group">
+              <label><input type="radio" name="size" value="small" checked> Small — 1 to 3 days</label>
+              <label><input type="radio" name="size" value="medium"> Medium — 1 to 2 weeks</label>
+              <label><input type="radio" name="size" value="large"> Large — 1+ month</label>
+              <label><input type="radio" name="size" value="not-sure"> Not sure yet</label>
+            </div>
+          </div>
+
+          <div class="field reveal">
+            <label>Do you already have code?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="code-availability" value="scratch" checked> Starting from scratch</label>
+              <label><input type="radio" name="code-availability" value="github"> Existing GitHub repo</label>
+              <label><input type="radio" name="code-availability" value="local"> Existing local app/codebase</label>
+              <label><input type="radio" name="code-availability" value="changes"> Existing app needing changes</label>
+              <label><input type="radio" name="code-availability" value="not-sure"> Not sure yet</label>
             </div>
           </div>
 
@@ -408,9 +450,38 @@
           </div>
 
           <div class="field reveal">
-            <label for="contact">Preferred contact method</label>
-            <p class="hint">WhatsApp or iMessage on +61 468 771 070, or let me know another preferred way to reach you.</p>
-            <input type="text" id="contact" name="contact" placeholder="WhatsApp on +61 468 771 070" required>
+            <label>Preferred contact method</label>
+            <div class="radio-group">
+              <label><input type="radio" name="contact-method" value="whatsapp" checked> WhatsApp</label>
+              <label><input type="radio" name="contact-method" value="imessage"> iMessage</label>
+              <label><input type="radio" name="contact-method" value="discord"> Discord</label>
+              <label><input type="radio" name="contact-method" value="telegram"> Telegram</label>
+              <label><input type="radio" name="contact-method" value="other"> Other</label>
+            </div>
+          </div>
+
+          <div class="field reveal">
+            <label for="contact-details">Contact details</label>
+            <p class="hint">Phone, handle, or best way to reach you.</p>
+            <input type="text" id="contact-details" name="contact-details" placeholder="+61 468 771 070 or @username" required>
+          </div>
+
+          <div class="scope-fit reveal">
+            <h3>What I build best</h3>
+            <ul>
+              <li>Swift/macOS apps</li>
+              <li>Linux tools and automation</li>
+              <li>Tauri desktop apps</li>
+              <li>Internal dashboards</li>
+              <li>AI-assisted workflows</li>
+            </ul>
+            <p class="muted">Not currently taking:</p>
+            <ul>
+              <li>iOS apps</li>
+              <li>Android apps</li>
+              <li>Windows-only software</li>
+              <li>Large SaaS platforms</li>
+            </ul>
           </div>
 
           <div class="form-actions reveal">
