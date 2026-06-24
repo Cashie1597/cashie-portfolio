@@ -78,7 +78,7 @@
     color: var(--ink-soft); transition: color .2s ease;
   }
   .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 760px) { .nav-links a { display: none; } }
+  @media (max-width: 760px) { .nav-links { gap: 16px; } }
 
   /* ---------- Hero ---------- */
   .hero { padding: 92px 0 64px; position: relative; }
@@ -384,8 +384,8 @@
           </div>
 
           <div class="field reveal">
-            <label for="code-availability">Do you already have code?</label>
-            <select id="code-availability" name="code-availability" required>
+            <label for="code-availability">Do you already have code? <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
+            <select id="code-availability" name="code-availability">
               <option value="" disabled selected>Select code status</option>
               <option value="scratch">Starting from scratch</option>
               <option value="github">Existing GitHub repo</option>
@@ -396,9 +396,9 @@
           </div>
 
           <div class="field reveal">
-            <label for="budget">Budget range</label>
-            <p class="hint">A rough bracket is enough. I quote fixed price, but budget helps me shape the right scope.</p>
-            <select id="budget" name="budget" required>
+            <label for="budget">Budget range <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
+            <p class="hint">A rough bracket helps me shape the right scope. I quote fixed price either way.</p>
+            <select id="budget" name="budget">
               <option value="" disabled selected>Select a range</option>
               <option value="under-1k">Under $1,000</option>
               <option value="1k-3k">$1,000 – $3,000</option>
@@ -410,9 +410,9 @@
           </div>
 
           <div class="field reveal">
-            <label for="timeline">Timeline</label>
+            <label for="timeline">Timeline <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
             <p class="hint">When do you need it? Urgent, flexible, or just exploring?</p>
-            <select id="timeline" name="timeline" required>
+            <select id="timeline" name="timeline">
               <option value="" disabled selected>Select a timeline</option>
               <option value="asap">ASAP</option>
               <option value="1-2-weeks">1–2 weeks</option>
@@ -423,7 +423,7 @@
           </div>
 
           <div class="field reveal">
-            <label for="links">Links or examples</label>
+            <label for="links">Links or examples <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
             <p class="hint">Existing site, competitor examples, sketches, Notion docs — anything that adds context.</p>
             <textarea id="links" name="links" placeholder="https://example.com, competitor site, rough notes..."></textarea>
           </div>
