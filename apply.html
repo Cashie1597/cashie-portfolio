@@ -234,32 +234,6 @@
   }
   .field select option { background: var(--bg); color: var(--ink); }
 
-  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
-  .radio-group label {
-    font-weight: 400;
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 16px;
-    border: 1px solid var(--panel-line);
-    border-radius: 999px;
-    background: rgba(11, 16, 32, 0.22);
-    cursor: pointer;
-    transition: border-color .2s ease, background .2s ease;
-  }
-  .radio-group label:hover { border-color: var(--plum); }
-  .radio-group input[type="radio"] {
-    appearance: none;
-    width: 16px; height: 16px;
-    border: 1px solid var(--ink-mute);
-    border-radius: 50%;
-    margin: 0;
-    position: relative;
-  }
-  .radio-group input[type="radio"]:checked {
-    border-color: var(--plum);
-    background: var(--plum);
-    box-shadow: inset 0 0 0 3px rgba(11,16,32,0.8);
-  }
-
   .form-actions { margin-top: 8px; }
   .form-note {
     margin-top: 18px; font-size: 0.86rem; color: var(--ink-soft);
@@ -359,61 +333,66 @@
           </div>
 
           <div class="field reveal">
-            <label>What are you trying to build?</label>
-            <div class="radio-group">
-              <label><input type="radio" name="type" value="desktop-app" checked> Desktop app</label>
-              <label><input type="radio" name="type" value="internal-tool"> Internal tool</label>
-              <label><input type="radio" name="type" value="automation"> Automation</label>
-              <label><input type="radio" name="type" value="dashboard"> Dashboard</label>
-              <label><input type="radio" name="type" value="website"> Website / landing page</label>
-              <label><input type="radio" name="type" value="improvement"> Existing app improvement</label>
-              <label><input type="radio" name="type" value="other"> Other</label>
-            </div>
+            <label for="type">What are you trying to build?</label>
+            <select id="type" name="type" required>
+              <option value="" disabled selected>Select a build type</option>
+              <option value="desktop-app">Desktop app</option>
+              <option value="internal-tool">Internal tool</option>
+              <option value="automation">Automation</option>
+              <option value="dashboard">Dashboard</option>
+              <option value="website">Website / landing page</option>
+              <option value="improvement">Existing app improvement</option>
+              <option value="other">Other</option>
+            </select>
           </div>
 
           <div class="field reveal">
-            <label>What kind of build is this?</label>
-            <div class="radio-group">
-              <label><input type="radio" name="stack" value="python" checked> Python app/tool</label>
-              <label><input type="radio" name="stack" value="swift"> Swift/macOS app</label>
-              <label><input type="radio" name="stack" value="react"> React/TypeScript app</label>
-              <label><input type="radio" name="stack" value="node"> Node.js automation/server</label>
-              <label><input type="radio" name="stack" value="bash"> Bash/CLI tool</label>
-              <label><input type="radio" name="stack" value="tauri"> Tauri desktop app</label>
-              <label><input type="radio" name="stack" value="mixed"> Existing mixed codebase</label>
-              <label><input type="radio" name="stack" value="not-sure"> Not sure yet</label>
-            </div>
+            <label for="stack">What kind of build is this?</label>
+            <select id="stack" name="stack" required>
+              <option value="" disabled selected>Select a tech stack</option>
+              <option value="python">Python app/tool</option>
+              <option value="swift">Swift/macOS app</option>
+              <option value="react">React/TypeScript app</option>
+              <option value="node">Node.js automation/server</option>
+              <option value="bash">Bash/CLI tool</option>
+              <option value="tauri">Tauri desktop app</option>
+              <option value="mixed">Existing mixed codebase</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
           </div>
 
           <div class="field reveal">
-            <label>Target platform</label>
-            <div class="radio-group">
-              <label><input type="radio" name="platform" value="macos" checked> macOS</label>
-              <label><input type="radio" name="platform" value="linux"> Linux</label>
-              <label><input type="radio" name="platform" value="mac-linux"> macOS + Linux</label>
-              <label><input type="radio" name="platform" value="web-dashboard"> Web dashboard</label>
-            </div>
+            <label for="platform">Target platform</label>
+            <select id="platform" name="platform" required>
+              <option value="" disabled selected>Select a platform</option>
+              <option value="macos">macOS</option>
+              <option value="linux">Linux</option>
+              <option value="mac-linux">macOS + Linux</option>
+              <option value="web-dashboard">Web dashboard</option>
+            </select>
           </div>
 
           <div class="field reveal">
-            <label>Project size</label>
-            <div class="radio-group">
-              <label><input type="radio" name="size" value="small" checked> Small — 1 to 3 days</label>
-              <label><input type="radio" name="size" value="medium"> Medium — 1 to 2 weeks</label>
-              <label><input type="radio" name="size" value="large"> Large — 1+ month</label>
-              <label><input type="radio" name="size" value="not-sure"> Not sure yet</label>
-            </div>
+            <label for="size">Project size</label>
+            <select id="size" name="size" required>
+              <option value="" disabled selected>Select a project size</option>
+              <option value="small">Small — 1 to 3 days</option>
+              <option value="medium">Medium — 1 to 2 weeks</option>
+              <option value="large">Large — 1+ month</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
           </div>
 
           <div class="field reveal">
-            <label>Do you already have code?</label>
-            <div class="radio-group">
-              <label><input type="radio" name="code-availability" value="scratch" checked> Starting from scratch</label>
-              <label><input type="radio" name="code-availability" value="github"> Existing GitHub repo</label>
-              <label><input type="radio" name="code-availability" value="local"> Existing local app/codebase</label>
-              <label><input type="radio" name="code-availability" value="changes"> Existing app needing changes</label>
-              <label><input type="radio" name="code-availability" value="not-sure"> Not sure yet</label>
-            </div>
+            <label for="code-availability">Do you already have code?</label>
+            <select id="code-availability" name="code-availability" required>
+              <option value="" disabled selected>Select code status</option>
+              <option value="scratch">Starting from scratch</option>
+              <option value="github">Existing GitHub repo</option>
+              <option value="local">Existing local app/codebase</option>
+              <option value="changes">Existing app needing changes</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
           </div>
 
           <div class="field reveal">
@@ -450,14 +429,15 @@
           </div>
 
           <div class="field reveal">
-            <label>Preferred contact method</label>
-            <div class="radio-group">
-              <label><input type="radio" name="contact-method" value="whatsapp" checked> WhatsApp</label>
-              <label><input type="radio" name="contact-method" value="imessage"> iMessage</label>
-              <label><input type="radio" name="contact-method" value="discord"> Discord</label>
-              <label><input type="radio" name="contact-method" value="telegram"> Telegram</label>
-              <label><input type="radio" name="contact-method" value="other"> Other</label>
-            </div>
+            <label for="contact-method">Preferred contact method</label>
+            <select id="contact-method" name="contact-method" required>
+              <option value="" disabled selected>Select a contact method</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="imessage">iMessage</option>
+              <option value="discord">Discord</option>
+              <option value="telegram">Telegram</option>
+              <option value="other">Other</option>
+            </select>
           </div>
 
           <div class="field reveal">
