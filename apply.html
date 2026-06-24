@@ -340,7 +340,7 @@
           </div>
 
           <div class="field reveal">
-            <label>What kind of build is it?</label>
+            <label>What category is this build?</label>
             <div class="radio-group">
               <label><input type="radio" name="type" value="website" checked> Website</label>
               <label><input type="radio" name="type" value="app"> App</label>
@@ -351,25 +351,26 @@
           </div>
 
           <div class="field reveal">
-            <label>What codebase are we working with?</label>
+            <label>What kind of build is this?</label>
             <div class="radio-group">
-              <label><input type="radio" name="codebase" value="new" checked> New build from scratch</label>
-              <label><input type="radio" name="codebase" value="existing"> Existing codebase</label>
-              <label><input type="radio" name="codebase" value="github"> GitHub repo</label>
-              <label><input type="radio" name="codebase" value="local-app"> Local app</label>
-              <label><input type="radio" name="codebase" value="website"> Website</label>
-              <label><input type="radio" name="codebase" value="script"> Automation/script</label>
-              <label><input type="radio" name="codebase" value="not-sure"> Not sure yet</label>
+              <label><input type="radio" name="stack" value="python" checked> Python app/tool</label>
+              <label><input type="radio" name="stack" value="swift"> Swift/macOS app</label>
+              <label><input type="radio" name="stack" value="react"> React/TypeScript app</label>
+              <label><input type="radio" name="stack" value="node"> Node.js automation/server</label>
+              <label><input type="radio" name="stack" value="bash"> Bash/CLI tool</label>
+              <label><input type="radio" name="stack" value="tauri"> Tauri desktop app</label>
+              <label><input type="radio" name="stack" value="mixed"> Existing mixed codebase</label>
+              <label><input type="radio" name="stack" value="not-sure"> Not sure yet</label>
             </div>
           </div>
 
           <div class="field reveal">
-            <label>What platform do you need?</label>
+            <label>Target platform</label>
             <div class="radio-group">
-              <label><input type="radio" name="platform" value="macos" checked> macOS app</label>
-              <label><input type="radio" name="platform" value="linux"> Linux app/tool</label>
-              <label><input type="radio" name="platform" value="mac-linux"> Mac + Linux</label>
-              <label><input type="radio" name="platform" value="not-sure"> Not sure yet</label>
+              <label><input type="radio" name="platform" value="macos" checked> macOS</label>
+              <label><input type="radio" name="platform" value="linux"> Linux</label>
+              <label><input type="radio" name="platform" value="mac-linux"> macOS + Linux</label>
+              <label><input type="radio" name="platform" value="web-dashboard"> Web dashboard</label>
             </div>
           </div>
 
