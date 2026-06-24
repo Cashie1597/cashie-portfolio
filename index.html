@@ -16,7 +16,7 @@
     --ink-mute:    #95a7cc;
     --plum:        #a78bfa;
     --plum-deep:   #7c5dfa;
-    --cyan:        #5ee7df;
+    --cyan:        #e0ffff;
     --cream:       #c7e6ff;
     --radius:      18px;
     --maxw:        1140px;
@@ -33,7 +33,7 @@
     background:
       radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.27), transparent 60%),
       radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.20), transparent 55%),
-      radial-gradient(1100px 560px at 110% 105%, rgba(94,231,223,0.17), transparent 55%),
+      radial-gradient(1100px 560px at 110% 105%, rgba(224,255,255,0.17), transparent 55%),
       var(--bg);
     color: var(--ink);
     font-family: var(--sans);
@@ -43,7 +43,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(94,231,223,0.30)); color: #fff; }
+  ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
 
   a { color: inherit; text-decoration: none; }
 
@@ -69,7 +69,7 @@
   .brand .dot {
     width: 9px; height: 9px; border-radius: 50%;
     background: linear-gradient(135deg, var(--plum), var(--cyan));
-    box-shadow: 0 0 16px 2px rgba(167,139,250,0.55), 0 0 10px rgba(94,231,223,0.35);
+    box-shadow: 0 0 16px 2px rgba(167,139,250,0.55), 0 0 10px rgba(224,255,255,0.35);
   }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a {
@@ -134,7 +134,7 @@
     transition: transform .18s ease, background .2s ease, border-color .2s ease;
   }
   .btn-primary {
-    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(94,231,223,0.35) 100%);
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.35) 100%);
     color: #182642;
   }
   .btn-primary:hover { transform: translateY(-2px); }
@@ -171,7 +171,7 @@
   .card .glow {
     position: absolute; inset: -40% 50% auto -10%; height: 220px;
     background: radial-gradient(circle at 30% 20%, rgba(167,139,250,0.22), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(94,231,223,0.14), transparent 55%);
+                radial-gradient(circle at 70% 80%, rgba(224,255,255,0.14), transparent 55%);
     pointer-events: none;
   }
   .card-top {
@@ -231,7 +231,7 @@
   .contact-card .glow {
     position: absolute; inset: auto -10% -50% 40%; height: 300px;
     background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.24), transparent 60%),
-                radial-gradient(circle at 80% 90%, rgba(94,231,223,0.16), transparent 55%);
+                radial-gradient(circle at 80% 90%, rgba(224,255,255,0.16), transparent 55%);
   }
   .contact-card h2 {
     font-family: var(--serif); font-weight: 500;
