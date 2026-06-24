@@ -72,14 +72,42 @@
     height: 68px;
   }
   .brand {
-    font-family: var(--serif);
-    font-size: 1.22rem; letter-spacing: 0.2px;
-    display: flex; align-items: center; gap: 11px;
+    display: inline-flex; align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 999px;
+    padding: 6px 14px 6px 8px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    gap: 10px;
   }
-  .brand .dot {
-    width: 9px; height: 9px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--plum), var(--cyan));
-    box-shadow: 0 0 16px 2px rgba(167,139,250,0.55), 0 0 10px rgba(224,255,255,0.35);
+  .brand-mark {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, var(--cyan) 100%);
+    box-shadow: 0 0 14px 2px rgba(167,139,250,0.55), 0 0 8px rgba(224,255,255,0.25);
+    flex-shrink: 0;
+  }
+  .brand-mark::after {
+    content: "✦";
+    font-size: 11px; color: #182642; line-height: 1;
+  }
+  .brand-text {
+    display: flex; flex-direction: column; line-height: 1.2;
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 1.1rem; letter-spacing: 0.2px;
+    color: var(--ink);
+  }
+  .brand-sub {
+    font-size: 0.62rem; color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 560px) {
+    .brand { padding: 5px 11px 5px 6px; gap: 8px; }
+    .brand-mark { width: 20px; height: 20px; }
+    .brand-name { font-size: 1rem; }
+    .brand-sub { display: none; }
   }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a {
@@ -318,7 +346,13 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#top"><span class="dot"></span> Cashie</a>
+    <a class="brand" href="#top">
+      <span class="brand-mark"></span>
+      <span class="brand-text">
+        <span class="brand-name">Cashie</span>
+        <span class="brand-sub">Sydney · macOS + Linux</span>
+      </span>
+    </a>
     <nav class="nav-links">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
