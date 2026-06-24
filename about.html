@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Cashie.dev</title>
-<meta name="description" content="Cashie.dev is an independent software studio based in Sydney, Australia building native macOS apps, Linux applications and workflow automation.">
+<title>Developer — Cashie.dev</title>
+<meta name="description" content="Cashie.dev is an independent software studio building native macOS apps, Linux tools, automation systems and internal dashboards. Based in Sydney, Australia.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -25,12 +25,9 @@
     --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
 
-  * { box-sizing: border-box; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    margin: 0;
     background:
       radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.28), transparent 60%),
       radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.22), transparent 55%),
@@ -42,35 +39,25 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    min-height: 100vh;
   }
-
   ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
-
   a { color: inherit; text-decoration: none; }
-
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
   /* ---------- Nav ---------- */
   header.nav {
     position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     background: rgba(24,38,66,0.72);
     border-bottom: 1px solid var(--panel-line);
   }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .brand {
-    font-family: var(--serif);
-    font-size: 1.22rem; letter-spacing: 0.2px;
+    font-family: var(--serif); font-size: 1.22rem; letter-spacing: 0.2px;
     display: inline-flex; align-items: center; gap: 10px;
   }
-  .brand .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--plum);
-  }
+  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--plum); }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a {
     font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -78,38 +65,31 @@
   }
   .nav-links a:hover { color: var(--ink); }
   .nav-cta {
-    border: 1px solid var(--panel-line);
-    padding: 9px 18px; border-radius: 999px;
-    background: rgba(199,230,255,0.05);
-    color: var(--cream) !important;
+    border: 1px solid var(--panel-line); padding: 9px 18px; border-radius: 999px;
+    background: rgba(199,230,255,0.05); color: var(--cream) !important;
   }
   .nav-cta:hover { border-color: var(--plum); }
   @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
 
-  /* ---------- Section scaffolding ---------- */
-  section { padding: 116px 0; }
+  /* ---------- Scaffolding ---------- */
+  section { padding: 100px 0; }
   .eyebrow {
     font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--plum); margin: 0 0 18px;
     display: flex; align-items: center; gap: 12px;
   }
-  .eyebrow::before {
-    content: ""; width: 28px; height: 1px; background: var(--plum-deep);
-  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--plum-deep); }
   h2.section-title {
     font-family: var(--serif); font-weight: 500;
     font-size: clamp(1.9rem, 4vw, 2.9rem);
     line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.01em;
   }
-  .section-lede {
-    color: var(--ink-soft); max-width: 56ch; margin: 0 0 56px; font-size: 1.05rem;
-  }
+  .section-lede { color: var(--ink-soft); max-width: 56ch; margin: 0 0 56px; font-size: 1.05rem; }
 
-  /* ---------- Buttons ---------- */
   .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border-radius: 999px;
-    font-size: 0.95rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px; border-radius: 999px;
+    font-size: 0.92rem; font-weight: 500;
     transition: transform .18s ease, background .2s ease, border-color .2s ease;
   }
   .btn-primary {
@@ -123,42 +103,189 @@
   }
   .btn-ghost:hover { border-color: var(--plum); }
 
-  /* ---------- About prose ---------- */
-  .prose p {
-    color: var(--ink-soft); font-size: 1.06rem; line-height: 1.7; margin: 0 0 20px;
+  /* ---------- Dev hero ---------- */
+  .dev-hero { padding: 120px 0 84px; }
+  .dev-hero .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.8rem; color: var(--ink-soft);
+    border: 1px solid var(--panel-line); border-radius: 999px;
+    padding: 7px 15px; margin-bottom: 40px; background: var(--panel);
   }
-
-  /* ---------- FAQ ---------- */
-  .faq-grid { display: grid; gap: 16px; }
-  .faq {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 22px 24px;
-  }
-  .faq h3 {
+  .dev-hero .hero-tag .pip { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+  .dev-hero h1 {
     font-family: var(--serif); font-weight: 500;
-    font-size: 1.08rem; margin: 0 0 8px; letter-spacing: -0.01em;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.0; margin: 0 0 10px; letter-spacing: -0.02em;
   }
-  .faq p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; line-height: 1.55; }
+  .dev-hero .dev-role {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    color: var(--cream); margin: 0 0 36px; line-height: 1.2;
+  }
+  .dev-hero .dev-tags {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;
+  }
+  .dev-hero .dev-tag {
+    font-size: 0.88rem; color: var(--ink-soft);
+    border: 1px solid var(--panel-line); border-radius: 999px;
+    padding: 6px 14px; background: var(--panel); letter-spacing: 0.01em;
+  }
+  .dev-hero .dev-location {
+    font-size: 0.88rem; color: var(--ink-mute); margin-bottom: 36px;
+  }
+  .dev-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-  /* ---------- Trust ---------- */
-  .trust-card {
+  /* ---------- Philosophy ---------- */
+  .philosophy-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 48px;
+  }
+  @media (max-width: 680px) { .philosophy-list { grid-template-columns: 1fr; gap: 0; } }
+  .philosophy-item {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 18px 0; border-bottom: 1px solid var(--panel-line);
+  }
+  .philosophy-item:last-child { border-bottom: none; }
+  .philosophy-item .ph-num {
+    font-family: var(--serif); font-size: 0.78rem; color: var(--plum);
+    letter-spacing: 0.08em; flex-shrink: 0; min-width: 28px;
+  }
+  .philosophy-item .ph-text {
+    font-size: 1.02rem; color: var(--ink); line-height: 1.5;
+  }
+
+  /* ---------- Technologies ---------- */
+  .tech-groups {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  @media (max-width: 880px) { .tech-groups { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .tech-groups { grid-template-columns: 1fr; } }
+  .tech-group {
     background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 32px 34px;
+    border-radius: var(--radius); padding: 24px;
+    transition: border-color .22s ease;
   }
-  .trust-card ul {
-    margin: 0; padding: 0;
-    list-style: none;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px;
+  .tech-group:hover { border-color: rgba(167,139,250,0.30); }
+  .tech-group .tg-label {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--plum); margin-bottom: 14px; font-weight: 600;
   }
-  @media (max-width: 560px) { .trust-card ul { grid-template-columns: 1fr; } }
-  .trust-card li {
-    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
-    padding-left: 22px; position: relative;
+  .tech-group .tg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tech-chip {
+    font-size: 0.88rem; color: var(--ink);
+    border: 1px solid var(--panel-line); border-radius: 8px;
+    padding: 6px 12px; background: rgba(199,230,255,0.04);
+    font-weight: 500; font-family: var(--sans);
   }
-  .trust-card li::before {
-    content: "✓"; position: absolute; left: 0; top: 1px;
-    color: var(--plum); font-size: 0.85rem; font-weight: 600;
+
+  /* ---------- Product cards ---------- */
+  .dev-products-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
   }
+  @media (max-width: 680px) { .dev-products-grid { grid-template-columns: 1fr; } }
+  .dev-product-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 28px;
+    transition: border-color .22s ease, transform .22s ease;
+    display: flex; flex-direction: column;
+  }
+  .dev-product-card:hover { border-color: rgba(167,139,250,0.40); transform: translateY(-3px); }
+  .dev-product-card .dp-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 16px;
+  }
+  .dev-product-card h3 {
+    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .dev-product-card p { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 14px; line-height: 1.5; }
+  .dev-product-card .dp-link {
+    font-size: 0.82rem; color: var(--plum); letter-spacing: 0.02em;
+    margin-top: auto;
+  }
+
+  /* ---------- Current focus ---------- */
+  .focus-timeline { display: flex; flex-direction: column; gap: 44px; }
+  .focus-block .focus-label {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--plum); margin-bottom: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .focus-block .focus-label::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+  }
+  .focus-block.now .focus-label::before { background: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,0.4); }
+  .focus-block.recent .focus-label::before { background: var(--plum); }
+  .focus-block.planned .focus-label::before { background: var(--ink-mute); }
+  .focus-items {
+    display: flex; flex-direction: column; gap: 8px;
+    padding-left: 20px; border-left: 1px solid var(--panel-line);
+    margin-left: 3px;
+  }
+  .focus-item {
+    font-size: 1.0rem; color: var(--ink); padding: 6px 0;
+  }
+
+  /* ---------- Principles ---------- */
+  .principles-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 760px) { .principles-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .principles-grid { grid-template-columns: 1fr; } }
+  .principle {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 28px 24px;
+    transition: border-color .22s ease;
+  }
+  .principle:hover { border-color: rgba(167,139,250,0.30); }
+  .principle p {
+    font-family: var(--serif); font-size: 1.12rem; color: var(--cream);
+    margin: 0; line-height: 1.4; font-weight: 500; letter-spacing: -0.01em;
+  }
+
+  /* ---------- Studio timeline ---------- */
+  .milestones { display: flex; flex-direction: column; gap: 0; }
+  .milestone {
+    display: flex; align-items: center; gap: 22px; padding: 20px 0;
+    position: relative;
+  }
+  .milestone .ms-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--plum); box-shadow: 0 0 8px rgba(167,139,250,0.3);
+    flex-shrink: 0; z-index: 1; position: relative;
+  }
+  .milestone:not(:last-child)::after {
+    content: ""; position: absolute; left: 5px; top: 50%; bottom: -20px;
+    width: 2px; background: var(--panel-line);
+  }
+  .milestone .ms-label {
+    font-family: var(--serif); font-size: 1.12rem; color: var(--ink); font-weight: 500;
+  }
+  .milestone .ms-sub {
+    font-size: 0.8rem; color: var(--ink-mute); margin-left: auto; letter-spacing: 0.04em;
+  }
+
+  /* ---------- Open source ---------- */
+  .oss-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 36px 32px;
+    position: relative; overflow: hidden;
+  }
+  .oss-card .oss-glow {
+    position: absolute; inset: -30% 60% auto -10%; height: 220px;
+    background: radial-gradient(circle at 30% 30%, rgba(167,139,250,0.16), transparent 60%);
+    pointer-events: none;
+  }
+  .oss-inner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+  .oss-card h3 {
+    font-family: var(--serif); font-weight: 500; font-size: 1.25rem;
+    margin: 0 0 6px;
+  }
+  .oss-card p { color: var(--ink-soft); font-size: 0.92rem; margin: 0; line-height: 1.5; max-width: 48ch; }
+  .oss-stats { display: flex; gap: 36px; margin: 4px 0; }
+  .oss-stat .num { font-family: var(--serif); font-size: 1.6rem; color: var(--cream); display: block; }
+  .oss-stat .lbl { font-size: 0.76rem; color: var(--ink-mute); letter-spacing: 0.04em; }
 
   /* ---------- Contact ---------- */
   .contact-card {
@@ -178,7 +305,6 @@
     margin: 0 0 20px; letter-spacing: -0.015em; max-width: 18ch;
   }
   .contact-card p { color: var(--ink-soft); max-width: 52ch; margin: 0 0 36px; font-size: 1.06rem; }
-  .contact-card .pricing-anchor { color: var(--cream); font-size: 0.98rem; margin: -18px 0 28px; }
   .contact-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
   .contact-meta {
     margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--panel-line);
@@ -217,87 +343,244 @@
       <a href="index.html#services">Services</a>
       <a class="nav-cta" href="apply.html">Start a Project</a>
       <a href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
-      <a href="about.html">About</a>
+      <a href="about.html">Developer</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- ABOUT -->
-  <section id="about">
+  <!-- HERO -->
+  <section class="dev-hero">
     <div class="wrap">
-      <p class="eyebrow reveal">About</p>
-      <h2 class="section-title reveal">An independent software studio.</h2>
-      <div class="prose" style="max-width:62ch">
-        <p class="reveal">Cashie.dev is an independent software studio based in Sydney, Australia. I build native macOS apps, Linux applications, internal dashboards and workflow automation — focused tools that ship and stay in use.</p>
-        <p class="reveal">Not a freelancer. Not an agency. Not a startup. I'm an independent software builder who designs, builds and maintains real software that solves specific problems.</p>
-        <p class="reveal">Every product I build starts with a simple question: what's the smallest useful version? Then I build it, ship it, and keep using it. If it doesn't earn its place in my own workflow, it doesn't ship.</p>
+      <div class="hero-tag reveal"><span class="pip"></span> Independent software studio · Sydney, AU</div>
+      <h1 class="reveal">Cashie</h1>
+      <p class="dev-role reveal">Independent software builder.</p>
+      <div class="dev-tags reveal">
+        <span class="dev-tag">Native macOS apps</span>
+        <span class="dev-tag">Linux tools</span>
+        <span class="dev-tag">Automation systems</span>
+        <span class="dev-tag">Internal dashboards</span>
+      </div>
+      <p class="dev-location reveal">Sydney, Australia</p>
+      <div class="dev-hero-actions reveal">
+        <a class="btn btn-ghost" href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-primary" href="index.html#start">Contact →</a>
       </div>
     </div>
   </section>
 
-  <!-- TRUST -->
-  <section id="trust">
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
     <div class="wrap">
-      <p class="eyebrow reveal">Why work with me</p>
-      <h2 class="section-title reveal">Built with clarity.</h2>
-      <div class="trust-card reveal">
-        <ul>
-          <li>Based in Sydney, Australia</li>
-          <li>macOS + Linux focused</li>
-          <li>Fixed-price quoting before build</li>
-          <li>Products that ship and stay in use</li>
-          <li>Clear scope before work starts</li>
-          <li>Independent — no outsourcing, no overhead</li>
-        </ul>
+      <p class="eyebrow reveal">Philosophy</p>
+      <h2 class="section-title reveal">How I approach software.</h2>
+      <p class="section-lede reveal">Six principles that shape every build. No marketing fluff — just how I actually work.</p>
+
+      <div class="philosophy-list">
+        <div class="philosophy-item reveal"><span class="ph-num">01</span><span class="ph-text">Native first. If it runs on the platform, it should feel like it belongs there.</span></div>
+        <div class="philosophy-item reveal"><span class="ph-num">02</span><span class="ph-text">Simple software. One job, done well. No feature creep, no bloat.</span></div>
+        <div class="philosophy-item reveal"><span class="ph-num">03</span><span class="ph-text">Automation over repetition. If I do it twice, the third time is a script.</span></div>
+        <div class="philosophy-item reveal"><span class="ph-num">04</span><span class="ph-text">Maintainable systems. Code I can still understand six months later.</span></div>
+        <div class="philosophy-item reveal"><span class="ph-num">05</span><span class="ph-text">Finish before expanding. Ship v1, then decide if v2 is worth it.</span></div>
+        <div class="philosophy-item reveal"><span class="ph-num">06</span><span class="ph-text">Build tools I actually use. If it doesn't earn its place, it doesn't ship.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq">
+  <!-- TECHNOLOGIES -->
+  <section id="technologies">
     <div class="wrap">
-      <p class="eyebrow reveal">FAQ</p>
-      <h2 class="section-title reveal">Quick questions.</h2>
-      <p class="section-lede reveal">If you don't see your question here, start a project and I'll answer directly.</p>
+      <p class="eyebrow reveal">Technologies</p>
+      <h2 class="section-title reveal">What I build with.</h2>
+      <p class="section-lede reveal">A focused stack. Native where it matters, cross-platform where it helps, automation where it counts.</p>
 
-      <div class="faq-grid">
-        <div class="faq reveal">
-          <h3>What platforms do you build for?</h3>
-          <p>macOS and Linux are my main focus — native apps, menu bar utilities, dashboards, and automation tools. I don't currently build mobile apps or Windows-only software.</p>
+      <div class="tech-groups">
+        <div class="tech-group reveal">
+          <div class="tg-label">Native</div>
+          <div class="tg-chips">
+            <span class="tech-chip">Swift</span>
+            <span class="tech-chip">SwiftUI</span>
+            <span class="tech-chip">AppKit</span>
+          </div>
         </div>
-        <div class="faq reveal">
-          <h3>Do you build mobile apps?</h3>
-          <p>No. I don't take iOS or Android projects. If your idea could work as a desktop tool or internal dashboard, I'm happy to look at it.</p>
+        <div class="tech-group reveal">
+          <div class="tg-label">Cross-platform</div>
+          <div class="tg-chips">
+            <span class="tech-chip">Tauri</span>
+            <span class="tech-chip">Rust</span>
+          </div>
         </div>
-        <div class="faq reveal">
-          <h3>How much does a project cost?</h3>
-          <p>Most starter projects fall between <strong>A$500 and A$3,500</strong>. Larger or more complex systems are quoted after a short scope review. Everything is fixed price and agreed before work starts.</p>
+        <div class="tech-group reveal">
+          <div class="tg-label">Automation</div>
+          <div class="tg-chips">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">Bash</span>
+          </div>
         </div>
-        <div class="faq reveal">
-          <h3>How long does a build take?</h3>
-          <p>Small tools and scripts often take a few days to a week. Dashboards and desktop apps typically take 1–3 weeks. I'll give you a clear timeline with the quote.</p>
+        <div class="tech-group reveal">
+          <div class="tg-label">Frontend</div>
+          <div class="tg-chips">
+            <span class="tech-chip">HTML</span>
+            <span class="tech-chip">CSS</span>
+            <span class="tech-chip">JavaScript</span>
+          </div>
         </div>
-        <div class="faq reveal">
-          <h3>What happens after I submit a request?</h3>
-          <p>I'll review the scope and come back with whether it's a fit, a suggested approach, and a fixed price. If we agree, I build in short passes and share progress as it goes.</p>
+        <div class="tech-group reveal">
+          <div class="tg-label">Infrastructure</div>
+          <div class="tg-chips">
+            <span class="tech-chip">Git</span>
+            <span class="tech-chip">GitHub</span>
+            <span class="tech-chip">Linux</span>
+            <span class="tech-chip">macOS</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- START A PROJECT -->
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="wrap">
+      <p class="eyebrow reveal">Products</p>
+      <h2 class="section-title reveal">What I'm building.</h2>
+      <p class="section-lede reveal">Real software, in active development. Each product solves a specific problem.</p>
+
+      <div class="dev-products-grid">
+        <a class="dev-product-card reveal" href="products.html#plum-os">
+          <div class="dp-icon">⚡</div>
+          <h3>PLUM OS</h3>
+          <p>Operator-focused productivity ecosystem for macOS. Native tools that work together.</p>
+          <span class="dp-link">Learn more →</span>
+        </a>
+        <a class="dev-product-card reveal" href="products.html#standalone">
+          <div class="dp-icon">📖</div>
+          <h3>Recto</h3>
+          <p>Native desktop markdown reader focused on speed and simplicity. Built with Tauri and Rust.</p>
+          <span class="dp-link">Learn more →</span>
+        </a>
+        <a class="dev-product-card reveal" href="products.html#standalone">
+          <div class="dp-icon">📊</div>
+          <h3>Runtime Dashboard</h3>
+          <p>Internal operations dashboard for monitoring projects, agents and infrastructure.</p>
+          <span class="dp-link">Learn more →</span>
+        </a>
+        <a class="dev-product-card reveal" href="apply.html">
+          <div class="dp-icon">📋</div>
+          <h3>Project Brief Builder</h3>
+          <p>Interactive client onboarding and project scoping workflow with live estimation.</p>
+          <span class="dp-link">Try it →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT FOCUS -->
+  <section id="focus">
+    <div class="wrap">
+      <p class="eyebrow reveal">Current focus</p>
+      <h2 class="section-title reveal">What I'm working on.</h2>
+      <p class="section-lede reveal">A snapshot of active work, recent finishes and what's planned next.</p>
+
+      <div class="focus-timeline">
+        <div class="focus-block now reveal">
+          <div class="focus-label">Now Building</div>
+          <div class="focus-items">
+            <div class="focus-item">Recto — native markdown reader</div>
+            <div class="focus-item">PLUM OS — productivity ecosystem</div>
+            <div class="focus-item">Cashie.dev — studio platform and portfolio</div>
+          </div>
+        </div>
+        <div class="focus-block recent reveal">
+          <div class="focus-label">Recently Finished</div>
+          <div class="focus-items">
+            <div class="focus-item">Portfolio redesign and architecture refactor</div>
+            <div class="focus-item">Project Brief Builder v2 with live estimation</div>
+          </div>
+        </div>
+        <div class="focus-block planned reveal">
+          <div class="focus-label">Planned</div>
+          <div class="focus-items">
+            <div class="focus-item">PlumDocs — lightweight document viewer</div>
+            <div class="focus-item">PlumWatch — menu bar system monitor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles">
+    <div class="wrap">
+      <p class="eyebrow reveal">Principles</p>
+      <h2 class="section-title reveal">What I believe.</h2>
+      <p class="section-lede reveal">Not rules — convictions. The things I won't compromise on.</p>
+
+      <div class="principles-grid">
+        <div class="principle reveal"><p>Native over bloated.</p></div>
+        <div class="principle reveal"><p>Simple over clever.</p></div>
+        <div class="principle reveal"><p>Quality over quantity.</p></div>
+        <div class="principle reveal"><p>Automation where it matters.</p></div>
+        <div class="principle reveal"><p>Maintainable systems.</p></div>
+        <div class="principle reveal"><p>Designed to last.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO TIMELINE -->
+  <section id="timeline">
+    <div class="wrap">
+      <p class="eyebrow reveal">Studio timeline</p>
+      <h2 class="section-title reveal">The path so far.</h2>
+      <p class="section-lede reveal">Key milestones in building Cashie.dev.</p>
+
+      <div class="milestones">
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Started building software</span><span class="ms-sub">The beginning</span></div>
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">First desktop apps</span><span class="ms-sub">Native macOS</span></div>
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">PLUM OS</span><span class="ms-sub">Ecosystem launched</span></div>
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Recto</span><span class="ms-sub">Native reader</span></div>
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Cashie.dev</span><span class="ms-sub">Studio platform</span></div>
+        <div class="milestone reveal"><span class="ms-dot"></span><span class="ms-label">Future</span><span class="ms-sub">What's next</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN SOURCE -->
+  <section id="opensource">
+    <div class="wrap">
+      <p class="eyebrow reveal">Open source</p>
+      <h2 class="section-title reveal">On GitHub.</h2>
+      <p class="section-lede reveal">GitHub supports the work — it doesn't define it. The products are the portfolio.</p>
+
+      <div class="oss-card reveal">
+        <div class="oss-glow"></div>
+        <div class="oss-inner">
+          <div>
+            <h3>Public repositories</h3>
+            <p>Original work, tools and products. Forks are kept private unless they contain custom modifications.</p>
+            <div class="oss-stats">
+              <div class="oss-stat"><span class="num">5</span><span class="lbl">Public repos</span></div>
+              <div class="oss-stat"><span class="num">4</span><span class="lbl">Products</span></div>
+              <div class="oss-stat"><span class="num">2</span><span class="lbl">Languages</span></div>
+            </div>
+          </div>
+          <a class="btn btn-ghost" href="https://github.com/Cashie1597" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="start">
     <div class="wrap">
       <div class="contact-card reveal">
         <div class="glow"></div>
-        <p class="eyebrow">Start a Project</p>
-        <h2>Got something you want built well?</h2>
+        <p class="eyebrow">Contact</p>
+        <h2>Have a project? Let's build something useful.</h2>
         <p>Tell me the problem in a few lines. I'll come back with whether I'm the right fit, a clear scope, and a fixed quote.</p>
-        <p class="pricing-anchor">Most starter projects fall between <strong>A$500 and A$3,500</strong>. Larger systems are quoted after scope review.</p>
         <div class="contact-row">
           <a class="btn btn-primary" href="apply.html">Start a Project →</a>
+          <a class="btn btn-ghost" href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
         </div>
         <div class="contact-meta">
           <div><span class="k">Based in</span><span class="v">Sydney, Australia</span></div>
@@ -316,6 +599,7 @@
 </footer>
 
 <script>
+  // Lightweight scroll reveal — no dependencies.
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
