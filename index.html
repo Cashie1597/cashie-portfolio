@@ -202,6 +202,10 @@
     font-size: 0.72rem; color: var(--cream); letter-spacing: 0.05em;
     border-left: 2px solid var(--plum-deep); padding-left: 10px;
   }
+  .outcome {
+    font-size: 0.85rem; color: var(--cream);
+    margin: -12px 0 18px; line-height: 1.5;
+  }
 
   /* ---------- Services ---------- */
   .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -242,6 +246,26 @@
     font-size: 1.08rem; margin: 0 0 8px; letter-spacing: -0.01em;
   }
   .faq p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; line-height: 1.55; }
+
+  /* ---------- Trust ---------- */
+  .trust-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 32px 34px;
+  }
+  .trust-card ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px;
+  }
+  @media (max-width: 560px) { .trust-card ul { grid-template-columns: 1fr; } }
+  .trust-card li {
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
+    padding-left: 22px; position: relative;
+  }
+  .trust-card li::before {
+    content: "✓"; position: absolute; left: 0; top: 1px;
+    color: var(--plum); font-size: 0.85rem; font-weight: 600;
+  }
 
   /* ---------- Contact ---------- */
   .contact-card {
@@ -315,6 +339,7 @@
       <div class="hero-actions reveal">
         <a class="btn btn-primary" href="apply.html">Request a build →</a>
         <a class="btn btn-ghost" href="#work">See selected work</a>
+        <!-- TODO: Estimator lives at ~/PROJECTS/Active/devtools/build-quote-estimator/index.html and is currently local-only. Add a public "Get a quick estimate →" CTA here once deployed. -->
       </div>
       <div class="hero-meta reveal">
         <div class="stat"><span class="num">5</span><span class="lbl">Built projects</span></div>
@@ -339,7 +364,8 @@
             <h3>Polish By Piper</h3>
             <span class="kind">Booking · Marketing site</span>
           </div>
-          <p>A booking and marketing website for a local beauty studio. Clean service menu, mobile-first layout, and an enquiry flow that drops straight into the owner's inbox — so a client can go from Instagram to booked without a phone call.</p>
+          <p>A booking and marketing website for a local beauty studio. Clean service menu, mobile-first layout, and an enquiry flow that drops straight into the owner's inbox.</p>
+          <p class="outcome">Turns Instagram interest into direct enquiries.</p>
           <div class="tags">
             <span class="tag">Responsive site</span>
             <span class="tag">Online enquiry flow</span>
@@ -355,6 +381,7 @@
             <span class="kind">macOS utility</span>
           </div>
           <p>A lightweight clipboard manager that remembers what you copied and lets you paste it back in two keystrokes. Searchable history, pinned snippets, and nothing phoned home.</p>
+          <p class="outcome">Keeps clipboard history a keystroke away.</p>
           <div class="tags"><span class="tag">Clipboard history</span><span class="tag">Keyboard-first</span></div>
           <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Native macOS</p>
         </article>
@@ -366,6 +393,7 @@
             <span class="kind">Dashboard</span>
           </div>
           <p>A local control panel that pulls my projects, scripts and running services into one view. Buttons instead of remembered terminal commands — start, stop, check, done.</p>
+          <p class="outcome">Centralizes project visibility.</p>
           <div class="tags"><span class="tag">Local dashboard</span><span class="tag">Service controls</span></div>
           <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Runs locally</p>
         </article>
@@ -377,6 +405,7 @@
             <span class="kind">macOS utility</span>
           </div>
           <p>A wallpaper manager that organises a library, rotates on a schedule, and handles multiple displays without the usual fuss. Set it once and forget it's there.</p>
+          <p class="outcome">Keeps desktop wallpapers organized across displays.</p>
           <div class="tags"><span class="tag">Library manager</span><span class="tag">Multi-display</span></div>
           <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Native macOS</p>
         </article>
@@ -388,6 +417,7 @@
             <span class="kind">Menu bar tool</span>
           </div>
           <p>A native menu bar focus timer built for my Operator Blocks workflow. Pure SwiftUI/AppKit — no Electron, no web view, no network, no login item. Start a block, glance at the bar, get on with the work.</p>
+          <p class="outcome">Keeps focus blocks visible in the menu bar.</p>
           <div class="tags"><span class="tag">Focus timer</span><span class="tag">Native SwiftUI</span></div>
           <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Menu bar · macOS</p>
         </article>
@@ -497,6 +527,23 @@
           <h3>What happens after I submit a request?</h3>
           <p>I'll review the scope and come back with whether it's a fit, a suggested approach, and a fixed price. If we agree, I build in short passes and share progress as it goes.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section id="trust">
+    <div class="wrap">
+      <p class="eyebrow reveal">Why work with me</p>
+      <h2 class="section-title reveal">Built with clarity.</h2>
+      <div class="trust-card reveal">
+        <ul>
+          <li>Based in Sydney, Australia</li>
+          <li>macOS + Linux focused</li>
+          <li>Fixed-price quoting before build</li>
+          <li>AI-assisted, human-reviewed builds</li>
+          <li>Clear scope before work starts</li>
+        </ul>
       </div>
     </div>
   </section>
