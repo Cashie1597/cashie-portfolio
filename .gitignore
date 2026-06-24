@@ -1,0 +1,24 @@
+# Secrets and credentials — added during Phase 1 repo setup
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+secrets/
+tokens/
+config.local.yaml
+config.prod.yaml
+
+# Web build artifacts
+node_modules/
+dist/
+build/
+.next/
+.vite/
+coverage/
+*.log
+*.tmp
+.DS_Store

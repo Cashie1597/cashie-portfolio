@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashie — Style Showcase</title>
+<style>
+  :root {
+    --bg:        #100c0b;
+    --panel:     #1a1413;
+    --line:      rgba(231,210,196,0.12);
+    --ink:       #f1e7dd;
+    --ink-soft:  #b9a99b;
+    --ink-mute:  #82736a;
+    --accent:    #b08a9e;
+    --accent-2:  #c2a24c;
+    --sans:      ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono:      ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column;
+  }
+
+  /* ---- Top bar ---- */
+  .bar {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    padding: 14px 22px; border-bottom: 1px solid var(--line);
+    background: rgba(16,12,11,0.92);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .brand { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); display: flex; align-items: center; gap: 9px; }
+  .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tab {
+    appearance: none; cursor: pointer;
+    font-family: var(--sans); font-size: 0.86rem; color: var(--ink-soft);
+    background: transparent; border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 16px; transition: all .18s ease; display: flex; align-items: center; gap: 9px;
+  }
+  .tab:hover { color: var(--ink); border-color: var(--accent); }
+  .tab .idx { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-mute); }
+  .tab.active { color: #1a1310; background: var(--accent); border-color: var(--accent); }
+  .tab.active .idx { color: rgba(26,19,16,0.6); }
+
+  .spacer { flex: 1; }
+
+  .viewport-controls { display: flex; gap: 6px; align-items: center; }
+  .vbtn {
+    cursor: pointer; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+    color: var(--ink-soft); background: transparent; border: 1px solid var(--line);
+    border-radius: 7px; padding: 7px 11px; transition: all .18s ease;
+  }
+  .vbtn:hover { color: var(--ink); border-color: var(--accent-2); }
+  .vbtn.active { color: var(--accent-2); border-color: var(--accent-2); }
+  .open-link { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-mute); text-decoration: none; border-bottom: 1px solid transparent; }
+  .open-link:hover { color: var(--accent-2); border-color: var(--accent-2); }
+
+  /* ---- Caption strip ---- */
+  .caption {
+    padding: 11px 22px; border-bottom: 1px solid var(--line);
+    font-size: 0.86rem; color: var(--ink-soft);
+    display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
+  }
+  .caption .name { font-weight: 600; color: var(--ink); }
+  .caption .tag { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+
+  /* ---- Stage ---- */
+  .stage {
+    flex: 1; min-height: 0; position: relative;
+    background:
+      radial-gradient(700px 360px at 80% -10%, rgba(176,138,158,0.08), transparent 60%),
+      #0c0908;
+    display: flex; justify-content: center; padding: 0;
+    overflow: auto;
+  }
+  .frame-wrap {
+    width: 100%; height: 100%; transition: max-width .3s ease;
+  }
+  .frame-wrap.tablet { max-width: 834px; padding: 22px 0; }
+  .frame-wrap.mobile { max-width: 414px; padding: 22px 0; }
+  iframe {
+    width: 100%; height: 100%; border: 0; background: #16110f;
+    display: block;
+  }
+  .frame-wrap.tablet iframe,
+  .frame-wrap.mobile iframe {
+    height: calc(100% - 44px); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+
+  .hint { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
+  @media (max-width: 720px) {
+    .viewport-controls, .open-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="bar">
+    <div class="brand"><span class="dot"></span> Cashie · Style Showcase</div>
+    <div class="tabs" id="tabs"></div>
+    <div class="spacer"></div>
+    <div class="viewport-controls">
+      <button class="vbtn active" data-view="desktop">DESKTOP</button>
+      <button class="vbtn" data-view="tablet">TABLET</button>
+      <button class="vbtn" data-view="mobile">MOBILE</button>
+      <a class="open-link" id="openLink" href="#" target="_blank">OPEN ↗</a>
+    </div>
+  </div>
+
+  <div class="caption">
+    <span class="tag" id="capTag"></span>
+    <span class="name" id="capName"></span>
+    <span id="capDesc" style="color:var(--ink-mute)"></span>
+  </div>
+
+  <div class="stage">
+    <div class="frame-wrap" id="frameWrap">
+      <iframe id="preview" title="Style preview" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Registry of styles to showcase. Edit this list if files are added/removed.
+    const STYLES = [
+      {
+        file: "index.html",
+        tag: "V1 · Live",
+        name: "Plum Glass",
+        desc: "Dark warm editorial — glassy panels, soft plum/cream. The current shipped build."
+      },
+      {
+        file: "style-codex.html",
+        tag: "Variant",
+        name: "Codex",
+        desc: "Practical, restrained take — websites, dashboards, automations, Mac tools."
+      },
+      {
+        file: "cashie-portfolio-agy-no-vorssaint.html",
+        tag: "Draft",
+        name: "Agency",
+        desc: "Earlier editorial draft — Playfair display, sharp-edged glass panels."
+      }
+    ];
+
+    const tabsEl   = document.getElementById("tabs");
+    const frame    = document.getElementById("preview");
+    const frameWrap= document.getElementById("frameWrap");
+    const capTag   = document.getElementById("capTag");
+    const capName  = document.getElementById("capName");
+    const capDesc  = document.getElementById("capDesc");
+    const openLink = document.getElementById("openLink");
+
+    let current = 0;
+
+    function pad(n){ return String(n+1).padStart(2,"0"); }
+
+    function render(i) {
+      current = i;
+      const s = STYLES[i];
+      frame.src = s.file;
+      openLink.href = s.file;
+      capTag.textContent = s.tag;
+      capName.textContent = s.name;
+      capDesc.textContent = "— " + s.desc;
+      [...tabsEl.children].forEach((t, idx) => t.classList.toggle("active", idx === i));
+    }
+
+    STYLES.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.className = "tab";
+      b.innerHTML = `<span class="idx">${pad(i)}</span> ${s.name}`;
+      b.addEventListener("click", () => render(i));
+      tabsEl.appendChild(b);
+    });
+
+    // Viewport switching
+    document.querySelectorAll(".vbtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".vbtn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const v = btn.dataset.view;
+        frameWrap.className = "frame-wrap" + (v === "desktop" ? "" : " " + v);
+      });
+    });
+
+    // Keyboard: left/right to cycle styles
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") render((current + 1) % STYLES.length);
+      if (e.key === "ArrowLeft")  render((current - 1 + STYLES.length) % STYLES.length);
+    });
+
+    render(0);
+  </script>
+
+</body>
+</html>

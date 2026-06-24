@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashie — AI-assisted app builder, Sydney</title>
+<meta name="description" content="Cashie builds small business websites, booking pages, admin dashboards, automations and Mac utilities. Based in Sydney.">
+<style>
+  :root {
+    --bg:          #16110f;
+    --bg-soft:     #1d1715;
+    --panel:       rgba(43, 33, 31, 0.55);
+    --panel-line:  rgba(231, 210, 196, 0.10);
+    --ink:         #f3e9df;
+    --ink-soft:    #c9b7a8;
+    --ink-mute:    #968577;
+    --plum:        #b08a9e;
+    --plum-deep:   #8c6479;
+    --cream:       #ecd9bf;
+    --radius:      18px;
+    --maxw:        1140px;
+    --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 78% -8%, rgba(176,138,158,0.16), transparent 60%),
+      radial-gradient(900px 520px at -5% 12%, rgba(140,100,121,0.12), transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: rgba(176,138,158,0.35); color: #fff; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(22,17,15,0.62);
+    border-bottom: 1px solid var(--panel-line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.22rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 11px;
+  }
+  .brand .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--plum);
+    box-shadow: 0 0 14px 2px rgba(176,138,158,0.6);
+  }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); transition: color .2s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    border: 1px solid var(--panel-line);
+    padding: 9px 18px; border-radius: 999px;
+    background: rgba(236,217,191,0.04);
+    color: var(--cream) !important;
+  }
+  .nav-cta:hover { border-color: var(--plum); }
+  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 116px 0; }
+  .eyebrow {
+    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--plum); margin: 0 0 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before {
+    content: ""; width: 28px; height: 1px; background: var(--plum-deep);
+  }
+  h2.section-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.01em;
+  }
+  .section-lede {
+    color: var(--ink-soft); max-width: 56ch; margin: 0 0 56px; font-size: 1.05rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 92px 0 96px; position: relative; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.8rem; color: var(--ink-soft);
+    border: 1px solid var(--panel-line); border-radius: 999px;
+    padding: 7px 15px; margin-bottom: 34px;
+    background: var(--panel);
+  }
+  .hero-tag .pip { width:7px; height:7px; border-radius:50%; background:#7fbf8e; box-shadow:0 0 10px #7fbf8e; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.6rem, 6.6vw, 5rem);
+    line-height: 1.04; letter-spacing: -0.02em;
+    margin: 0 0 28px; max-width: 16ch;
+  }
+  .hero h1 em { font-style: italic; color: var(--cream); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2vw, 1.32rem);
+    color: var(--ink-soft); max-width: 60ch; margin: 0 0 40px; line-height: 1.6;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 0.95rem; font-weight: 500;
+    transition: transform .18s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-primary {
+    background: linear-gradient(180deg, var(--plum), var(--plum-deep));
+    color: #1a1310;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid var(--panel-line); color: var(--ink);
+    background: var(--panel);
+  }
+  .btn-ghost:hover { border-color: var(--plum); }
+  .hero-meta {
+    margin-top: 64px; display: flex; flex-wrap: wrap; gap: 44px;
+    border-top: 1px solid var(--panel-line); padding-top: 34px;
+  }
+  .hero-meta .stat { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta .num { font-family: var(--serif); font-size: 1.7rem; color: var(--cream); }
+  .hero-meta .lbl { font-size: 0.82rem; color: var(--ink-mute); letter-spacing: 0.04em; }
+
+  /* ---------- Work ---------- */
+  .work-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+  }
+  @media (max-width: 820px) { .work-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: var(--radius);
+    padding: 30px 30px 28px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative; overflow: hidden;
+    transition: transform .22s ease, border-color .22s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(176,138,158,0.4); }
+  .card.feature { grid-column: 1 / -1; }
+  .card .glow {
+    position: absolute; inset: -40% 50% auto -10%; height: 220px;
+    background: radial-gradient(circle, rgba(176,138,158,0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .card-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px; gap: 16px;
+  }
+  .card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  .card .kind { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--plum); white-space: nowrap; }
+  .card p { color: var(--ink-soft); margin: 0 0 22px; font-size: 0.98rem; }
+  .card.feature p { max-width: 62ch; font-size: 1.05rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 0.74rem; color: var(--ink-soft);
+    border: 1px solid var(--panel-line); border-radius: 999px;
+    padding: 5px 12px; background: rgba(236,217,191,0.03);
+  }
+  .badge-platform {
+    font-size: 0.72rem; color: var(--cream); letter-spacing: 0.05em;
+    border-left: 2px solid var(--plum-deep); padding-left: 10px;
+  }
+
+  /* ---------- Services ---------- */
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 880px) { .svc-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } }
+  .svc {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: var(--radius); padding: 26px 24px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .svc:hover { border-color: rgba(176,138,158,0.35); background: rgba(43,33,31,0.7); }
+  .svc .no { font-family: var(--serif); font-size: 0.95rem; color: var(--plum); margin-bottom: 14px; }
+  .svc h3 { font-size: 1.12rem; margin: 0 0 9px; font-weight: 600; letter-spacing: -0.01em; }
+  .svc p { color: var(--ink-soft); margin: 0; font-size: 0.92rem; line-height: 1.55; }
+
+  /* ---------- Process ---------- */
+  .process-band { background: var(--bg-soft); border-top: 1px solid var(--panel-line); border-bottom: 1px solid var(--panel-line); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  @media (max-width: 880px) { .steps { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+  .step { position: relative; padding-top: 30px; }
+  .step::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 38px; height: 2px;
+    background: linear-gradient(90deg, var(--plum), transparent);
+  }
+  .step .step-n { font-family: var(--serif); font-size: 0.85rem; color: var(--plum); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin: 0 0 10px; }
+  .step p { color: var(--ink-soft); margin: 0; font-size: 0.94rem; line-height: 1.55; }
+
+  /* ---------- Contact ---------- */
+  .contact-card {
+    background: var(--panel); border: 1px solid var(--panel-line);
+    border-radius: 26px; padding: 64px 56px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+  }
+  .contact-card .glow {
+    position: absolute; inset: auto -10% -50% 40%; height: 300px;
+    background: radial-gradient(circle, rgba(176,138,158,0.2), transparent 70%);
+  }
+  .contact-card h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.08;
+    margin: 0 0 20px; letter-spacing: -0.015em; max-width: 18ch;
+  }
+  .contact-card p { color: var(--ink-soft); max-width: 52ch; margin: 0 0 36px; font-size: 1.06rem; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .contact-meta {
+    margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--panel-line);
+    display: flex; flex-wrap: wrap; gap: 40px;
+  }
+  .contact-meta div span { display: block; }
+  .contact-meta .k { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 5px; }
+  .contact-meta .v { color: var(--ink); }
+  @media (max-width: 560px) { .contact-card { padding: 44px 26px; } }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 44px 0; border-top: 1px solid var(--panel-line);
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center;
+    color: var(--ink-mute); font-size: 0.84rem;
+  }
+  footer .brand { font-size: 1rem; color: var(--ink-soft); }
+  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--plum); display: inline-block; }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="dot"></span> Cashie</a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a class="nav-cta" href="#contact">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-tag reveal"><span class="pip"></span> Available for new projects · Sydney, AU</div>
+      <h1 class="reveal">Small, sharp software for <em>real businesses.</em></h1>
+      <p class="hero-sub reveal">I'm Cashie — an AI-assisted app builder. I make booking websites, admin dashboards, automation scripts and tidy little Mac utilities. The kind of tools that quietly save you an afternoon every week.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#contact">Start a project →</a>
+        <a class="btn btn-ghost" href="#work">See selected work</a>
+      </div>
+      <div class="hero-meta reveal">
+        <div class="stat"><span class="num">4</span><span class="lbl">Shipped products</span></div>
+        <div class="stat"><span class="num">1–3 wks</span><span class="lbl">Typical turnaround</span></div>
+        <div class="stat"><span class="num">Web + Mac</span><span class="lbl">Where I build</span></div>
+        <div class="stat"><span class="num">Fixed price</span><span class="lbl">Quoted up front</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow reveal">Selected work</p>
+      <h2 class="section-title reveal">Things I've designed, built and shipped.</h2>
+      <p class="section-lede reveal">A mix of client sites and tools I built for myself, then kept using. Each one started as a small, specific problem.</p>
+
+      <div class="work-grid">
+        <article class="card feature reveal">
+          <div class="glow"></div>
+          <div class="card-top">
+            <h3>Polish By Piper</h3>
+            <span class="kind">Booking · Marketing site</span>
+          </div>
+          <p>A booking and marketing website for a local beauty studio. Clean service menu, mobile-first layout, and an enquiry flow that drops straight into the owner's inbox — so a client can go from Instagram to booked without a phone call.</p>
+          <div class="tags">
+            <span class="tag">Responsive site</span>
+            <span class="tag">Online enquiry flow</span>
+            <span class="tag">Service &amp; pricing menu</span>
+            <span class="tag">SEO basics</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="glow"></div>
+          <div class="card-top">
+            <h3>PlumClip</h3>
+            <span class="kind">macOS utility</span>
+          </div>
+          <p>A lightweight clipboard manager that remembers what you copied and lets you paste it back in two keystrokes. Searchable history, pinned snippets, and nothing phoned home.</p>
+          <div class="tags"><span class="tag">Clipboard history</span><span class="tag">Keyboard-first</span></div>
+          <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Native macOS</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="glow"></div>
+          <div class="card-top">
+            <h3>Cashie Admin Hub</h3>
+            <span class="kind">Dashboard</span>
+          </div>
+          <p>A local control panel that pulls my projects, scripts and running services into one view. Buttons instead of remembered terminal commands — start, stop, check, done.</p>
+          <div class="tags"><span class="tag">Local dashboard</span><span class="tag">Service controls</span></div>
+          <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Runs locally</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="glow"></div>
+          <div class="card-top">
+            <h3>PlumWall</h3>
+            <span class="kind">macOS utility</span>
+          </div>
+          <p>A wallpaper manager that organises a library, rotates on a schedule, and handles multiple displays without the usual fuss. Set it once and forget it's there.</p>
+          <div class="tags"><span class="tag">Library manager</span><span class="tag">Multi-display</span></div>
+          <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Native macOS</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="glow"></div>
+          <div class="card-top">
+            <h3>PlumFocus</h3>
+            <span class="kind">Menu bar tool</span>
+          </div>
+          <p>A native menu bar focus timer built for my Operator Blocks workflow. Pure SwiftUI/AppKit — no Electron, no web view, no network, no login item. Start a block, glance at the bar, get on with the work.</p>
+          <div class="tags"><span class="tag">Focus timer</span><span class="tag">Native SwiftUI</span></div>
+          <p class="badge-platform" style="margin-top:18px;margin-bottom:0;">Menu bar · macOS</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <p class="eyebrow reveal">Services</p>
+      <h2 class="section-title reveal">What I can build for you.</h2>
+      <p class="section-lede reveal">Scoped, fixed-price, and built to be handed over. If it's small software, it probably fits here.</p>
+
+      <div class="svc-grid">
+        <div class="svc reveal">
+          <div class="no">01</div>
+          <h3>Small business websites</h3>
+          <p>Fast, mobile-first sites that load quickly and read well — the kind a local business actually needs, minus the bloat.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="no">02</div>
+          <h3>Booking &amp; intake flows</h3>
+          <p>Enquiry forms, booking requests and intake steps that route cleanly to your inbox or calendar without monthly fees.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="no">03</div>
+          <h3>Admin dashboards</h3>
+          <p>A single screen to see and control the moving parts of your work — orders, jobs, services, status — built around how you operate.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="no">04</div>
+          <h3>Automation scripts</h3>
+          <p>The repetitive bits — renaming, exporting, syncing, reporting — handed off to a script that just runs.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="no">05</div>
+          <h3>Mac menu bar utilities</h3>
+          <p>Small native tools that live in the menu bar and do one job well: monitor, clip, toggle, tidy.</p>
+        </div>
+        <div class="svc reveal">
+          <div class="no">06</div>
+          <h3>AI-assisted prototypes</h3>
+          <p>A working v1 of an idea, built quickly so you can hold it, test it, and decide if it's worth taking further.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process-band">
+    <div class="wrap">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="section-title reveal">A short, honest process.</h2>
+      <p class="section-lede reveal">No drawn-out discovery decks. We agree on the smallest useful version, I build it, you use it.</p>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-n">STEP 01</div>
+          <h3>Talk</h3>
+          <p>A quick chat about the problem and what "done" looks like. I send back a fixed scope and price.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">STEP 02</div>
+          <h3>Shape</h3>
+          <p>I sketch the flow and key screens early, so we're aligned before any real building starts.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">STEP 03</div>
+          <h3>Build</h3>
+          <p>I build in short passes and share progress as it goes — no month-long silence, no surprises.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">STEP 04</div>
+          <h3>Hand over</h3>
+          <p>You get the working thing, plain instructions, and a short window for tweaks once it's live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <div class="glow"></div>
+        <p class="eyebrow">Contact</p>
+        <h2>Got something small you want built well?</h2>
+        <p>Tell me the problem in a few lines — what it is, who it's for, and roughly when you need it. I'll come back with whether I'm the right fit and a fixed quote.</p>
+        <div class="contact-row">
+          <a class="btn btn-primary" href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">Email me →</a>
+          <a class="btn btn-ghost" href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">lochieboo1208@gmail.com</a>
+        </div>
+        <div class="contact-meta">
+          <div><span class="k">Based in</span><span class="v">Sydney, Australia</span></div>
+          <div><span class="k">Working</span><span class="v">Remote · AEST</span></div>
+          <div><span class="k">Pricing</span><span class="v">Fixed, quoted up front</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span class="brand"><span class="dot"></span> Cashie — Sydney</span>
+  <span>Designed &amp; built by Cashie · © 2026</span>
+</footer>
+
+<script>
+  // Lightweight scroll reveal — no dependencies.
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
