@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request a build — Cashie</title>
-<meta name="description" content="Request a small software build from Cashie. macOS and Linux tools, internal dashboards, automations, and focused business websites. Based in Sydney.">
+<title>Project Brief Builder — Cashie</title>
+<meta name="description" content="Build your project brief step by step. One question at a time, with a live estimate and a ready-to-send summary.">
 <style>
   :root {
     --bg:          #182642;
@@ -19,22 +19,22 @@
     --cyan:        #e0ffff;
     --cream:       #c7e6ff;
     --radius:      18px;
-    --maxw:        1140px;
+    --maxw:        1080px;
     --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
     --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
 
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
   body {
-    margin: 0;
     background:
       radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.28), transparent 60%),
       radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.22), transparent 55%),
       radial-gradient(1100px 560px at 110% 105%, rgba(224,255,255,0.18), transparent 55%),
       linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 55%, var(--bg) 100%);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 17px;
@@ -48,165 +48,203 @@
 
   a { color: inherit; text-decoration: none; }
 
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
-
   /* ---------- Nav ---------- */
   header.nav {
-    position: sticky; top: 0; z-index: 50;
+    position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    background: rgba(24,38,66,0.72);
+    background: rgba(24,38,66,0.78);
     border-bottom: 1px solid var(--panel-line);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
+    height: 64px; padding: 0 28px;
+    max-width: var(--maxw); margin: 0 auto;
   }
   .brand {
     font-family: var(--serif);
-    font-size: 1.22rem; letter-spacing: 0.2px;
-    display: flex; align-items: center; gap: 11px;
+    font-size: 1.15rem; letter-spacing: 0.2px;
+    display: flex; align-items: center; gap: 10px;
   }
   .brand .dot {
-    width: 9px; height: 9px; border-radius: 50%;
+    width: 8px; height: 8px; border-radius: 50%;
     background: linear-gradient(135deg, var(--plum), var(--cyan));
-    box-shadow: 0 0 16px 2px rgba(167,139,250,0.55), 0 0 10px rgba(224,255,255,0.35);
+    box-shadow: 0 0 14px 1px rgba(167,139,250,0.50);
   }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a {
-    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+  .nav-back {
+    font-size: 0.82rem; letter-spacing: 0.06em;
     color: var(--ink-soft); transition: color .2s ease;
   }
-  .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 760px) { .nav-links { gap: 16px; } }
+  .nav-back:hover { color: var(--ink); }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 92px 0 64px; position: relative; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.8rem; color: var(--ink-soft);
-    border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 7px 15px; margin-bottom: 34px;
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Progress bar ---------- */
+  .progress-bar {
+    height: 4px;
+    background: rgba(11,16,32,0.40);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--plum), var(--plum-deep), var(--cyan));
+    transition: width .45s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ---------- Layout: wizard + estimate ---------- */
+  .builder-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    padding: 56px 0 96px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .builder-layout { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  /* ---------- Wizard card ---------- */
+  .wizard-card {
     background: var(--panel);
-  }
-  .hero h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    line-height: 1.08; letter-spacing: -0.02em;
-    margin: 0 0 24px; max-width: 18ch;
-  }
-  .hero h1 em { font-style: italic; color: var(--cream); }
-  .hero-sub {
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    color: var(--ink-soft); max-width: 58ch; margin: 0 0 28px; line-height: 1.6;
-  }
-  .scope-note {
-    font-size: 0.92rem; color: var(--ink-mute);
-    border-left: 2px solid var(--plum-deep); padding-left: 14px;
-    max-width: 58ch; margin: 0;
-  }
-
-  /* ---------- Form section ---------- */
-  section { padding: 64px 0 116px; }
-  .form-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: 26px; padding: 56px 56px 48px;
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    position: relative; overflow: hidden;
-  }
-  .form-card .glow {
-    position: absolute; inset: auto -10% -50% 40%; height: 320px;
-    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.24), transparent 60%),
-                radial-gradient(circle at 80% 90%, rgba(224,255,255,0.16), transparent 55%);
-  }
-  .eyebrow {
-    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--plum); margin: 0 0 18px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .eyebrow::before {
-    content: ""; width: 28px; height: 1px; background: var(--plum-deep);
-  }
-  .form-card h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.01em;
-  }
-  .form-card .lede {
-    color: var(--ink-soft); max-width: 56ch; margin: 0 0 40px; font-size: 1.05rem;
-  }
-
-  .placeholder {
-    border: 1.5px dashed var(--panel-line);
-    border-radius: var(--radius);
-    padding: 48px 32px;
-    text-align: center;
-    background: rgba(11, 16, 32, 0.22);
-    margin-bottom: 44px;
-  }
-  .placeholder p {
-    margin: 0 0 20px; color: var(--ink-soft); font-size: 1.05rem;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border-radius: 999px;
-    font-size: 0.95rem; font-weight: 500;
-    transition: transform .18s ease, background .2s ease, border-color .2s ease;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.35) 100%);
-    color: #182642;
-  }
-  .btn-primary:hover { transform: translateY(-2px); }
-
-  .questions { display: grid; gap: 18px; }
-  .q {
-    background: rgba(11, 16, 32, 0.22); border: 1px solid var(--panel-line);
-    border-radius: 14px; padding: 22px 24px;
-  }
-  .q label {
-    display: block; font-size: 0.9rem; font-weight: 600;
-    color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em;
-  }
-  .q p {
-    margin: 0; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.55;
-  }
-
-  /* ---------- Footer ---------- */
-  footer {
-    padding: 44px 0; border-top: 1px solid var(--panel-line);
-    display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center;
-    color: var(--ink-mute); font-size: 0.84rem;
-  }
-  footer .brand { font-size: 1rem; color: var(--ink-soft); }
-  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
-  .footer-note { color: var(--ink-mute); }
-
-  /* ---------- Reveal ---------- */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  /* ---------- Form inputs ---------- */
-  .request-form { display: grid; gap: 22px; }
-  .field { display: flex; flex-direction: column; gap: 8px; }
-  .field label {
-    font-size: 0.9rem; font-weight: 600;
-    color: var(--ink); letter-spacing: -0.01em;
-  }
-  .field .hint {
-    font-size: 0.85rem; color: var(--ink-soft); margin: 0; line-height: 1.5;
-  }
-  .field input[type="text"],
-  .field input[type="url"],
-  .field textarea,
-  .field select {
-    width: 100%;
-    background: rgba(11, 16, 32, 0.28);
     border: 1px solid var(--panel-line);
+    border-radius: 24px;
+    padding: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    position: relative;
+    min-height: 520px;
+  }
+  .wizard-card .glow {
+    position: absolute; inset: auto -10% -60% 30%; height: 300px;
+    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.18), transparent 60%),
+                radial-gradient(circle at 80% 90%, rgba(224,255,255,0.10), transparent 55%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .step-counter {
+    display: flex; align-items: center; gap: 10px;
+    padding: 28px 40px 0;
+    position: relative; z-index: 1;
+  }
+  .step-counter .pill {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 600; color: var(--plum);
+    border: 1px solid rgba(167,139,250,0.30);
+    border-radius: 999px; padding: 5px 14px;
+    background: rgba(167,139,250,0.08);
+  }
+  .step-counter .dots {
+    display: flex; gap: 6px;
+  }
+  .step-counter .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(200,220,255,0.18);
+    transition: background .3s ease, transform .3s ease;
+  }
+  .step-counter .dot.active {
+    background: var(--plum);
+    box-shadow: 0 0 10px rgba(167,139,250,0.55);
+    transform: scale(1.2);
+  }
+  .step-counter .dot.done { background: rgba(167,139,250,0.45); }
+
+  .step-content {
+    padding: 28px 40px 0;
+    position: relative; z-index: 1;
+    animation: stepIn .4s ease;
+  }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-content h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    line-height: 1.12; letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+  .step-content .lede {
+    color: var(--ink-soft); font-size: 1rem; margin-bottom: 28px;
+    max-width: 52ch;
+  }
+
+  /* ---------- Option cards ---------- */
+  .option-grid {
+    display: grid; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .option-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px;
+    border: 1.5px solid var(--panel-line);
+    border-radius: 14px;
+    background: rgba(11,16,32,0.22);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, transform .18s ease;
+    user-select: none;
+  }
+  .option-card:hover {
+    border-color: rgba(167,139,250,0.40);
+    background: rgba(11,16,32,0.32);
+    transform: translateY(-1px);
+  }
+  .option-card.selected {
+    border-color: var(--plum);
+    background: rgba(167,139,250,0.10);
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.10);
+  }
+  .option-card .icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.25);
+  }
+  .option-card .label {
+    font-size: 1rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .option-card .desc {
+    font-size: 0.86rem; color: var(--ink-soft); line-height: 1.45;
+  }
+  .option-card .check {
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid var(--panel-line);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s ease;
+  }
+  .option-card.selected .check {
+    border-color: var(--plum);
+    background: var(--plum);
+  }
+  .option-card.selected .check::after {
+    content: "✓"; color: #182642; font-size: 0.85rem; font-weight: 700;
+  }
+  .option-card input[type="radio"] { display: none; }
+
+  /* ---------- Text inputs ---------- */
+  .input-field {
+    margin-bottom: 20px;
+  }
+  .input-field label {
+    display: block; font-size: 0.88rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 7px;
+  }
+  .input-field .hint {
+    font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .input-field input[type="text"],
+  .input-field textarea {
+    width: 100%;
+    background: rgba(11,16,32,0.28);
+    border: 1.5px solid var(--panel-line);
     border-radius: 12px;
     padding: 14px 16px;
     color: var(--ink);
@@ -215,294 +253,868 @@
     outline: none;
     transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
   }
-  .field input::placeholder,
-  .field textarea::placeholder { color: var(--ink-mute); }
-  .field input:focus,
-  .field textarea:focus,
-  .field select:focus {
+  .input-field input::placeholder,
+  .input-field textarea::placeholder { color: var(--ink-mute); }
+  .input-field input:focus,
+  .input-field textarea:focus {
     border-color: var(--plum);
-    background: rgba(11, 16, 32, 0.38);
+    background: rgba(11,16,32,0.38);
     box-shadow: 0 0 0 3px rgba(167,139,250,0.12);
   }
-  .field textarea { min-height: 110px; resize: vertical; }
-  .field select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%2395a7cc' stroke-width='1.5' d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    padding-right: 42px;
-  }
-  .field select option { background: var(--bg); color: var(--ink); }
+  .input-field textarea { min-height: 120px; resize: vertical; }
 
-  .form-actions { margin-top: 8px; }
-  .form-note {
-    margin-top: 18px; font-size: 0.86rem; color: var(--ink-soft);
+  /* ---------- Navigation buttons ---------- */
+  .step-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px 36px;
+    position: relative; z-index: 1;
   }
-  .form-note a { color: var(--cream); border-bottom: 1px solid var(--panel-line); }
-  .form-note a:hover { border-color: var(--plum); }
-
-  .scope-fit {
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 999px;
+    font-size: 0.92rem; font-weight: 600;
+    cursor: pointer; border: none;
+    transition: transform .18s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+  }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.30) 100%);
+    color: #182642;
+  }
+  .btn-primary:not(:disabled):hover { transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
     border: 1px solid var(--panel-line);
-    border-radius: var(--radius);
-    padding: 28px;
-    background: rgba(11, 16, 32, 0.22);
-    margin-bottom: 28px;
-  }
-  .scope-fit h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.25rem; margin: 0 0 16px; letter-spacing: -0.01em;
-  }
-  .scope-fit ul {
-    margin: 0 0 20px; padding-left: 20px;
     color: var(--ink-soft);
   }
-  .scope-fit li { margin-bottom: 8px; line-height: 1.5; }
-  .scope-fit li::marker { color: var(--plum); }
-  .scope-fit .muted { color: var(--ink-mute); font-size: 0.9rem; margin: 0 0 10px; }
+  .btn-ghost:not(:disabled):hover { border-color: var(--plum); color: var(--ink); }
+  .btn-back { font-size: 0.88rem; }
 
-  .form-success {
-    display: none;
+  /* ---------- Estimate panel ---------- */
+  .estimate-panel {
+    position: sticky; top: 88px;
+    background: var(--panel);
     border: 1px solid var(--panel-line);
-    border-radius: var(--radius);
-    padding: 28px;
-    background: rgba(11, 16, 32, 0.28);
+    border-radius: 20px;
+    padding: 28px 26px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    position: relative;
   }
-  .form-success h3 { margin: 0 0 10px; font-family: var(--serif); font-weight: 500; }
-  .form-success p { margin: 0; color: var(--ink-soft); }
+  .estimate-panel .est-glow {
+    position: absolute; inset: auto -30% -60% -10%; height: 200px;
+    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.16), transparent 60%);
+    pointer-events: none;
+  }
+  .estimate-panel h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.08rem; margin-bottom: 4px;
+    position: relative;
+  }
+  .estimate-panel .est-sub {
+    font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 22px;
+    position: relative;
+  }
+  .est-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--panel-line);
+    position: relative;
+  }
+  .est-row:last-of-type { border-bottom: 1px solid var(--panel-line); margin-bottom: 16px; }
+  .est-row .est-label {
+    font-size: 0.86rem; color: var(--ink-soft);
+  }
+  .est-row .est-value {
+    font-family: var(--serif); font-size: 1.05rem; color: var(--cream);
+    font-weight: 500;
+  }
+  .est-row .est-value.empty { color: var(--ink-mute); font-style: italic; font-size: 0.85rem; }
+  .est-summary {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 12px; position: relative;
+  }
+  .est-summary .est-big {
+    font-family: var(--serif); font-size: 2rem; color: var(--cream); font-weight: 500;
+    line-height: 1;
+  }
+  .est-summary .est-small {
+    font-size: 0.85rem; color: var(--ink-soft);
+  }
+  .est-foot {
+    font-size: 0.80rem; color: var(--ink-mute); line-height: 1.5;
+    position: relative;
+    padding-top: 14px; border-top: 1px solid var(--panel-line);
+  }
+  @media (max-width: 860px) {
+    .estimate-panel { display: none; }
+    .mobile-estimate { display: block; }
+  }
+  @media (min-width: 861px) {
+    .mobile-estimate { display: none; }
+  }
+  .mobile-estimate {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .mobile-estimate .est-row { padding: 10px 0; }
+  .mobile-estimate .est-summary .est-big { font-size: 1.6rem; }
+
+  /* ---------- Summary screen ---------- */
+  .summary-screen {
+    padding: 28px 40px 36px;
+    position: relative; z-index: 1;
+    animation: stepIn .4s ease;
+  }
+  .summary-screen h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    margin-bottom: 8px;
+  }
+  .summary-screen .lede {
+    color: var(--ink-soft); font-size: 1rem; margin-bottom: 28px;
+  }
+  .summary-list {
+    display: grid; gap: 0;
+    border: 1px solid var(--panel-line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .summary-item {
+    display: flex; gap: 16px; align-items: baseline;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--panel-line);
+    background: rgba(11,16,32,0.18);
+  }
+  .summary-item:last-child { border-bottom: none; }
+  .summary-item .si-label {
+    flex-shrink: 0; width: 140px;
+    font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 600;
+  }
+  .summary-item .si-value {
+    font-size: 0.96rem; color: var(--ink); font-weight: 500;
+  }
+  .summary-item .si-value.empty { color: var(--ink-mute); font-style: italic; font-weight: 400; }
+  .summary-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .copy-feedback {
+    display: none;
+    font-size: 0.86rem; color: var(--cyan);
+    padding: 12px 0;
+    animation: stepIn .3s ease;
+  }
+  .copy-feedback.show { display: block; }
+
+  /* ---------- Welcome screen ---------- */
+  .welcome-screen {
+    text-align: center;
+    padding: 80px 40px;
+    position: relative; z-index: 1;
+  }
+  .welcome-screen .welcome-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.8rem; color: var(--ink-soft);
+    border: 1px solid var(--panel-line); border-radius: 999px;
+    padding: 7px 15px; margin-bottom: 28px;
+    background: var(--panel);
+  }
+  .welcome-screen .welcome-tag .pip {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
+  }
+  .welcome-screen h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1; margin-bottom: 18px; letter-spacing: -0.02em;
+  }
+  .welcome-screen h2 em { font-style: italic; color: var(--cream); }
+  .welcome-screen p {
+    color: var(--ink-soft); max-width: 48ch; margin: 0 auto 36px;
+    font-size: 1.05rem; line-height: 1.6;
+  }
+  .welcome-features {
+    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .welcome-feature {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.86rem; color: var(--ink-soft);
+  }
+  .welcome-feature .wf-icon {
+    color: var(--plum); font-size: 1.1rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 36px 28px; border-top: 1px solid var(--panel-line);
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center;
+    color: var(--ink-mute); font-size: 0.84rem;
+    max-width: var(--maxw); margin: 0 auto;
+  }
+  footer .brand { font-size: 1rem; color: var(--ink-soft); }
+  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
 
   @media (max-width: 560px) {
-    .form-card { padding: 40px 26px; }
+    .step-content, .step-nav, .summary-screen { padding-left: 24px; padding-right: 24px; }
+    .step-counter { padding: 22px 24px 0; }
+    .nav-inner { padding: 0 18px; }
+    .wrap { padding: 0 18px; }
+    .summary-item { flex-direction: column; gap: 4px; }
+    .summary-item .si-label { width: auto; }
+    .welcome-screen { padding: 56px 24px; }
+    .option-card { padding: 14px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step-content, .summary-screen { animation: none; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
 
 <header class="nav">
-  <div class="wrap nav-inner">
+  <div class="nav-inner">
     <a class="brand" href="index.html"><span class="dot"></span> Cashie</a>
-    <nav class="nav-links">
-      <a href="index.html">← Back to site</a>
-    </nav>
+    <a class="nav-back" href="index.html">← Back to site</a>
   </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
-<main>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-tag reveal">Request a build</div>
-      <h1 class="reveal">Tell me about your project.</h1>
-      <p class="hero-sub reveal">Submit a build request and I'll review the scope, timeline and budget. If it's a good fit, I'll come back with a clear plan and fixed quote.</p>
-      <p class="scope-note reveal">I mainly build macOS and Linux apps, tools, dashboards, and automations. I’m not currently taking mobile apps, Windows-only apps, or large SaaS platforms.</p>
+<main class="wrap">
+  <div class="builder-layout">
+    <!-- Wizard -->
+    <div class="wizard-card" id="wizardCard">
+      <div class="glow"></div>
+      <div id="wizardContent"></div>
     </div>
-  </section>
 
-  <!-- BUILD REQUEST -->
-  <section>
-    <div class="wrap">
-      <div class="form-card reveal">
-        <div class="glow"></div>
-        <p class="eyebrow">Build Request</p>
-        <h2>Project application</h2>
-        <p class="lede">Use this form to prepare your request. Submissions will open soon.</p>
-
-        <div class="form-success" id="formSuccess">
-          <h3>Request received</h3>
-          <p>Thanks for the details. This form is preparing requests — submissions will open soon.</p>
-        </div>
-
-        <!-- TODO: Replace action with Tally embed URL or form backend when ready -->
-        <form class="request-form" id="buildRequestForm" action="#" method="post">
-          <div class="field reveal">
-            <label for="name">Your name</label>
-            <p class="hint">Who should I address the reply to?</p>
-            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
-          </div>
-
-          <div class="field reveal">
-            <label for="project">Business or project name</label>
-            <p class="hint">The company, product, or working title this build is for.</p>
-            <input type="text" id="project" name="project" placeholder="Acme Studio">
-          </div>
-
-          <div class="field reveal">
-            <label for="description">What do you want built?</label>
-            <p class="hint">Describe the problem, the user, and what "done" looks like in a sentence or two.</p>
-            <textarea id="description" name="description" placeholder="I need a booking page that lets clients pick a service and send an enquiry..." required></textarea>
-          </div>
-
-          <div class="field reveal">
-            <label for="type">What are you trying to build?</label>
-            <select id="type" name="type" required>
-              <option value="" disabled selected>Select a build type</option>
-              <option value="desktop-app">Desktop app</option>
-              <option value="internal-tool">Internal tool</option>
-              <option value="automation">Automation</option>
-              <option value="dashboard">Dashboard</option>
-              <option value="website">Website / landing page</option>
-              <option value="improvement">Existing app improvement</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="stack">What kind of build is this?</label>
-            <select id="stack" name="stack" required>
-              <option value="" disabled selected>Select a tech stack</option>
-              <option value="python">Python app/tool</option>
-              <option value="swift">Swift/macOS app</option>
-              <option value="react">React/TypeScript app</option>
-              <option value="node">Node.js automation/server</option>
-              <option value="bash">Bash/CLI tool</option>
-              <option value="tauri">Tauri desktop app</option>
-              <option value="mixed">Existing mixed codebase</option>
-              <option value="not-sure">Not sure yet</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="platform">Target platform</label>
-            <select id="platform" name="platform" required>
-              <option value="" disabled selected>Select a platform</option>
-              <option value="macos">macOS</option>
-              <option value="linux">Linux</option>
-              <option value="mac-linux">macOS + Linux</option>
-              <option value="web-dashboard">Web dashboard</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="size">Project size</label>
-            <select id="size" name="size" required>
-              <option value="" disabled selected>Select a project size</option>
-              <option value="small">Small — 1 to 3 days</option>
-              <option value="medium">Medium — 1 to 2 weeks</option>
-              <option value="large">Large — 1+ month</option>
-              <option value="not-sure">Not sure yet</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="code-availability">Do you already have code? <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
-            <select id="code-availability" name="code-availability">
-              <option value="" disabled selected>Select code status</option>
-              <option value="scratch">Starting from scratch</option>
-              <option value="github">Existing GitHub repo</option>
-              <option value="local">Existing local app/codebase</option>
-              <option value="changes">Existing app needing changes</option>
-              <option value="not-sure">Not sure yet</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="budget">Budget range <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
-            <p class="hint">A rough bracket helps me shape the right scope. I quote fixed price either way.</p>
-            <select id="budget" name="budget">
-              <option value="" disabled selected>Select a range</option>
-              <option value="under-1k">Under $1,000</option>
-              <option value="1k-3k">$1,000 – $3,000</option>
-              <option value="3k-5k">$3,000 – $5,000</option>
-              <option value="5k-10k">$5,000 – $10,000</option>
-              <option value="10k+">$10,000+</option>
-              <option value="not-sure">Not sure yet</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="timeline">Timeline <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
-            <p class="hint">When do you need it? Urgent, flexible, or just exploring?</p>
-            <select id="timeline" name="timeline">
-              <option value="" disabled selected>Select a timeline</option>
-              <option value="asap">ASAP</option>
-              <option value="1-2-weeks">1–2 weeks</option>
-              <option value="1-month">Within a month</option>
-              <option value="flexible">Flexible</option>
-              <option value="exploring">Just exploring</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="links">Links or examples <span style="color:var(--ink-mute);font-weight:400;">(optional)</span></label>
-            <p class="hint">Existing site, competitor examples, sketches, Notion docs — anything that adds context.</p>
-            <textarea id="links" name="links" placeholder="https://example.com, competitor site, rough notes..."></textarea>
-          </div>
-
-          <div class="field reveal">
-            <label for="contact-method">Preferred contact method</label>
-            <select id="contact-method" name="contact-method" required>
-              <option value="" disabled selected>Select a contact method</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="imessage">iMessage</option>
-              <option value="discord">Discord</option>
-              <option value="telegram">Telegram</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="field reveal">
-            <label for="contact-details">Contact details</label>
-            <p class="hint">Your handle, username, or best way to reach you.</p>
-            <input type="text" id="contact-details" name="contact-details" placeholder="@username or preferred contact" required>
-          </div>
-
-          <div class="scope-fit reveal">
-            <h3>What I build best</h3>
-            <ul>
-              <li>Swift/macOS apps</li>
-              <li>Linux tools and automation</li>
-              <li>Tauri desktop apps</li>
-              <li>Internal dashboards</li>
-              <li>AI-assisted workflows</li>
-            </ul>
-            <p class="muted">Not currently taking:</p>
-            <ul>
-              <li>iOS apps</li>
-              <li>Android apps</li>
-              <li>Windows-only software</li>
-              <li>Large SaaS platforms</li>
-            </ul>
-          </div>
-
-          <div class="form-actions reveal">
-            <button type="submit" class="btn btn-primary">Send build request →</button>
-          </div>
-
-          <p class="form-note reveal">No data is collected or stored by this preview form. Submissions will open soon.</p>
-        </form>
+    <!-- Estimate panel -->
+    <aside class="estimate-panel" id="estimatePanel">
+      <div class="est-glow"></div>
+      <h3>Live estimate</h3>
+      <p class="est-sub">Updates as you answer.</p>
+      <div class="est-summary" id="estSummary">
+        <span class="est-big" id="estPrice">—</span>
+        <span class="est-small" id="estPriceRange"></span>
       </div>
-    </div>
-  </section>
-
+      <div class="est-row">
+        <span class="est-label">Build type</span>
+        <span class="est-value empty" id="estType">Not selected</span>
+      </div>
+      <div class="est-row">
+        <span class="est-label">Timeline</span>
+        <span class="est-value empty" id="estTimeline">Not selected</span>
+      </div>
+      <div class="est-row">
+        <span class="est-label">Platform</span>
+        <span class="est-value empty" id="estPlatform">Not selected</span>
+      </div>
+      <div class="est-row">
+        <span class="est-label">Complexity</span>
+        <span class="est-value empty" id="estSize">Not selected</span>
+      </div>
+      <p class="est-foot">Estimates are indicative only. You'll get a fixed quote after I review your brief.</p>
+    </aside>
+  </div>
 </main>
 
-<footer class="wrap">
+<footer>
   <span class="brand"><span class="dot"></span> Cashie — Sydney</span>
-  <span class="footer-note">Submissions opening soon</span>
+  <span>Brief Builder · No data stored</span>
 </footer>
 
 <script>
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms';
-    io.observe(el);
-  });
+(function() {
+  "use strict";
 
-  // Preview form handler — no backend, no local storage, no submission
-  const form = document.getElementById('buildRequestForm');
-  const success = document.getElementById('formSuccess');
-  if (form && success) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      form.style.display = 'none';
-      success.style.display = 'block';
-      success.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+  // ---- Step definitions ----
+  var steps = [
+    {
+      id: "welcome",
+      type: "welcome",
+      title: "Build your project brief",
+      subtitle: "One question at a time.",
+      lede: "Answer a few quick questions about your project. You'll get a live estimate as you go, plus a ready-to-send summary at the end.",
+      features: [
+        { icon: "⚡", text: "60-second flow" },
+        { icon: "📊", text: "Live estimate" },
+        { icon: "📋", text: "Copy-ready brief" }
+      ],
+      cta: "Start →"
+    },
+    {
+      id: "type",
+      type: "choice",
+      question: "What do you want to build?",
+      lede: "Pick the closest match — you can add detail later.",
+      options: [
+        { value: "desktop-app",  label: "Desktop app",    desc: "A native macOS or Linux application", icon: "🖥" },
+        { value: "internal-tool", label: "Internal tool", desc: "A utility or script for your team",   icon: "🔧" },
+        { value: "automation",   label: "Automation",      desc: "Script or workflow that runs itself", icon: "⚙" },
+        { value: "dashboard",    label: "Dashboard",       desc: "Visual control panel for data",       icon: "📊" },
+        { value: "website",      label: "Website / landing page", desc: "Marketing site or business page", icon: "🌐" },
+        { value: "improvement",  label: "Existing app improvement", desc: "Improve something already built", icon: "✨" },
+        { value: "other",        label: "Other",            desc: "Not sure yet — tell me more",         icon: "❓" }
+      ]
+    },
+    {
+      id: "stack",
+      type: "choice",
+      question: "What tech are you thinking?",
+      lede: "If you're not sure, just pick \"Not sure yet\" — I'll recommend something.",
+      options: [
+        { value: "python",    label: "Python app/tool",  desc: "Scripts, CLI, backend, automation", icon: "🐍" },
+        { value: "swift",     label: "Swift / macOS app", desc: "Native macOS with SwiftUI",         icon: "🦅" },
+        { value: "react",     label: "React / TypeScript", desc: "Web app or dashboard frontend",     icon: "⚛" },
+        { value: "node",      label: "Node.js",           desc: "Server or automation runtime",       icon: "🟢" },
+        { value: "bash",      label: "Bash / CLI tool",    desc: "Shell scripting and terminal tools", icon: "⌨" },
+        { value: "tauri",     label: "Tauri desktop app", desc: "Lightweight cross-platform desktop",  icon: "🏗" },
+        { value: "mixed",     label: "Existing mixed codebase", desc: "Already have code in multiple languages", icon: "📦" },
+        { value: "not-sure",  label: "Not sure yet",      desc: "I'll recommend the best fit",         icon: "🤔" }
+      ]
+    },
+    {
+      id: "platform",
+      type: "choice",
+      question: "Which platform?",
+      lede: "Where does this need to run?",
+      options: [
+        { value: "macos",       label: "macOS",           desc: "Apple desktop / laptop",     icon: "" },
+        { value: "linux",       label: "Linux",           desc: "Ubuntu, Debian, etc.",      icon: "🐧" },
+        { value: "mac-linux",   label: "macOS + Linux",    desc: "Both platforms",             icon: "💻" },
+        { value: "web-dashboard", label: "Web dashboard", desc: "Runs in the browser",         icon: "🌐" }
+      ]
+    },
+    {
+      id: "size",
+      type: "choice",
+      question: "How big is the project?",
+      lede: "A rough sense of scope helps me estimate time and cost.",
+      options: [
+        { value: "small",    label: "Small",           desc: "1 to 3 days of work",    icon: "🟢" },
+        { value: "medium",   label: "Medium",          desc: "1 to 2 weeks",           icon: "🟡" },
+        { value: "large",    label: "Large",           desc: "1+ month of work",       icon: "🔴" },
+        { value: "not-sure", label: "Not sure yet",     desc: "I'll scope it for you",   icon: "🤔" }
+      ]
+    },
+    {
+      id: "budget",
+      type: "choice",
+      question: "What's your budget range?",
+      lede: "A rough bracket helps shape the right scope. I quote fixed price either way.",
+      options: [
+        { value: "under-1k", label: "Under $1,000",  desc: "Quick script or simple page",    icon: "💵" },
+        { value: "1k-3k",    label: "$1,000 – $3,000", desc: "Standard small project",         icon: "💰" },
+        { value: "3k-5k",    label: "$3,000 – $5,000", desc: "Multi-feature build",            icon: "🏦" },
+        { value: "5k-10k",   label: "$5,000 – $10,000", desc: "Complex system or dashboard",    icon: "🏆" },
+        { value: "10k+",     label: "$10,000+",       desc: "Large or ongoing project",        icon: "💎" },
+        { value: "not-sure", label: "Not sure yet",    desc: "I'll suggest a budget",           icon: "🤔" }
+      ]
+    },
+    {
+      id: "timeline",
+      type: "choice",
+      question: "When do you need it?",
+      lede: "Urgent, flexible, or just exploring?",
+      options: [
+        { value: "asap",     label: "ASAP",           desc: "Needed yesterday",       icon: "🔥" },
+        { value: "1-2-weeks", label: "1–2 weeks",      desc: "Within a couple weeks",   icon: "⏱" },
+        { value: "1-month",  label: "Within a month",  desc: "Standard timeframe",       icon: "📅" },
+        { value: "flexible", label: "Flexible",        desc: "No hard deadline",         icon: "🌿" },
+        { value: "exploring", label: "Just exploring", desc: "Scoping it out",          icon: "🔍" }
+      ]
+    },
+    {
+      id: "details",
+      type: "text",
+      question: "What's the problem you're solving?",
+      lede: "A sentence or two about the problem, the user, and what \"done\" looks like.",
+      fields: [
+        { id: "description", label: "Project description", hint: "e.g. I need a booking page that lets clients pick a service and send an enquiry…", type: "textarea", required: true },
+        { id: "links",       label: "Links or examples (optional)", hint: "Existing site, competitor, sketches, Notion docs", type: "textarea", required: false }
+      ]
+    },
+    {
+      id: "contact",
+      type: "text",
+      question: "How do I reach you?",
+      lede: "Last step — just your name and contact details.",
+      fields: [
+        { id: "name",           label: "Your name", hint: "Who should I address the reply to?", type: "text", required: true },
+        { id: "project",        label: "Business or project name (optional)", hint: "The company or working title", type: "text", required: false },
+        { id: "contact-method", label: "Preferred contact method", hint: "WhatsApp, iMessage, Discord, Telegram, etc.", type: "text", required: true },
+        { id: "contact-details", label: "Contact handle / details", hint: "@username or best way to reach you", type: "text", required: true }
+      ]
+    },
+    {
+      id: "summary",
+      type: "summary",
+      question: "Your project brief",
+      lede: "Here's everything in one place. Copy it and send it through, or go back to edit."
+    }
+  ];
+
+  // ---- State ----
+  var state = { stepIndex: 0, answers: {} };
+  var totalContentSteps = steps.length - 2; // exclude welcome and summary
+
+  // ---- Estimate pricing map ----
+  var priceMap = {
+    type: {
+      "desktop-app":  { min: "$2,000",  max: "$8,000+", label: "Desktop app" },
+      "internal-tool": { min: "$500",   max: "$3,500",  label: "Internal tool" },
+      "automation":   { min: "$300",   max: "$2,000",  label: "Automation" },
+      "dashboard":    { min: "$2,000",  max: "$7,000",  label: "Dashboard" },
+      "website":      { min: "$500",   max: "$3,000",  label: "Website" },
+      "improvement":  { min: "$500",   max: "$5,000",  label: "Improvement" },
+      "other":        { min: "—",      max: "—",       label: "Other" }
+    },
+    size: {
+      "small":    { label: "Small",     time: "1–3 days" },
+      "medium":   { label: "Medium",    time: "1–2 weeks" },
+      "large":    { label: "Large",     time: "1+ month" },
+      "not-sure": { label: "Not sure",  time: "—" }
+    },
+    platform: {
+      "macos":         "macOS",
+      "linux":         "Linux",
+      "mac-linux":     "macOS + Linux",
+      "web-dashboard": "Web dashboard"
+    },
+    timeline: {
+      "asap":      "ASAP",
+      "1-2-weeks": "1–2 weeks",
+      "1-month":   "Within a month",
+      "flexible":  "Flexible",
+      "exploring": "Just exploring"
+    },
+    budget: {
+      "under-1k": "Under $1,000",
+      "1k-3k":    "$1,000 – $3,000",
+      "3k-5k":    "$3,000 – $5,000",
+      "5k-10k":   "$5,000 – $10,000",
+      "10k+":     "$10,000+",
+      "not-sure": "Not sure yet"
+    },
+    stack: {
+      "python":   "Python",
+      "swift":    "Swift / macOS",
+      "react":    "React / TypeScript",
+      "node":     "Node.js",
+      "bash":     "Bash / CLI",
+      "tauri":    "Tauri desktop",
+      "mixed":    "Mixed codebase",
+      "not-sure": "Not sure yet"
+    }
+  };
+
+  var elWizard   = document.getElementById("wizardContent");
+  var elProgress = document.getElementById("progressFill");
+  var elEstPrice = document.getElementById("estPrice");
+  var elEstRange = document.getElementById("estPriceRange");
+  var elEstType  = document.getElementById("estType");
+  var elEstTL    = document.getElementById("estTimeline");
+  var elEstPlat  = document.getElementById("estPlatform");
+  var elEstSize  = document.getElementById("estSize");
+
+  // ---- Helpers ----
+  function esc(str) {
+    return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
   }
+
+  function getStepName(step) {
+    if (step.type === "choice") {
+      var opt = step.options.find(function(o){ return o.value === state.answers[step.id]; });
+      return opt ? opt.label : "";
+    }
+    if (step.type === "text") {
+      return step.fields.map(function(f){
+        return state.answers[f.id] || "";
+      }).join(" / ").trim();
+    }
+    return "";
+  }
+
+  // ---- Update progress bar ----
+  function updateProgress() {
+    var idx = state.stepIndex;
+    // welcome = 0%, first content step = small %, summary = 100%
+    if (idx === 0) { elProgress.style.width = "0%"; return; }
+    if (idx === steps.length - 1) { elProgress.style.width = "100%"; return; }
+    var pct = Math.round((idx / (steps.length - 1)) * 100);
+    elProgress.style.width = pct + "%";
+  }
+
+  // ---- Update estimate panel ----
+  function updateEstimate() {
+    var a = state.answers;
+
+    // Build type
+    var typeData = priceMap.type[a.type];
+    if (typeData) {
+      elEstType.textContent = typeData.label;
+      elEstType.classList.remove("empty");
+      elEstPrice.textContent = typeData.min;
+      elEstRange.textContent = typeData.min !== "—" ? "– " + typeData.max : "";
+    } else {
+      elEstType.textContent = "Not selected";
+      elEstType.classList.add("empty");
+      elEstPrice.textContent = "—";
+      elEstRange.textContent = "";
+    }
+
+    // Timeline
+    if (a.timeline && priceMap.timeline[a.timeline]) {
+      elEstTL.textContent = priceMap.timeline[a.timeline];
+      elEstTL.classList.remove("empty");
+    } else {
+      elEstTL.textContent = "Not selected";
+      elEstTL.classList.add("empty");
+    }
+
+    // Platform
+    if (a.platform && priceMap.platform[a.platform]) {
+      elEstPlat.textContent = priceMap.platform[a.platform];
+      elEstPlat.classList.remove("empty");
+    } else {
+      elEstPlat.textContent = "Not selected";
+      elEstPlat.classList.add("empty");
+    }
+
+    // Complexity / size
+    if (a.size && priceMap.size[a.size]) {
+      elEstSize.textContent = priceMap.size[a.size].label + " · " + priceMap.size[a.size].time;
+      elEstSize.classList.remove("empty");
+    } else {
+      elEstSize.textContent = "Not selected";
+      elEstSize.classList.add("empty");
+    }
+
+    // Adjust price based on budget selection if available
+    if (a.budget && priceMap.budget[a.budget] && a.budget !== "not-sure") {
+      elEstPrice.textContent = priceMap.budget[a.budget];
+      elEstRange.textContent = "your range";
+    }
+  }
+
+  // ---- Render step dots ----
+  function renderDots() {
+    var step = steps[state.stepIndex];
+    if (step.type === "welcome" || step.type === "summary") return "";
+    var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
+    var activeContentIdx = contentSteps.indexOf(step);
+    if (activeContentIdx < 0) return "";
+
+    var html = '<div class="dots">';
+    for (var i = 0; i < contentSteps.length; i++) {
+      var cls = "";
+      if (i < activeContentIdx) cls = "done";
+      else if (i === activeContentIdx) cls = "active";
+      html += '<span class="dot ' + cls + '"></span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  // ---- Render functions ----
+  function render() {
+    var step = steps[state.stepIndex];
+    var html = "";
+
+    if (step.type === "welcome") {
+      html = renderWelcome(step);
+    } else if (step.type === "choice") {
+      html = renderChoice(step);
+    } else if (step.type === "text") {
+      html = renderTextStep(step);
+    } else if (step.type === "summary") {
+      html = renderSummary(step);
+    }
+
+    elWizard.innerHTML = html;
+    attachHandlers();
+    updateProgress();
+    updateEstimate();
+
+    // Scroll to top of wizard
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderWelcome(step) {
+    var feats = step.features.map(function(f) {
+      return '<div class="welcome-feature"><span class="wf-icon">' + f.icon + '</span>' + esc(f.text) + '</div>';
+    }).join("");
+
+    return '' +
+      '<div class="welcome-screen">' +
+        '<div class="welcome-tag"><span class="pip"></span> Project Brief Builder</div>' +
+        '<h2>' + step.title + '</h2>' +
+        '<p>' + step.lede + '</p>' +
+        '<div class="welcome-features">' + feats + '</div>' +
+        '<button class="btn btn-primary" data-action="start">' + esc(step.cta) + '</button>' +
+      '</div>';
+  }
+
+  function renderChoice(step) {
+    var counter = renderStepCounter(step);
+    var optionsHtml = step.options.map(function(opt) {
+      var selected = state.answers[step.id] === opt.value ? " selected" : "";
+      return '' +
+        '<label class="option-card' + selected + '" data-value="' + esc(opt.value) + '">' +
+          '<span class="icon">' + opt.icon + '</span>' +
+          '<span>' +
+            '<div class="label">' + esc(opt.label) + '</div>' +
+            '<div class="desc">' + esc(opt.desc) + '</div>' +
+          '</span>' +
+          '<span class="check"></span>' +
+        '</label>';
+    }).join("");
+
+    return '' +
+      '<div class="step-counter">' +
+        '<span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' +
+        counter +
+      '</div>' +
+      '<div class="step-content">' +
+        '<h2>' + esc(step.question) + '</h2>' +
+        '<p class="lede">' + esc(step.lede) + '</p>' +
+        '<div class="option-grid">' + optionsHtml + '</div>' +
+      '</div>' +
+      '<div class="step-nav">' +
+        '<button class="btn btn-ghost btn-back" data-action="back">← Back</button>' +
+        '<button class="btn btn-primary" data-action="next" disabled>Next →</button>' +
+      '</div>';
+  }
+
+  function renderTextStep(step) {
+    var counter = renderStepCounter(step);
+    var fieldsHtml = step.fields.map(function(f) {
+      var val = state.answers[f.id] || "";
+      var tag = f.type === "textarea" ? "textarea" : 'input type="text"';
+      var closeTag = f.type === "textarea" ? '>' + esc(val) + '</textarea>' : ' value="' + esc(val) + '">';
+      var req = f.required ? " <span style=\"color:var(--ink-mute);font-weight:400;\">(required)</span>" : "";
+      return '' +
+        '<div class="input-field">' +
+          '<label>' + esc(f.label) + req + '</label>' +
+          '<p class="hint">' + esc(f.hint) + '</p>' +
+          '<' + tag + ' id="field-' + f.id + '" data-field="' + esc(f.id) + '" data-required="' + f.required + '"' +
+          (f.type === "textarea" ? "" : ' autocomplete="off"') + closeTag +
+        '</div>';
+    }).join("");
+
+    return '' +
+      '<div class="step-counter">' +
+        '<span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' +
+        counter +
+      '</div>' +
+      '<div class="step-content">' +
+        '<h2>' + esc(step.question) + '</h2>' +
+        '<p class="lede">' + esc(step.lede) + '</p>' +
+        fieldsHtml +
+      '</div>' +
+      '<div class="step-nav">' +
+        '<button class="btn btn-ghost btn-back" data-action="back">← Back</button>' +
+        '<button class="btn btn-primary" data-action="next">Next →</button>' +
+      '</div>';
+  }
+
+  function renderSummary(step) {
+    var rows = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; }).map(function(s) {
+      var label = "";
+      var value = "";
+
+      if (s.type === "choice") {
+        label = s.question;
+        var opt = s.options.find(function(o){ return o.value === state.answers[s.id]; });
+        value = opt ? opt.label : "";
+      } else if (s.type === "text") {
+        label = s.question;
+        var parts = s.fields.map(function(f) {
+          var v = state.answers[f.id];
+          if (v && v.trim()) return f.label.split(" (")[0] + ": " + v;
+          return "";
+        }).filter(Boolean);
+        value = parts.join("\n");
+      }
+
+      var isEmpty = !value || value.trim() === "";
+      return '' +
+        '<div class="summary-item">' +
+          '<span class="si-label">' + esc(label) + '</span>' +
+          '<span class="si-value' + (isEmpty ? " empty" : "") + '">' + (isEmpty ? "—" : esc(value)) + '</span>' +
+        '</div>';
+    }).join("");
+
+    return '' +
+      '<div class="step-counter">' +
+        '<span class="pill">Summary</span>' +
+      '</div>' +
+      '<div class="summary-screen">' +
+        '<h2>' + esc(step.question) + '</h2>' +
+        '<p class="lede">' + esc(step.lede) + '</p>' +
+        '<div class="summary-list">' + rows + '</div>' +
+        '<div class="summary-actions">' +
+          '<button class="btn btn-primary" data-action="copy">📋 Copy brief</button>' +
+          '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
+          '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
+        '</div>' +
+        '<div class="copy-feedback" id="copyFeedback">✓ Brief copied to clipboard. Paste it anywhere.</div>' +
+      '</div>';
+  }
+
+  function renderStepCounter(step) {
+    return renderDots();
+  }
+
+  function getChoiceNumber(step) {
+    var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
+    return contentSteps.indexOf(step) + 1;
+  }
+
+  // ---- Event handlers ----
+  function attachHandlers() {
+    // Start button
+    var startBtn = elWizard.querySelector('[data-action="start"]');
+    if (startBtn) { startBtn.addEventListener("click", function() { goNext(); }); }
+
+    // Back / Next / Restart / Copy
+    var actions = elWizard.querySelectorAll('[data-action]');
+    actions.forEach(function(btn) {
+      var action = btn.getAttribute("data-action");
+      if (action === "back") { btn.addEventListener("click", goBack); }
+      else if (action === "next") { btn.addEventListener("click", goNext); }
+      else if (action === "restart") { btn.addEventListener("click", restart); }
+      else if (action === "copy") { btn.addEventListener("click", copyBrief); }
+    });
+
+    // Option cards
+    var cards = elWizard.querySelectorAll(".option-card");
+    cards.forEach(function(card) {
+      card.addEventListener("click", function() {
+        cards.forEach(function(c){ c.classList.remove("selected"); });
+        card.classList.add("selected");
+        state.answers[steps[state.stepIndex].id] = card.getAttribute("data-value");
+        updateEstimate();
+        var nextBtn = elWizard.querySelector('[data-action="next"]');
+        if (nextBtn) nextBtn.disabled = false;
+      });
+    });
+
+    // Text inputs — enable/disable next based on required fields
+    var inputs = elWizard.querySelectorAll("[data-field]");
+    if (inputs.length) {
+      inputs.forEach(function(input) {
+        input.addEventListener("input", function() {
+          state.answers[input.getAttribute("data-field")] = input.value;
+          updateNextBtnState();
+        });
+      });
+      updateNextBtnState();
+    }
+  }
+
+  function updateNextBtnState() {
+    var step = steps[state.stepIndex];
+    if (step.type !== "text") return;
+    var allValid = step.fields.every(function(f) {
+      if (!f.required) return true;
+      var v = state.answers[f.id];
+      return v && v.trim().length > 0;
+    });
+    var nextBtn = elWizard.querySelector('[data-action="next"]');
+    if (nextBtn) nextBtn.disabled = !allValid;
+  }
+
+  function goNext() {
+    if (state.stepIndex < steps.length - 1) {
+      state.stepIndex++;
+      render();
+    }
+  }
+
+  function goBack() {
+    if (state.stepIndex > 0) {
+      state.stepIndex--;
+      render();
+    }
+  }
+
+  function restart() {
+    state.stepIndex = 0;
+    state.answers = {};
+    render();
+  }
+
+  function copyBrief() {
+    var lines = [];
+    lines.push("PROJECT BRIEF");
+    lines.push("=============");
+    lines.push("");
+
+    steps.forEach(function(s) {
+      if (s.type === "choice") {
+        var opt = s.options.find(function(o){ return o.value === state.answers[s.id]; });
+        if (opt) lines.push(s.question + ": " + opt.label);
+      } else if (s.type === "text") {
+        s.fields.forEach(function(f) {
+          var v = state.answers[f.id];
+          if (v && v.trim()) lines.push(f.label.split(" (")[0] + ": " + v);
+        });
+      }
+    });
+
+    lines.push("");
+    lines.push("Estimate: " + elEstPrice.textContent + (elEstRange.textContent ? " " + elEstRange.textContent : ""));
+    lines.push("Platform: " + elEstPlat.textContent);
+    lines.push("Timeline: " + elEstTL.textContent);
+    lines.push("");
+    lines.push("---");
+    lines.push("Built with Cashie's Project Brief Builder");
+
+    var brief = lines.join("\n");
+
+    // Try clipboard API, fallback to textarea
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(brief).then(function() {
+        showCopyFeedback();
+      }).catch(function() {
+        fallbackCopy(brief);
+      });
+    } else {
+      fallbackCopy(brief);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); showCopyFeedback(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  function showCopyFeedback() {
+    var fb = document.getElementById("copyFeedback");
+    if (fb) {
+      fb.classList.add("show");
+      setTimeout(function(){ fb.classList.remove("show"); }, 3000);
+    }
+  }
+
+  // ---- Init ----
+  render();
+})();
 </script>
 
 </body>
