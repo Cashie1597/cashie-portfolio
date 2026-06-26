@@ -157,6 +157,43 @@
       box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
     }
 
+    .command-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 6px 10px 6px 13px;
+      border: 1px solid var(--panel-line);
+      border-radius: 999px;
+      background: rgba(8, 12, 24, 0.2);
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .command-trigger:hover {
+      color: var(--ink);
+      border-color: rgba(167, 139, 250, 0.45);
+      background: rgba(199, 230, 255, 0.07);
+    }
+
+    .command-trigger kbd {
+      min-width: 32px;
+      padding: 2px 7px;
+      border: 1px solid var(--panel-line);
+      border-radius: 8px;
+      background: rgba(241, 245, 255, 0.08);
+      color: var(--cream);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      line-height: 1.4;
+      text-align: center;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -452,6 +489,12 @@
       color: var(--ink-mute);
       border-color: var(--panel-line);
       background: var(--panel-2);
+    }
+
+    .work-status.prototype {
+      color: var(--plum);
+      border-color: rgba(167, 139, 250, 0.4);
+      background: rgba(167, 139, 250, 0.12);
     }
 
     .work-type {
@@ -893,6 +936,215 @@
       color: var(--ink-soft);
     }
 
+    .command-shell[hidden] {
+      display: none;
+    }
+
+    .command-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: grid;
+      place-items: start center;
+      padding: 92px 20px 28px;
+    }
+
+    .command-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 8, 18, 0.66);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .command-panel {
+      position: relative;
+      width: min(100%, 760px);
+      max-height: min(720px, calc(100vh - 120px));
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid rgba(200, 220, 255, 0.2);
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(29, 43, 76, 0.96), rgba(12, 18, 34, 0.98)),
+        var(--bg);
+      box-shadow: 0 34px 100px rgba(0, 0, 0, 0.52);
+    }
+
+    .command-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--panel-line);
+    }
+
+    .command-kicker {
+      margin: 0 0 4px;
+      color: var(--plum);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .command-head h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .command-head p:not(.command-kicker) {
+      margin: 6px 0 0;
+      color: var(--ink-mute);
+      font-size: 0.9rem;
+    }
+
+    .command-close {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--panel-line);
+      border-radius: 50%;
+      background: rgba(241, 245, 255, 0.05);
+      color: var(--ink-soft);
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .command-close:hover {
+      color: var(--ink);
+      border-color: rgba(167, 139, 250, 0.5);
+    }
+
+    .command-input-wrap {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      margin: 16px 18px;
+      border: 1px solid rgba(200, 220, 255, 0.18);
+      border-radius: 16px;
+      background: rgba(5, 8, 18, 0.38);
+    }
+
+    .command-input-wrap span {
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .command-input-wrap input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font: 600 1rem/1.4 var(--mono);
+      caret-color: var(--plum);
+    }
+
+    .command-input-wrap input::placeholder {
+      color: rgba(200, 217, 248, 0.45);
+    }
+
+    .command-body {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--panel-line);
+    }
+
+    .command-list {
+      min-height: 0;
+      overflow: auto;
+      padding: 14px;
+      border-right: 1px solid var(--panel-line);
+    }
+
+    .command-item {
+      width: 100%;
+      display: grid;
+      gap: 3px;
+      padding: 10px 12px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--ink-soft);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .command-item strong {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .command-item span {
+      color: var(--ink-mute);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .command-item.is-active,
+    .command-item:hover {
+      border-color: rgba(167, 139, 250, 0.34);
+      background: rgba(167, 139, 250, 0.12);
+    }
+
+    .command-output {
+      min-height: 260px;
+      max-height: 430px;
+      overflow: auto;
+      padding: 18px 20px 22px;
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .command-output h3 {
+      margin: 0 0 10px;
+      color: var(--cream);
+      font-family: var(--serif);
+      font-size: 1.22rem;
+      font-weight: 500;
+    }
+
+    .command-output ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .command-output li + li {
+      margin-top: 7px;
+    }
+
+    .command-line {
+      margin: 0 0 8px;
+    }
+
+    .command-line span,
+    .command-output code {
+      color: var(--green);
+      font-family: var(--mono);
+      font-weight: 800;
+    }
+
+    .command-muted {
+      margin: 0;
+      color: var(--ink-mute);
+    }
+
     footer {
       padding: 28px 0 44px;
       color: var(--ink-mute);
@@ -981,6 +1233,10 @@
       .work-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .command-trigger span {
+        display: none;
+      }
     }
 
     @media (max-width: 620px) {
@@ -1007,6 +1263,46 @@
       .contact-panel h2 { font-size: 36px; }
 
       .footer-row { flex-direction: column; }
+
+      .nav {
+        gap: 12px;
+      }
+
+      .links {
+        gap: 6px;
+      }
+
+      .command-trigger {
+        padding-inline: 8px;
+      }
+
+      .command-shell {
+        place-items: end center;
+        padding: 16px;
+      }
+
+      .command-panel {
+        max-height: calc(100vh - 32px);
+        border-radius: 20px;
+      }
+
+      .command-head {
+        padding: 18px;
+      }
+
+      .command-body {
+        grid-template-columns: 1fr;
+      }
+
+      .command-list {
+        max-height: 210px;
+        border-right: 0;
+        border-bottom: 1px solid var(--panel-line);
+      }
+
+      .command-output {
+        max-height: 260px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1053,10 +1349,41 @@
         <a href="#builds">Builds</a>
         <a href="#work">Work</a>
         <a href="#process">Process</a>
+        <button class="command-trigger" type="button" data-command-open aria-haspopup="dialog" aria-controls="command-palette">
+          <span>Command</span>
+          <kbd>⌘K</kbd>
+        </button>
         <a href="apply.html" class="nav-cta">Start a project</a>
       </nav>
     </div>
   </header>
+
+  <div class="command-shell" id="command-palette" role="dialog" aria-modal="true" aria-labelledby="command-title" hidden>
+    <div class="command-backdrop" data-command-close></div>
+    <section class="command-panel" aria-describedby="command-desc">
+      <div class="command-head">
+        <div>
+          <p class="command-kicker">Cashie.dev command</p>
+          <h2 id="command-title">Operator palette</h2>
+          <p id="command-desc">Type a site command. This navigates and shows site info only.</p>
+        </div>
+        <button class="command-close" type="button" data-command-close aria-label="Close command palette">×</button>
+      </div>
+
+      <label class="command-input-wrap" for="command-input">
+        <span>cashie.dev</span>
+        <input id="command-input" type="text" autocomplete="off" spellcheck="false" placeholder="help">
+      </label>
+
+      <div class="command-body">
+        <div class="command-list" id="command-list" role="listbox" aria-label="Available commands"></div>
+        <div class="command-output" id="command-output" aria-live="polite">
+          <p class="command-line"><span>status</span> Cashie.dev online · Sydney builder</p>
+          <p class="command-muted">Try help, projects, services, process, contact, book, github, status, clear, or close.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
@@ -1329,7 +1656,7 @@
             <div class="work-card-body">
               <div class="work-head">
                 <h3 class="work-title">Signal Shelf</h3>
-                <span class="work-status not-shipped">Not shipped</span>
+                <span class="work-status prototype">Prototype</span>
               </div>
               <p class="work-type">Menu bar workflow utility</p>
               <p class="work-outcome">Live status, quick actions, and reminders in one unobtrusive menu bar place.</p>
@@ -1417,5 +1744,6 @@
       <span>Client builds · PLUM OS utilities · © 2026</span>
     </div>
   </footer>
+  <script src="assets/command-palette.js"></script>
 </body>
 </html>
