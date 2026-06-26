@@ -3,51 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Brief Builder — Cashie.dev</title>
-<meta name="description" content="Build your project brief step by step. One question at a time, with a live project snapshot and a ready-to-send consulting-style summary.">
-<link rel="canonical" href="https://cashie1597.github.io/cashie-portfolio/apply.html">
-<meta name="theme-color" content="#182642">
-<meta property="og:title" content="Project Brief Builder — Cashie.dev">
-<meta property="og:description" content="Build your project brief step by step, with a live project snapshot and a ready-to-send summary.">
+<title>Start a project — Cashie</title>
+<meta name="description" content="Tell Cashie what you need built. A short, guided brief — project type, the problem, who it's for, the outcome, deadline and scope — with a live summary you can send straight through.">
+<link rel="canonical" href="https://cashie.dev/apply.html">
+<meta name="theme-color" content="#131f38">
+<meta property="og:title" content="Start a project — Cashie">
+<meta property="og:description" content="A short, guided project brief with a live summary you can send straight through.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://cashie1597.github.io/cashie-portfolio/apply.html">
-<meta property="og:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
+<meta property="og:url" content="https://cashie.dev/apply.html">
+<meta property="og:image" content="https://cashie.dev/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Project Brief Builder — Cashie.dev">
-<meta name="twitter:description" content="Build your project brief step by step, with a live project snapshot and a ready-to-send summary.">
-<meta name="twitter:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
+<meta name="twitter:title" content="Start a project — Cashie">
+<meta name="twitter:description" content="A short, guided project brief with a live summary you can send straight through.">
+<meta name="twitter:image" content="https://cashie.dev/assets/og.png">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <style>
   :root {
-    --bg:          #182642;
-    --bg-soft:     #223053;
-    --panel:       rgba(50, 70, 120, 0.50);
-    --panel-line:  rgba(200, 220, 255, 0.18);
-    --ink:         #f1f5ff;
-    --ink-soft:    #c8d9f8;
-    --ink-mute:    #95a7cc;
-    --plum:        #a78bfa;
-    --plum-deep:   #7c5dfa;
-    --cyan:        #e0ffff;
-    --cream:       #c7e6ff;
-    --green:       #6ee7b7;
-    --amber:       #fcd34d;
-    --red:         #f87171;
-    --radius:      18px;
-    --maxw:        1080px;
-    --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-    --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --bg: #131f38;
+    --bg-soft: #1d2b4c;
+    --panel: rgba(50, 70, 120, 0.42);
+    --panel-2: rgba(11, 16, 32, 0.4);
+    --panel-line: rgba(200, 220, 255, 0.16);
+    --ink: #f1f5ff;
+    --ink-soft: #c8d9f8;
+    --ink-mute: #93a6cc;
+    --muted: #93a6cc;
+    --soft: #7a8eb8;
+    --line: rgba(200, 220, 255, 0.16);
+    --line-strong: rgba(200, 220, 255, 0.28);
+    --charcoal: rgba(8, 12, 24, 0.85);
+    --charcoal-2: #1a2540;
+    --green: #6ee7b7;
+    --plum: #a78bfa;
+    --plum-deep: #7c5dfa;
+    --cyan: #e0ffff;
+    --cream: #c7e6ff;
+    --amber: #fcd34d;
+    --paper: #f7f4ee;
+    --paper-2: #ebe5da;
+    --red: #f87171;
+    --radius: 18px;
+    --max: 1160px;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background:
-      radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.28), transparent 60%),
-      radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.22), transparent 55%),
-      radial-gradient(1100px 560px at 110% 105%, rgba(224,255,255,0.18), transparent 55%),
-      linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 55%, var(--bg) 100%);
-    background-attachment: fixed;
+    background: var(--bg);
     color: var(--ink);
     font-family: var(--sans);
     font-size: 17px;
@@ -55,960 +61,862 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     min-height: 100vh;
+    overflow-x: hidden;
   }
-  ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
   a { color: inherit; text-decoration: none; }
+  p, h1, h2, h3 { margin-top: 0; }
+  ::selection { background: rgba(167, 139, 250, 0.4); color: #fff; }
+  :focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; border-radius: 4px; }
 
-  /* ---------- Nav ---------- */
-  header.nav {
+  .aurora { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+  .aurora::before { content: ""; position: absolute; inset: 0; background: linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 52%, var(--bg) 100%); }
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
+  .blob.b1 { width: 600px; height: 600px; top: -200px; right: -120px; background: radial-gradient(circle, rgba(167,139,250,0.5), transparent 62%); }
+  .blob.b2 { width: 500px; height: 500px; bottom: -180px; left: -140px; background: radial-gradient(circle, rgba(124,93,250,0.4), transparent 60%); }
+  .grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .wrap { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+
+  /* ---------- Topbar ---------- */
+  .topbar {
     position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    background: rgba(24,38,66,0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(19, 31, 56, 0.62);
     border-bottom: 1px solid var(--panel-line);
   }
-  .nav-inner {
+  .nav {
+    min-height: 70px;
     display: flex; align-items: center; justify-content: space-between;
-    height: 64px; padding: 0 28px;
-    max-width: var(--maxw); margin: 0 auto;
+    gap: 20px;
   }
   .brand {
-    font-family: var(--serif);
-    font-size: 1.15rem; letter-spacing: 0.2px;
-    display: flex; align-items: center; gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--serif); font-size: 1.22rem; font-weight: 500;
   }
-  .brand .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--plum), var(--cyan));
-    box-shadow: 0 0 14px 1px rgba(167,139,250,0.50);
+  .brand-mark {
+    width: 28px; height: 28px; flex-shrink: 0; display: block;
+    filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.42));
+    transition: transform 0.22s var(--ease), filter 0.22s var(--ease);
   }
-  .nav-back {
-    font-size: 0.82rem; letter-spacing: 0.06em;
-    color: var(--ink-soft); transition: color .2s ease;
-  }
-  .nav-back:hover { color: var(--ink); }
-  .nav-links-apply { display: flex; gap: 24px; align-items: center; }
-  .nav-links-apply a {
-    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-soft); transition: color .2s ease;
-  }
-  .nav-links-apply a:hover { color: var(--ink); }
-  .nav-links-apply a.nav-cta {
-    border: 1px solid var(--panel-line);
-    padding: 8px 16px; border-radius: 999px;
-    background: rgba(199,230,255,0.05);
-    color: var(--cream) !important;
-  }
-  .nav-links-apply a.nav-cta:hover { border-color: var(--plum); }
-  @media (max-width: 760px) { .nav-links-apply { display: none; } }
-
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  .brand:hover .brand-mark { transform: scale(1.05); filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.62)); }
+  .brand-mark.sm { width: 22px; height: 22px; }
+  .nav-right { display: flex; align-items: center; gap: 14px; color: var(--ink-soft); font-size: 0.82rem; letter-spacing: 0.04em; }
+  .nav-right a { padding: 8px 14px; border-radius: 999px; }
+  .nav-right a:hover { color: var(--ink); background: rgba(199, 230, 255, 0.06); }
+  .nav-progress { font-variant-numeric: tabular-nums; color: var(--ink-mute); display: none; }
+  .nav-progress.visible { display: inline; }
 
   /* ---------- Progress bar ---------- */
-  .progress-bar {
-    height: 4px;
-    background: rgba(11,16,32,0.40);
-    overflow: hidden;
-  }
+  .progress-bar { height: 3px; background: var(--panel-2); overflow: hidden; }
   .progress-fill {
     height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--plum), var(--plum-deep), var(--cyan));
-    transition: width .45s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 0 4px 4px 0;
+    background: linear-gradient(90deg, var(--plum), var(--plum-deep));
+    transition: width .45s var(--ease);
   }
-  /* Progress text in nav */
-  .nav-progress-text {
-    font-size: 0.74rem; color: var(--ink-mute);
-    letter-spacing: 0.04em;
-    display: none;
-  }
-  .nav-progress-text.visible { display: inline; }
 
-  /* ---------- Layout: wizard + snapshot ---------- */
+  /* ---------- Layout ---------- */
   .builder-layout {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 330px;
     gap: 32px;
-    padding: 40px 0 96px;
+    padding: 46px 0 96px;
     align-items: start;
   }
-  @media (max-width: 860px) {
-    .builder-layout { grid-template-columns: 1fr; gap: 0; }
-  }
+  @media (max-width: 900px) { .builder-layout { grid-template-columns: 1fr; gap: 0; } }
 
   /* ---------- Wizard card ---------- */
   .wizard-card {
     background: var(--panel);
     border: 1px solid var(--panel-line);
-    border-radius: 24px;
-    padding: 0;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius);
     overflow: hidden;
-    position: relative;
-    min-height: 520px;
-  }
-  .wizard-card .glow {
-    position: absolute; inset: auto -10% -60% 30%; height: 300px;
-    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.18), transparent 60%),
-                radial-gradient(circle at 80% 90%, rgba(224,255,255,0.10), transparent 55%);
-    pointer-events: none; z-index: 0;
+    min-height: 560px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   }
 
   .step-counter {
-    display: flex; align-items: center; gap: 10px;
-    padding: 28px 40px 0;
-    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 12px;
+    padding: 26px 36px 0;
   }
   .step-counter .pill {
-    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
-    font-weight: 600; color: var(--plum);
-    border: 1px solid rgba(167,139,250,0.30);
-    border-radius: 999px; padding: 5px 14px;
-    background: rgba(167,139,250,0.08);
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 800; color: var(--plum);
   }
-  .step-counter .dots { display: flex; gap: 6px; }
+  .step-counter .dots { display: flex; gap: 6px; margin-left: auto; }
   .step-counter .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(200,220,255,0.18);
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--line);
     transition: background .3s ease, transform .3s ease;
   }
-  .step-counter .dot.active {
-    background: var(--plum);
-    box-shadow: 0 0 10px rgba(167,139,250,0.55);
-    transform: scale(1.2);
-  }
-  .step-counter .dot.done { background: rgba(167,139,250,0.45); }
+  .step-counter .dot.active { background: var(--plum); transform: scale(1.25); box-shadow: 0 0 10px rgba(167,139,250,0.5); }
+  .step-counter .dot.done { background: var(--ink-mute); }
 
-  .step-content {
-    padding: 28px 40px 0;
-    position: relative; z-index: 1;
-    animation: stepIn .4s ease;
-  }
-  @keyframes stepIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .step-content { padding: 22px 36px 0; animation: stepIn .35s ease; }
+  @keyframes stepIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   .step-content h2 {
     font-family: var(--serif); font-weight: 500;
-    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-    line-height: 1.12; letter-spacing: -0.015em;
-    margin-bottom: 10px;
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    line-height: 1.12; margin-bottom: 8px;
   }
-  .step-content .lede {
-    color: var(--ink-soft); font-size: 1rem; margin-bottom: 28px;
-    max-width: 52ch;
-  }
+  .step-content .lede { color: var(--muted); font-size: 1rem; margin-bottom: 24px; max-width: 54ch; }
 
   /* ---------- Option cards ---------- */
-  .option-grid { display: grid; gap: 12px; margin-bottom: 28px; }
+  .option-grid { display: grid; gap: 10px; margin-bottom: 26px; }
+  @media (min-width: 620px) { .option-grid.two { grid-template-columns: 1fr 1fr; } }
   .option-card {
     display: flex; align-items: center; gap: 16px;
-    padding: 18px 20px;
-    border: 1.5px solid var(--panel-line);
-    border-radius: 14px;
-    background: rgba(11,16,32,0.22);
+    padding: 16px 18px;
+    border: 1px solid var(--panel-line);
+    border-radius: 12px;
+    background: var(--panel-2);
     cursor: pointer;
-    transition: border-color .2s ease, background .2s ease, transform .18s ease;
+    transition: border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
     user-select: none;
   }
-  .option-card:hover {
-    border-color: rgba(167,139,250,0.40);
-    background: rgba(11,16,32,0.32);
-    transform: translateY(-1px);
-  }
-  .option-card.selected {
-    border-color: var(--plum);
-    background: rgba(167,139,250,0.10);
-    box-shadow: 0 0 0 3px rgba(167,139,250,0.10);
-  }
+  .option-card:hover { border-color: rgba(167,139,250,0.35); transform: translateY(-2px); }
+  .option-card.selected { border-color: var(--plum); background: rgba(167,139,250,0.1); box-shadow: 0 0 0 1px rgba(167,139,250,0.35); }
   .option-card .icon {
-    flex-shrink: 0;
-    width: 42px; height: 42px;
+    flex-shrink: 0; width: 40px; height: 40px;
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    background: rgba(167,139,250,0.12);
-    border: 1px solid rgba(167,139,250,0.25);
+    background: rgba(8,12,24,0.4); color: var(--plum);
+    border: 1px solid var(--panel-line);
   }
-  .option-card .label { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
-  .option-card .desc { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.45; }
+  .option-card .icon svg { width: 21px; height: 21px; }
+  .option-card.selected .icon { background: linear-gradient(135deg, var(--plum), var(--plum-deep)); color: #14203a; border-color: transparent; }
+  .option-card .label { font-size: 1rem; font-weight: 750; color: var(--ink); margin-bottom: 2px; }
+  .option-card .desc { font-size: 0.86rem; color: var(--muted); line-height: 1.45; }
   .option-card .check {
     flex-shrink: 0; margin-left: auto;
-    width: 24px; height: 24px; border-radius: 50%;
-    border: 2px solid var(--panel-line);
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--line-strong);
     display: flex; align-items: center; justify-content: center;
-    transition: all .2s ease;
+    transition: all .18s ease;
   }
   .option-card.selected .check { border-color: var(--plum); background: var(--plum); }
-  .option-card.selected .check::after { content: "✓"; color: #182642; font-size: 0.85rem; font-weight: 700; }
-  .option-card input[type="radio"] { display: none; }
+  .option-card.selected .check::after { content: "✓"; color: #14203a; font-size: 0.78rem; font-weight: 800; }
 
-  /* ---------- Unsupported card ---------- */
-  .option-card.unsupported {
-    opacity: 0.5; cursor: not-allowed;
+  /* ---------- Project-type visual cards ---------- */
+  .option-grid.visual { gap: 14px; }
+  @media (min-width: 700px) { .option-grid.visual.two { grid-template-columns: 1fr 1fr; } }
+  .option-card.visual {
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 0; overflow: hidden;
   }
-  .option-card.unsupported:hover { transform: none; border-color: var(--panel-line); background: rgba(11,16,32,0.22); }
-  .option-card.unsupported .check {
-    border-color: var(--red); background: rgba(248,113,113,0.15);
+  .option-card.visual .card-preview {
+    height: 148px; background: rgba(8, 12, 24, 0.35);
+    border-bottom: 1px solid var(--panel-line);
+    padding: 10px 12px; overflow: hidden;
+    transition: background .18s ease;
   }
-  .option-card.unsupported .check::after { content: "✕"; color: var(--red); font-size: 0.8rem; font-weight: 700; }
-  .option-card.unsupported .desc { color: var(--red); }
+  .option-card.visual:hover .card-preview { background: rgba(8, 12, 24, 0.5); }
+  .option-card.visual.selected .card-preview { background: rgba(8, 12, 24, 0.55); }
+  .option-card.visual .card-body {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px 15px;
+  }
+  .option-card.visual .card-text { flex: 1; min-width: 0; }
+  .option-card.visual .card-example {
+    font-size: 0.76rem; color: var(--green); font-weight: 700;
+    margin-top: 5px; letter-spacing: 0.02em;
+  }
+  .option-card.visual .check { margin: 2px 0 0; }
+
+  /* App screenshot mockups — OS-authentic chrome (Safari / macOS / menu bar) */
+  .shot {
+    height: 100%; width: 100%;
+    display: flex; flex-direction: column;
+    font-size: 7px; line-height: 1.35; overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  }
+  .shot:not(.os-frame) {
+    background: var(--panel-2); border: 1px solid var(--panel-line);
+    border-radius: 6px;
+  }
+  .option-card.visual.selected .shot:not(.os-frame),
+  .bp-thumb .shot:not(.os-frame) { background: rgba(8,12,24,0.5); border-color: var(--panel-line); }
+  .option-card.visual.selected .shot.os-frame,
+  .bp-thumb .shot.os-frame { background: transparent; border: none; }
+  .shot.os-frame { --ink: #171717; --paper: #fffdf8; --paper-2: #ebe5da; --muted: #5e625d; --soft: #9a9b93; --line: #d3ccc0; --plum: #7b5c71; --green: #5e7d68; }
+
+  .os-traffic { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+  .os-traffic .tl, .shot .tl {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+  }
+  .tl-red { background: #ff5f57; }
+  .tl-yellow { background: #febc2e; }
+  .tl-green { background: #28c840; }
+
+  /* Safari — web builds */
+  .os-frame.os-safari {
+    background: #fff; border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.12);
+  }
+  .os-safari-toolbar {
+    background: linear-gradient(180deg, #ececec 0%, #e3e3e3 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 4px 6px 5px; flex-shrink: 0;
+  }
+  .os-safari-toolbar .os-traffic { margin-bottom: 4px; }
+  .os-safari-tabs { display: flex; gap: 2px; margin-bottom: 4px; }
+  .os-safari-tabs span {
+    padding: 2px 6px; border-radius: 4px 4px 0 0;
+    background: rgba(255, 255, 255, 0.45); color: #555;
+    font-size: 6px; font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, 0.08); border-bottom: none;
+  }
+  .os-safari-tabs span.on { background: #fff; color: #111; }
+  .os-safari-urlbar {
+    display: flex; align-items: center; gap: 4px;
+    background: #fff; border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px; padding: 2px 6px;
+  }
+  .os-url-icon { width: 5px; height: 6px; border-radius: 1px; background: #28c840; opacity: 0.85; flex-shrink: 0; }
+  .os-url-text {
+    flex: 1; font-size: 6px; font-weight: 500; color: #333;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .os-safari .os-content.os-web { flex: 1; background: #fff; padding: 6px 7px; min-height: 0; overflow: hidden; }
+
+  /* macOS native window */
+  .os-frame.os-mac {
+    background: #f5f5f7; border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  }
+  .os-mac-toolbar {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(236,236,236,0.98) 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px 8px 0 0; flex-shrink: 0;
+  }
+  .os-mac-title {
+    flex: 1; text-align: center; font-size: 6.5px; font-weight: 600;
+    color: #3c3c43; letter-spacing: 0.01em; margin-right: 22px;
+  }
+  .os-mac .os-content.os-mac-ui { flex: 1; background: #f5f5f7; padding: 6px 7px; min-height: 0; overflow: hidden; }
+  .os-mac.os-mac-sidebar .os-content.os-mac-ui {
+    padding: 0; display: grid; grid-template-columns: 44px 1fr; background: #fff;
+  }
+  .os-mac-sidebar-pane { background: #ececee; border-right: 1px solid rgba(0,0,0,0.08); padding: 5px 4px; }
+  .os-mac-sidebar-pane span {
+    display: block; font-size: 5.5px; font-weight: 600; color: #6e6e73;
+    padding: 3px 4px; border-radius: 3px; margin-bottom: 2px;
+  }
+  .os-mac-sidebar-pane span.on { background: rgba(0,0,0,0.07); color: #1d1d1f; }
+  .os-mac-main-pane { padding: 6px 7px; background: #fff; }
+
+  /* macOS menu bar + popover */
+  .os-frame.os-menubar {
+    background: linear-gradient(180deg, #d8dce3 0%, #c8cdd6 55%, #b8bec8 100%);
+    border: none; box-shadow: none; border-radius: 0;
+  }
+  .os-menubar-strip {
+    display: flex; align-items: center; gap: 5px;
+    padding: 2px 7px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(245,245,247,0.92) 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    font-size: 6px; font-weight: 600; color: #1d1d1f; flex-shrink: 0;
+  }
+  .os-apple { width: 6px; height: 6px; border-radius: 1px; background: #1d1d1f; opacity: 0.85; flex-shrink: 0; }
+  .os-menu-filler { flex: 1; }
+  .os-menubar-item { padding: 1px 4px; border-radius: 3px; color: #3c3c43; }
+  .os-menubar-item.on { background: rgba(0,0,0,0.08); color: #000; }
+  .os-popover {
+    margin: 3px 5px 5px;
+    background: rgba(255,255,255,0.98);
+    border: 1px solid rgba(0,0,0,0.12); border-radius: 7px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+    padding: 6px 7px; flex: 1; min-height: 0; overflow: hidden;
+  }
+
+  /* Polish By Piper — website */
+  .os-content.os-web .sp-brand { font-family: var(--serif); font-size: 8px; font-weight: 600; color: var(--plum); margin-bottom: 3px; }
+  .os-content.os-web .sp-hero {
+    font-size: 7px; font-weight: 800; color: var(--ink); margin-bottom: 5px;
+    padding: 4px 5px; border-radius: 3px; background: var(--paper-2); border: 1px solid var(--line);
+  }
+  .os-content.os-web .sp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .os-content.os-web .sp-card {
+    border: 1px solid var(--line); border-radius: 3px; background: var(--paper);
+    padding: 4px 2px; text-align: center; font-weight: 700; color: var(--muted);
+  }
+  .os-content.os-web .sp-card:nth-child(2) { border-color: var(--plum); color: var(--plum); background: rgba(123,92,113,0.08); }
+
+  /* Polish By Piper — booking */
+  .os-content.os-web .sb-step { font-size: 6px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--soft); font-weight: 800; margin-bottom: 3px; }
+  .os-content.os-web .sb-service {
+    padding: 3px 5px; border: 1px solid var(--line); border-radius: 3px;
+    margin-bottom: 2px; color: var(--muted); font-weight: 600;
+  }
+  .os-content.os-web .sb-service.sel { border-color: var(--green); color: var(--ink); background: rgba(94,125,104,0.1); }
+  .os-content.os-web .sb-slots { display: flex; gap: 3px; margin: 4px 0; }
+  .os-content.os-web .sb-slot {
+    padding: 2px 5px; border-radius: 3px; border: 1px solid var(--line);
+    font-weight: 700; color: var(--soft);
+  }
+  .os-content.os-web .sb-slot.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .os-content.os-web .sb-cta {
+    display: inline-block; margin-top: 2px; padding: 3px 6px; border-radius: 3px;
+    background: var(--ink); color: var(--paper); font-weight: 800; font-size: 6.5px;
+  }
+
+  /* Cashie Admin Hub */
+  .os-mac-main-pane .sa-metrics { display: flex; gap: 4px; margin-bottom: 4px; }
+  .os-mac-main-pane .sa-metrics div {
+    flex: 1; padding: 3px 4px; border-radius: 3px;
+    border: 1px solid var(--line); background: var(--paper); text-align: center;
+  }
+  .os-mac-main-pane .sa-metrics b { display: block; font-size: 9px; font-weight: 800; color: var(--green); line-height: 1; }
+  .os-mac-main-pane .sa-metrics small { font-size: 5px; color: var(--soft); text-transform: uppercase; }
+  .os-mac-main-pane .sa-row {
+    display: flex; align-items: center; gap: 4px; padding: 2px 0;
+    font-weight: 700; color: var(--muted); border-bottom: 1px solid var(--line);
+  }
+  .os-mac-main-pane .sa-row:last-child { border-bottom: none; }
+  .os-mac-main-pane .sa-row i { width: 4px; height: 4px; border-radius: 50%; background: var(--line); flex-shrink: 0; }
+  .os-mac-main-pane .sa-row.on i { background: var(--green); }
+  .os-mac-main-pane .sa-row em { margin-left: auto; font-style: normal; font-size: 5.5px; font-weight: 800; color: var(--green); text-transform: uppercase; }
+
+  /* Automation workflow */
+  .os-content.os-mac-ui .sau-flow { display: flex; flex-direction: column; gap: 0; }
+  .os-content.os-mac-ui .sau-step { display: flex; align-items: center; gap: 5px; font-weight: 700; color: var(--muted); }
+  .os-content.os-mac-ui .sau-step.done { color: var(--ink); }
+  .os-content.os-mac-ui .sau-step.run { color: var(--green); }
+  .os-content.os-mac-ui .sau-dot { width: 5px; height: 5px; border-radius: 50%; border: 1px solid var(--line-strong); flex-shrink: 0; }
+  .os-content.os-mac-ui .sau-step.done .sau-dot { background: var(--ink); border-color: var(--ink); }
+  .os-content.os-mac-ui .sau-step.run .sau-dot { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 2px rgba(94,125,104,0.2); }
+  .os-content.os-mac-ui .sau-line { width: 1px; height: 4px; background: var(--line); margin-left: 2px; }
+  .os-content.os-mac-ui .sau-line.dim { opacity: .4; }
+
+  /* PlumClip — macOS list */
+  .os-content.os-mac-ui .sc-menu {
+    font-weight: 600; color: #6e6e73; margin-bottom: 4px; font-size: 6.5px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .os-content.os-mac-ui .sc-item {
+    display: flex; align-items: center; gap: 4px; padding: 3px 4px;
+    color: #1d1d1f; font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.06); border-radius: 3px;
+  }
+  .os-content.os-mac-ui .sc-item.on { background: #007aff; color: #fff; font-weight: 600; border-bottom-color: transparent; }
+  .os-content.os-mac-ui .sc-pin { width: 3px; height: 6px; border-radius: 1px; background: #8e8e93; opacity: 0.7; flex-shrink: 0; }
+  .os-content.os-mac-ui .sc-item.on .sc-pin { background: #fff; opacity: 0.9; }
+  .os-content.os-mac-ui .sc-foot { margin-top: 3px; font-size: 5.5px; color: #8e8e93; font-weight: 600; }
+
+  /* Signal Shelf — menu bar popover */
+  .os-popover .ss-bar {
+    font-size: 6.5px; font-weight: 700; color: #6e6e73;
+    text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;
+  }
+  .os-popover .ss-item {
+    display: flex; align-items: center; gap: 4px; padding: 3px 5px; border-radius: 4px;
+    margin-bottom: 1px; font-weight: 500; color: #1d1d1f; border: none; background: transparent;
+  }
+  .os-popover .ss-item.on { background: #007aff; color: #fff; font-weight: 600; }
+  .os-popover .ss-item i { width: 4px; height: 4px; border-radius: 50%; background: #8e8e93; flex-shrink: 0; }
+  .os-popover .ss-item.on i { background: #fff; opacity: 0.9; }
+
+  /* Collage — other (mini OS frames) */
+  .shot-collage { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; height: 100%; padding: 2px 0; }
+  .shot-collage .col-os { height: 100%; min-height: 0; overflow: hidden; font-size: 5px; }
+  .shot-collage .col-os.os-safari { border-radius: 5px; }
+  .shot-collage .col-os.os-mac { border-radius: 5px; }
+  .shot-collage .col-os .os-safari-toolbar { padding: 2px 4px 3px; }
+  .shot-collage .col-os .os-safari-tabs { display: none; }
+  .shot-collage .col-os .os-mac-toolbar { padding: 3px 5px; }
+  .shot-collage .col-os .os-mac-title { font-size: 5px; margin-right: 14px; }
+  .shot-collage .col-os .os-content { padding: 3px 4px; font-size: 5px; font-weight: 700; color: var(--muted); }
+  .shot-collage .col-os .os-mac-sidebar-pane { display: none; }
+  .shot-collage .col-os.os-mac-sidebar .os-content.os-mac-ui { display: block; }
 
   /* ---------- Text inputs ---------- */
-  .input-field { margin-bottom: 20px; }
-  .input-field label {
-    display: block; font-size: 0.88rem; font-weight: 600;
-    color: var(--ink); margin-bottom: 7px;
-  }
-  .input-field .hint { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 10px; }
-  .input-field input[type="text"],
-  .input-field textarea {
+  .input-field { margin-bottom: 18px; }
+  .input-field label { display: block; font-size: 0.9rem; font-weight: 750; color: var(--ink); margin-bottom: 5px; }
+  .input-field .req { color: var(--soft); font-weight: 500; }
+  .input-field .hint { font-size: 0.85rem; color: var(--muted); margin-bottom: 9px; }
+  .input-field input[type="text"], .input-field textarea {
     width: 100%;
-    background: rgba(11,16,32,0.28);
-    border: 1.5px solid var(--panel-line);
-    border-radius: 12px;
-    padding: 14px 16px;
+    background: rgba(8, 12, 24, 0.45);
+    border: 1px solid var(--panel-line);
+    border-radius: 10px;
+    padding: 13px 15px;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 0.98rem;
     outline: none;
-    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    transition: border-color .18s ease, box-shadow .18s ease;
   }
-  .input-field input::placeholder,
-  .input-field textarea::placeholder { color: var(--ink-mute); }
-  .input-field input:focus,
-  .input-field textarea:focus {
+  .input-field input::placeholder, .input-field textarea::placeholder { color: var(--ink-mute); }
+  .input-field input:focus, .input-field textarea:focus {
     border-color: var(--plum);
-    background: rgba(11,16,32,0.38);
-    box-shadow: 0 0 0 3px rgba(167,139,250,0.12);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
   }
   .input-field textarea { min-height: 120px; resize: vertical; }
 
-  /* ---------- Navigation buttons ---------- */
-  .step-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 40px 36px;
-    position: relative; z-index: 1;
-  }
+  /* ---------- Buttons ---------- */
+  .step-nav { display: flex; justify-content: space-between; align-items: center; padding: 6px 36px 34px; }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px; border-radius: 999px;
-    font-size: 0.92rem; font-weight: 600;
-    cursor: pointer; border: none;
-    transition: transform .18s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 46px; padding: 0 22px;
+    border-radius: 999px;
+    border: none;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease), opacity .2s var(--ease);
   }
-  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.30) 100%);
-    color: #182642;
-  }
-  .btn-primary:not(:disabled):hover { transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--panel-line);
-    color: var(--ink-soft);
-  }
-  .btn-ghost:not(:disabled):hover { border-color: var(--plum); color: var(--ink); }
-  .btn-back { font-size: 0.88rem; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-primary { background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 55%, rgba(224,255,255,0.4) 120%); color: #14203a; }
+  .btn-primary:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(124,93,250,0.42); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--panel-line); }
+  .btn-ghost:not(:disabled):hover { border-color: var(--plum); transform: translateY(-2px); }
+  .btn-back { border-color: transparent; padding-left: 6px; color: var(--muted); }
+  .btn-back:hover { background: transparent; color: var(--ink); border-color: transparent; }
 
-  /* ---------- Snapshot panel ---------- */
-  .snapshot-panel {
-    position: sticky; top: 88px;
-    background: var(--panel);
-    border: 1px solid var(--panel-line);
-    border-radius: 20px;
-    padding: 24px 22px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    overflow: hidden;
-  }
-  .snapshot-panel .snap-glow {
-    position: absolute; inset: auto -30% -60% -10%; height: 200px;
-    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.16), transparent 60%);
-    pointer-events: none;
-  }
-  .snapshot-panel h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.08rem; margin-bottom: 4px;
-    position: relative;
-  }
-  .snapshot-panel .snap-sub {
-    font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 20px;
-    position: relative;
-  }
-
-  /* Estimate display */
-  .est-summary { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; position: relative; }
-  .est-summary .est-big {
-    font-family: var(--serif); font-size: 1.85rem; color: var(--cream); font-weight: 500; line-height: 1;
-  }
-  .est-summary .est-small { font-size: 0.85rem; color: var(--ink-soft); }
-  .est-summary .est-big.empty { color: var(--ink-mute); }
-
-  .est-label-mini {
-    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-mute); font-weight: 600;
-    margin-bottom: 16px; position: relative;
-  }
-
-  .est-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 0;
-    border-top: 1px solid var(--panel-line);
-    position: relative;
-  }
-  .est-row .est-label { font-size: 0.84rem; color: var(--ink-soft); }
-  .est-row .est-value {
-    font-family: var(--serif); font-size: 0.98rem; color: var(--cream); font-weight: 500;
-    text-align: right; max-width: 160px;
-  }
-  .est-row .est-value.empty { color: var(--ink-mute); font-style: italic; font-size: 0.82rem; font-family: var(--sans); }
-
-  /* Budget fit badge */
-  .fit-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.80rem; font-weight: 600;
-    padding: 4px 10px; border-radius: 999px;
-    font-family: var(--sans);
-  }
-  .fit-badge.good { background: rgba(110,231,183,0.15); color: var(--green); border: 1px solid rgba(110,231,183,0.30); }
-  .fit-badge.warn { background: rgba(252,211,77,0.15); color: var(--amber); border: 1px solid rgba(252,211,77,0.30); }
-  .fit-badge.over { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.30); }
-
-  /* Confidence badge */
-  .conf-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.78rem; font-weight: 600;
-    padding: 4px 12px; border-radius: 999px;
-    font-family: var(--sans);
-  }
-  .conf-badge.high { background: rgba(110,231,183,0.12); color: var(--green); border: 1px solid rgba(110,231,183,0.25); }
-  .conf-badge.medium { background: rgba(252,211,77,0.12); color: var(--amber); border: 1px solid rgba(252,211,77,0.25); }
-  .conf-badge.low { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
-
-  /* Default snapshot content */
-  .snap-default { position: relative; }
-  .snap-default .snap-default-label {
-    font-size: 0.74rem; letter-spacing: 0.10em; text-transform: uppercase;
-    color: var(--ink-mute); font-weight: 600;
-    margin-top: 16px; margin-bottom: 8px;
-  }
-  .snap-default ul {
-    margin: 0 0 14px; padding-left: 18px;
-    list-style: none;
-  }
-  .snap-default li {
-    font-size: 0.86rem; color: var(--ink-soft); line-height: 1.6;
-    position: relative; padding-left: 14px;
-  }
-  .snap-default li::before {
-    content: ""; position: absolute; left: 0; top: 0.65em;
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--plum);
-  }
-
-  .snap-foot {
-    font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5;
-    position: relative;
-    padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--panel-line);
-  }
-
-  /* ---------- Mobile snapshot ---------- */
-  .mobile-snapshot { display: none; }
-  @media (max-width: 860px) {
-    .snapshot-panel { display: none; }
-    .mobile-snapshot { display: block; }
-  }
-  .mobile-snapshot {
-    background: var(--panel);
-    border: 1px solid var(--panel-line);
-    border-radius: 16px;
-    padding: 16px 18px;
-    margin-bottom: 24px;
-  }
-  .mobile-snapshot h4 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 0.95rem; margin-bottom: 8px;
-  }
-  .mobile-snapshot .est-row { padding: 8px 0; }
-  .mobile-snapshot .est-summary .est-big { font-size: 1.5rem; }
-
-  /* ---------- Summary screen ---------- */
-  .summary-screen {
-    padding: 28px 40px 36px;
-    position: relative; z-index: 1;
-    animation: stepIn .4s ease;
-  }
-  .summary-screen h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-    margin-bottom: 8px;
-  }
-  .summary-screen .lede {
-    color: var(--ink-soft); font-size: 1rem; margin-bottom: 28px;
-  }
-  .summary-brief {
-    border: 1px solid var(--panel-line);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 24px;
-    background: rgba(11,16,32,0.18);
-  }
-  .brief-header {
-    padding: 20px 24px;
-    background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(224,255,255,0.06));
-    border-bottom: 1px solid var(--panel-line);
-  }
-  .brief-header .brief-title {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.35rem; margin-bottom: 4px;
-  }
-  .brief-header .brief-sub {
-    font-size: 0.84rem; color: var(--ink-mute);
-  }
-  .brief-header .brief-badges {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
-  }
-  .brief-section { padding: 14px 24px; border-bottom: 1px solid var(--panel-line); }
-  .brief-section:last-child { border-bottom: none; }
-  .brief-section .bs-label {
-    font-size: 0.76rem; letter-spacing: 0.10em; text-transform: uppercase;
-    color: var(--ink-mute); font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .brief-section .bs-value {
-    font-size: 0.96rem; color: var(--ink);
-  }
-  .brief-section .bs-value.muted { color: var(--ink-mute); font-style: italic; }
-  .brief-section .bs-value.bold { font-weight: 600; font-family: var(--serif); font-size: 1.05rem; color: var(--cream); }
-  .brief-section .bs-list {
-    font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6;
-    padding-left: 16px; margin: 4px 0 0;
-  }
-  .brief-section .bs-list li { list-style: none; position: relative; padding-left: 12px; }
-  .brief-section .bs-list li::before {
-    content: "·"; position: absolute; left: 0; color: var(--plum); font-weight: 700;
-  }
-
-  .summary-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-  .copy-feedback {
-    display: none;
-    font-size: 0.86rem; color: var(--cyan);
-    padding: 12px 0;
-    animation: stepIn .3s ease;
-  }
-  .copy-feedback.show { display: block; }
-
-  /* ---------- Welcome screen ---------- */
-  .welcome-screen {
-    text-align: center;
-    padding: 80px 40px;
-    position: relative; z-index: 1;
-  }
-  .welcome-screen .welcome-tag {
+  /* ---------- Welcome ---------- */
+  .welcome-screen { padding: 44px 36px 40px; animation: stepIn .35s ease; }
+  .welcome-tag {
     display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.8rem; color: var(--ink-soft);
-    border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 7px 15px; margin-bottom: 28px;
-    background: var(--panel);
+    color: var(--plum); font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em;
+    margin-bottom: 18px;
   }
-  .welcome-screen .welcome-tag .pip {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
-  }
+  .welcome-tag::before { content: ""; width: 28px; height: 1px; background: var(--plum-deep); }
   .welcome-screen h2 {
     font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.1; margin-bottom: 18px; letter-spacing: -0.02em;
+    font-size: clamp(2rem, 4.6vw, 2.9rem);
+    line-height: 1.04; margin-bottom: 16px;
   }
-  .welcome-screen h2 em { font-style: italic; color: var(--cream); }
-  .welcome-screen p {
-    color: var(--ink-soft); max-width: 48ch; margin: 0 auto 36px;
-    font-size: 1.05rem; line-height: 1.6;
-  }
-  .welcome-features {
-    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
-    margin-bottom: 40px;
-  }
-  .welcome-feature {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 0.86rem; color: var(--ink-soft);
-  }
-  .welcome-feature .wf-icon { color: var(--plum); font-size: 1.1rem; }
+  .welcome-screen .intro { color: var(--muted); max-width: 56ch; font-size: 1.05rem; margin-bottom: 28px; }
+  .welcome-screen .intro strong { color: var(--ink); font-weight: 750; }
 
-  /* ---------- Unsupported alert ---------- */
-  .unsupported-alert {
-    display: none;
-    background: rgba(248,113,113,0.12);
-    border: 1px solid rgba(248,113,113,0.30);
-    border-radius: 14px;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-    animation: stepIn .3s ease;
+  .process-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
   }
-  .unsupported-alert.show { display: block; }
-  .unsupported-alert strong { color: var(--red); }
+  @media (max-width: 560px) { .process-row { grid-template-columns: 1fr 1fr; } }
+  .process-step {
+    padding: 16px;
+    border: 1px solid var(--panel-line);
+    border-radius: 12px;
+    background: var(--panel-2);
+  }
+  .process-step .pnum { color: var(--plum); font-weight: 900; font-size: 12px; }
+  .process-step .pname { font-weight: 800; margin: 8px 0 4px; }
+  .process-step .pdesc { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+
+  .welcome-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- Live brief panel (charcoal) ---------- */
+  .brief-panel {
+    position: sticky; top: 90px;
+    background: rgba(8, 12, 24, 0.75);
+    color: var(--ink);
+    border: 1px solid var(--panel-line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+  }
+  .brief-panel h3 { margin: 0 0 2px; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--plum); }
+  .brief-panel .bp-sub { font-size: 0.82rem; color: var(--ink-mute); margin-bottom: 18px; }
+  .bp-row {
+    display: grid; grid-template-columns: 92px 1fr; gap: 12px;
+    padding: 11px 0;
+    border-top: 1px solid var(--panel-line);
+  }
+  .bp-row dt { color: var(--ink-mute); font-size: 12px; }
+  .bp-row dd { margin: 0; font-weight: 700; font-size: 0.92rem; color: var(--ink-soft); }
+  .bp-row dd.empty { color: var(--soft); font-weight: 500; font-style: italic; }
+  .bp-default .bp-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mute); margin: 14px 0 8px; }
+  .bp-default ul { margin: 0; padding: 0; list-style: none; }
+  .bp-default li { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; padding-left: 14px; position: relative; }
+  .bp-default li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--plum); }
+  .bp-foot { font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--panel-line); }
+  .bp-thumb {
+    height: 84px; margin-bottom: 14px; padding: 6px 8px;
+    border-radius: 8px; border: 1px solid var(--panel-line);
+    background: rgba(8, 12, 24, 0.45); overflow: hidden;
+  }
+
+  /* mobile brief (inline above wizard) */
+  .mobile-brief { display: none; }
+  @media (max-width: 900px) {
+    .brief-panel { display: none; }
+    .mobile-brief { display: block; margin-bottom: 22px; }
+  }
+  .mobile-brief .brief-panel { position: static; display: block; }
+
+  /* ---------- Summary ---------- */
+  .summary-screen { padding: 22px 36px 34px; animation: stepIn .35s ease; }
+  .summary-screen h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 8px; }
+  .summary-screen .lede { color: var(--muted); margin-bottom: 24px; }
+  .summary-brief { border: 1px solid var(--panel-line); border-radius: 12px; overflow: hidden; margin-bottom: 22px; background: var(--panel-2); }
+  .brief-head { padding: 18px 22px; background: rgba(8, 12, 24, 0.4); border-bottom: 1px solid var(--panel-line); }
+  .brief-head .bh-title { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 2px; }
+  .brief-head .bh-sub { font-size: 0.82rem; color: var(--muted); }
+  .bsection { padding: 13px 22px; border-bottom: 1px solid var(--panel-line); }
+  .bsection:last-child { border-bottom: none; }
+  .bsection .bs-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); font-weight: 700; margin-bottom: 3px; }
+  .bsection .bs-value { font-size: 0.96rem; color: var(--ink); white-space: pre-wrap; }
+  .bsection .bs-value.muted { color: var(--soft); font-style: italic; }
+  .bsection .bs-list { font-size: 0.94rem; color: var(--ink); line-height: 1.6; padding-left: 16px; margin: 2px 0 0; }
+  .bsection .bs-list li { list-style: none; position: relative; padding-left: 12px; }
+  .bsection .bs-list li::before { content: "·"; position: absolute; left: 0; color: var(--plum); font-weight: 800; }
+
+  .next-box { border: 1px solid var(--panel-line); border-left: 3px solid var(--plum); border-radius: 12px; background: var(--panel-2); padding: 16px 18px; margin-bottom: 22px; }
+  .next-box .nb-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); font-weight: 800; margin-bottom: 8px; }
+  .next-box ol { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+  .next-box ol strong { color: var(--ink); }
+
+  .summary-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .copy-feedback { display: none; font-size: 0.88rem; color: var(--green); font-weight: 700; padding: 12px 0 0; }
+  .copy-feedback.show { display: block; }
+
+  /* ---------- What happens next (static, below wizard) ---------- */
+  .reassure { padding: 0 0 70px; }
+  .reassure .panel {
+    display: grid; grid-template-columns: 1fr 360px; gap: 40px;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    color: var(--ink);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+  }
+  @media (max-width: 760px) { .reassure .panel { grid-template-columns: 1fr; gap: 26px; } }
+  .reassure h2 { font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1.1; margin-bottom: 12px; }
+  .reassure p { color: var(--ink-soft); max-width: 56ch; margin-bottom: 0; }
+  .reassure .facts { display: grid; gap: 14px; align-content: start; }
+  .reassure .fact { padding-top: 14px; border-top: 1px solid var(--panel-line); }
+  .reassure .fact span { display: block; color: var(--ink-mute); font-size: 12px; margin-bottom: 3px; }
+  .reassure .fact strong { font-size: 15px; color: var(--ink-soft); }
+  .reassure .email-line { margin-top: 18px; font-size: 0.9rem; color: var(--ink-mute); }
+  .reassure .email-line a { color: var(--plum); border-bottom: 1px solid rgba(167,139,250,0.4); }
 
   /* ---------- Footer ---------- */
-  footer {
-    padding: 36px 28px; border-top: 1px solid var(--panel-line);
-    display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center;
-    color: var(--ink-mute); font-size: 0.84rem;
-    max-width: var(--maxw); margin: 0 auto;
-  }
-  footer .brand { font-size: 1rem; color: var(--ink-soft); }
-  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
+  footer { padding: 26px 0 44px; color: var(--ink-mute); font-size: 14px; }
+  .footer-row { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid var(--panel-line); padding-top: 20px; }
+  .footer-brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); }
 
-  @media (max-width: 560px) {
-    .step-content, .step-nav, .summary-screen { padding-left: 24px; padding-right: 24px; }
-    .step-counter { padding: 22px 24px 0; }
-    .nav-inner { padding: 0 18px; }
-    .wrap { padding: 0 18px; }
-    .brief-section { padding: 12px 18px; }
-    .brief-header { padding: 16px 18px; }
-    .welcome-screen { padding: 56px 24px; }
-    .option-card { padding: 14px 16px; }
-    .nav-progress-text { display: none !important; }
+
+  @media (max-width: 620px) {
+    .wrap { width: min(100% - 28px, var(--max)); }
+    .step-content, .step-nav, .summary-screen, .welcome-screen { padding-left: 22px; padding-right: 22px; }
+    .step-counter { padding: 20px 22px 0; }
+    .footer-row { flex-direction: column; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .step-content, .summary-screen { animation: none; }
     html { scroll-behavior: auto; }
+    .step-content, .summary-screen, .welcome-screen { animation: none; }
+    .btn:hover, .option-card:hover { transform: none; }
   }
 </style>
-<link rel="stylesheet" href="assets/motion.css?v=3">
 </head>
 <body>
+<div class="aurora" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+<div class="grain" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html"><span class="dot"></span> Cashie.dev</a>
-    <nav class="nav-links-apply">
-      <a href="products.html">Products</a>
-      <a href="index.html#services">Services</a>
-      <a href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
-      <a href="about.html">About</a>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Cashie home">
+      <img src="assets/logo-mark.svg" alt="" class="brand-mark" width="28" height="28">
+      <span>Cashie.dev</span>
+    </a>
+    <nav class="nav-right" aria-label="Primary">
+      <span class="nav-progress" id="navProgress"></span>
+      <a href="index.html#work">Work</a>
+      <a href="index.html">← Back to home</a>
     </nav>
-    <span class="nav-progress-text" id="navProgressText"></span>
-    <a class="nav-back" href="index.html">← Back to site</a>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="builder-layout">
-    <!-- Wizard -->
-    <div class="wizard-card" id="wizardCard">
-      <div class="glow"></div>
-      <div id="wizardContent"></div>
+    <div>
+      <!-- mobile brief shows above the wizard -->
+      <div class="mobile-brief" id="mobileBrief"></div>
+
+      <div class="wizard-card">
+        <div id="wizardContent"></div>
+      </div>
     </div>
 
-    <!-- Snapshot panel (desktop) -->
-    <aside class="snapshot-panel" id="snapshotPanel">
-      <div class="snap-glow"></div>
-      <h3 id="snapTitle">Project Snapshot</h3>
-      <p class="snap-sub" id="snapSub">Typical ranges for Cashie projects.</p>
-
-      <div id="snapContent">
-        <!-- Filled by JS -->
-      </div>
-
-      <p class="snap-foot" id="snapFoot">Estimates are indicative only. You'll get a fixed quote after I review your brief.</p>
+    <!-- Desktop live brief -->
+    <aside class="brief-panel" id="briefPanel" aria-label="Live project brief">
+      <h3 id="briefTitle">Your brief</h3>
+      <p class="bp-sub" id="briefSub">Fills in as you answer.</p>
+      <div id="briefContent"></div>
+      <p class="bp-foot">Nothing is stored or sent until you choose to send it. You'll get a fixed quote after I read your brief.</p>
     </aside>
   </div>
+
+  <!-- What happens next (always visible, reassurance) -->
+  <section class="reassure" aria-labelledby="reassure-title">
+    <div class="panel">
+      <div>
+        <h2 id="reassure-title">This isn't a black hole.</h2>
+        <p>Every brief gets a real reply from me — usually within a couple of days. I'll tell you honestly whether it's a good fit, suggest a clear scope, and send a fixed quote. Small, well-defined scopes are preferred: a focused first version beats a vague big build every time.</p>
+        <p class="email-line">Prefer email? Write to <a href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">lochieboo1208@gmail.com</a>.</p>
+      </div>
+      <div class="facts" aria-label="What to expect">
+        <div class="fact"><span>Reply time</span><strong>Usually within 2 days</strong></div>
+        <div class="fact"><span>You'll get</span><strong>Fit check, scope, fixed quote</strong></div>
+        <div class="fact"><span>Best fit</span><strong>Small, clear scopes</strong></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <span class="brand"><span class="dot"></span> Cashie.dev — Sydney</span>
-  <span>Brief Builder · No data stored</span>
+  <div class="wrap footer-row">
+    <span class="footer-brand"><img src="assets/logo-mark.svg" alt="" class="brand-mark sm" width="22" height="22"> Cashie.dev — Sydney</span>
+    <span>Project brief · nothing stored</span>
+  </div>
 </footer>
 
 <script>
-(function() {
+(function () {
   "use strict";
 
-  // ---- Unsupported configurations ----
-  var unsupportedPlatforms = ["ios", "android", "windows"];
+  /* ---------- Minimal line icons (stroke = currentColor) ---------- */
+  var icons = {
+    website:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 9h18"/><path d="M7 14h6"/></svg>',
+    booking:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>',
+    dashboard:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="9" rx="1"/><rect x="13" y="3" width="8" height="5" rx="1"/><rect x="13" y="10" width="8" height="11" rx="1"/><rect x="3" y="14" width="8" height="7" rx="1"/></svg>',
+    automation: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>',
+    mac:        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M6 7.5h.01M9 7.5h.01"/><path d="M8 21h8M9 17v4M15 17v4"/></svg>',
+    prototype:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg>',
+    other:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>'
+  };
 
-  // ---- Step definitions ----
+  /* ---------- App screenshot mockups (portfolio builds) ---------- */
+  var shotDots = '<span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>';
+  var osTraffic = '<div class="os-traffic">' + shotDots + '</div>';
+  var menubarStrip =
+    '<div class="os-menubar-strip">' +
+      '<span class="os-apple"></span><span>Finder</span><span>File</span><span>Edit</span>' +
+      '<span class="os-menu-filler"></span><span class="os-menubar-item on">Signal Shelf</span><span>Wed 9:41 AM</span>' +
+    '</div>';
+
+  function safariFrame(tabs, url, body) {
+    return '<div class="shot os-frame os-safari">' +
+      '<div class="os-safari-toolbar">' + osTraffic +
+        '<div class="os-safari-tabs">' + tabs + '</div>' +
+        '<div class="os-safari-urlbar"><span class="os-url-icon"></span><span class="os-url-text">' + url + '</span></div>' +
+      '</div>' +
+      '<div class="os-content os-web">' + body + '</div>' +
+    '</div>';
+  }
+
+  function macFrame(title, body, sidebar) {
+    var content = sidebar
+      ? '<div class="os-content os-mac-ui"><div class="os-mac-sidebar-pane">' + sidebar + '</div><div class="os-mac-main-pane">' + body + '</div></div>'
+      : '<div class="os-content os-mac-ui">' + body + '</div>';
+    return '<div class="shot os-frame os-mac' + (sidebar ? ' os-mac-sidebar' : '') + '">' +
+      '<div class="os-mac-toolbar">' + osTraffic + '<div class="os-mac-title">' + title + '</div></div>' +
+      content +
+    '</div>';
+  }
+
+  function menubarFrame(body) {
+    return '<div class="shot os-frame os-menubar">' + menubarStrip +
+      '<div class="os-popover">' + body + '</div></div>';
+  }
+
+  var previews = {
+    website: safariFrame(
+      '<span class="on">Home</span><span>Services</span>',
+      'polishbypiper.com',
+      '<div class="sp-brand">Polish By Piper</div>' +
+      '<div class="sp-hero">Nail artistry · mobile-first</div>' +
+      '<div class="sp-cards"><div class="sp-card">Gel</div><div class="sp-card">Acrylic</div><div class="sp-card">Lashes</div></div>'
+    ),
+    booking: safariFrame(
+      '<span>Home</span><span class="on">Book</span>',
+      'polishbypiper.com/book',
+      '<div class="sb-step">Choose service</div>' +
+      '<div class="sb-service sel">Gel manicure · 45 min</div>' +
+      '<div class="sb-service">Nail art add-on</div>' +
+      '<div class="sb-slots"><span class="sb-slot on">Tue 2pm</span><span class="sb-slot">Wed 11am</span></div>' +
+      '<div class="sb-cta">Request booking →</div>'
+    ),
+    dashboard: macFrame(
+      'Cashie Admin Hub',
+      '<div class="sa-metrics"><div><b>4</b><small>projects</small></div><div><b>2</b><small>running</small></div></div>' +
+      '<div class="sa-row on"><i></i>cashie-portfolio <em>active</em></div>' +
+      '<div class="sa-row"><i></i>plumclip <em>build</em></div>',
+      '<span class="on">Projects</span><span>Scripts</span><span>Services</span>'
+    ),
+    automation: macFrame(
+      'Enquiry automation',
+      '<div class="sau-flow">' +
+        '<div class="sau-step done"><span class="sau-dot"></span>Form submitted</div><div class="sau-line"></div>' +
+        '<div class="sau-step done"><span class="sau-dot"></span>Parse fields</div><div class="sau-line"></div>' +
+        '<div class="sau-step run"><span class="sau-dot"></span>Add to sheet</div><div class="sau-line dim"></div>' +
+        '<div class="sau-step"><span class="sau-dot"></span>Send confirmation</div>' +
+      '</div>'
+    ),
+    mac: macFrame(
+      'PlumClip',
+      '<div class="sc-menu">Recent clips</div>' +
+      '<div class="sc-item on"><span class="sc-pin"></span>project brief v2.md</div>' +
+      '<div class="sc-item"><span class="sc-pin"></span>npm run build</div>' +
+      '<div class="sc-item"><span class="sc-pin"></span>lochieboo1208@...</div>' +
+      '<div class="sc-foot">PlumClip · PlumWall · Signal Shelf</div>'
+    ),
+    prototype: menubarFrame(
+      '<div class="ss-bar">Quick actions</div>' +
+      '<div class="ss-item on"><i></i>Run backup now</div>' +
+      '<div class="ss-item on"><i></i>Check deploy status</div>' +
+      '<div class="ss-item"><i></i>Snooze reminder 1h</div>'
+    ),
+    other:
+      '<div class="shot"><div class="shot-collage">' +
+        '<div class="col-os os-frame os-safari">' +
+          '<div class="os-safari-toolbar">' + osTraffic +
+            '<div class="os-safari-urlbar"><span class="os-url-icon"></span><span class="os-url-text">polishbypiper.com</span></div>' +
+          '</div><div class="os-content os-web">Polish By Piper</div></div>' +
+        '<div class="col-os os-frame os-mac os-mac-sidebar">' +
+          '<div class="os-mac-toolbar">' + osTraffic + '<div class="os-mac-title">Admin Hub</div></div>' +
+          '<div class="os-content os-mac-ui"><div class="os-mac-sidebar-pane"><span class="on">Projects</span></div><div class="os-mac-main-pane">4 active</div></div></div>' +
+        '<div class="col-os os-frame os-mac">' +
+          '<div class="os-mac-toolbar">' + osTraffic + '<div class="os-mac-title">PlumClip</div></div>' +
+          '<div class="os-content os-mac-ui">Recent clips</div></div>' +
+      '</div></div>'
+  };
+
+  /* ---------- Step definitions ---------- */
   var steps = [
     {
       id: "welcome",
-      type: "welcome",
-      title: "Build your project brief",
-      lede: "Answer a few quick questions about your project. You'll get a live project snapshot as you go, plus a ready-to-send consulting-style brief at the end.",
-      features: [
-        { icon: "⚡", text: "60-second flow" },
-        { icon: "📊", text: "Project snapshot" },
-        { icon: "📋", text: "Copy-ready brief" }
-      ],
-      cta: "Start →"
+      type: "welcome"
     },
     {
       id: "type",
       type: "choice",
-      question: "What do you want to build?",
-      lede: "Pick the closest match — you can add detail later.",
+      twoCol: true,
+      visual: true,
+      question: "What do you need built?",
+      lede: "Pick the closest match — you can add detail in a moment.",
       options: [
-        { value: "desktop-app",  label: "Desktop app",    desc: "A native macOS or Linux application", icon: "🖥" },
-        { value: "internal-tool", label: "Internal tool", desc: "A utility or script for your team",   icon: "🔧" },
-        { value: "automation",   label: "Automation",      desc: "Script or workflow that runs itself", icon: "⚙" },
-        { value: "dashboard",    label: "Dashboard",       desc: "Visual control panel for data",       icon: "📊" },
-        { value: "website",      label: "Website / landing page", desc: "Marketing site or business page", icon: "🌐" },
-        { value: "improvement",  label: "Existing app improvement", desc: "Improve something already built", icon: "✨" },
-        { value: "other",        label: "Other",            desc: "Not sure yet — tell me more",         icon: "❓" }
+        { value: "website",    label: "Small business website", desc: "A clean site for a service or local business", icon: "website",    example: "Polish By Piper" },
+        { value: "booking",    label: "Booking / enquiry page",  desc: "Service menu, intake questions, send-through",  icon: "booking",    example: "Polish By Piper booking" },
+        { value: "dashboard",  label: "Admin dashboard",          desc: "Internal screen for jobs, files, status",       icon: "dashboard",  example: "Cashie Admin Hub" },
+        { value: "automation", label: "Automation workflow",      desc: "A repeatable task that runs itself",            icon: "automation", example: "Enquiry → sheet flow" },
+        { value: "mac",        label: "Mac utility",              desc: "A small local tool for macOS",                  icon: "mac",        example: "PlumClip · PlumWall" },
+        { value: "prototype",  label: "Working prototype",        desc: "A serious first version to test and decide on", icon: "prototype",  example: "Signal Shelf v0.3" },
+        { value: "other",      label: "Something else",           desc: "Not sure yet — tell me more",                  icon: "other",      example: "Mix of the above" }
       ]
     },
     {
-      id: "stack",
-      type: "choice",
-      question: "What tech are you thinking?",
-      lede: "If you're not sure, just pick \"Not sure yet\" — I'll recommend something.",
-      options: [
-        { value: "python",    label: "Python app/tool",  desc: "Scripts, CLI, backend, automation", icon: "🐍" },
-        { value: "swift",     label: "Swift / macOS app", desc: "Native macOS with SwiftUI",         icon: "🦅" },
-        { value: "react",     label: "React / TypeScript", desc: "Web app or dashboard frontend",     icon: "⚛" },
-        { value: "node",      label: "Node.js",           desc: "Server or automation runtime",       icon: "🟢" },
-        { value: "bash",      label: "Bash / CLI tool",    desc: "Shell scripting and terminal tools", icon: "⌨" },
-        { value: "tauri",     label: "Tauri desktop app", desc: "Lightweight cross-platform desktop",  icon: "🏗" },
-        { value: "mixed",     label: "Existing mixed codebase", desc: "Already have code in multiple languages", icon: "📦" },
-        { value: "not-sure",  label: "Not sure yet",      desc: "I'll recommend the best fit",         icon: "🤔" }
+      id: "problem",
+      type: "text",
+      question: "Tell me about it.",
+      lede: "A few plain sentences are plenty — this is the part I read most closely.",
+      fields: [
+        { id: "problem",  label: "The problem you're solving", hint: "What's painful or missing right now?", type: "textarea", required: true },
+        { id: "audience", label: "Who it's for",               hint: "e.g. your customers, your team, just you", type: "text", required: true },
+        { id: "outcome",  label: "What a good outcome looks like", hint: "How will you know this worked?", type: "textarea", required: true }
       ]
     },
     {
-      id: "platform",
-      type: "choice",
-      question: "Which platform?",
-      lede: "Where does this need to run?",
-      options: [
-        { value: "macos",       label: "macOS",           desc: "Apple desktop / laptop",     icon: "" },
-        { value: "linux",       label: "Linux",           desc: "Ubuntu, Debian, etc.",      icon: "🐧" },
-        { value: "mac-linux",   label: "macOS + Linux",    desc: "Both platforms",             icon: "💻" },
-        { value: "web-dashboard", label: "Web dashboard", desc: "Runs in the browser",         icon: "🌐" },
-        { value: "ios",         label: "iOS",              desc: "Not currently supported",     icon: "📱", unsupported: true },
-        { value: "android",     label: "Android",          desc: "Not currently supported",     icon: "📱", unsupported: true },
-        { value: "windows",     label: "Windows",          desc: "Not currently supported",     icon: "🪟", unsupported: true }
-      ]
-    },
-    {
-      id: "size",
-      type: "choice",
-      question: "How big is the project?",
-      lede: "A rough sense of scope helps me estimate time and cost.",
-      options: [
-        { value: "small",    label: "Small",           desc: "1 to 3 days of work",    icon: "🟢" },
-        { value: "medium",   label: "Medium",          desc: "1 to 2 weeks",           icon: "🟡" },
-        { value: "large",    label: "Large",           desc: "1+ month of work",       icon: "🔴" },
-        { value: "not-sure", label: "Not sure yet",     desc: "I'll scope it for you",   icon: "🤔" }
-      ]
-    },
-    {
-      id: "budget",
-      type: "choice",
-      question: "What's your budget range?",
-      lede: "A rough bracket helps me check fit. I quote fixed price either way.",
-      options: [
-        { value: "under-1k", label: "Under A$1,000",  desc: "Quick script or simple page",    icon: "💵" },
-        { value: "1k-3k",    label: "A$1,000 – A$3,000", desc: "Standard small project",         icon: "💰" },
-        { value: "3k-5k",    label: "A$3,000 – A$5,000", desc: "Multi-feature build",            icon: "🏦" },
-        { value: "5k-10k",   label: "A$5,000 – A$10,000", desc: "Complex system or dashboard",    icon: "🏆" },
-        { value: "10k+",     label: "A$10,000+",       desc: "Large or ongoing project",        icon: "💎" },
-        { value: "not-sure", label: "Not sure yet",    desc: "I'll suggest a budget",           icon: "🤔" }
-      ]
-    },
-    {
-      id: "timeline",
+      id: "deadline",
       type: "choice",
       question: "When do you need it?",
-      lede: "Urgent, flexible, or just exploring?",
+      lede: "Urgent, flexible, or just scoping things out?",
       options: [
-        { value: "asap",     label: "ASAP",           desc: "Needed yesterday",       icon: "🔥" },
-        { value: "1-2-weeks", label: "1–2 weeks",      desc: "Within a couple weeks",   icon: "⏱" },
-        { value: "1-month",  label: "Within a month",  desc: "Standard timeframe",       icon: "📅" },
-        { value: "flexible", label: "Flexible",        desc: "No hard deadline",         icon: "🌿" },
-        { value: "exploring", label: "Just exploring", desc: "Scoping it out",          icon: "🔍" }
+        { value: "asap",        label: "As soon as possible", desc: "There's real time pressure", icon: "automation" },
+        { value: "few-weeks",   label: "Within a few weeks",  desc: "Soon, but not on fire",      icon: "booking" },
+        { value: "this-quarter",label: "This quarter",        desc: "A clear but comfortable window", icon: "website" },
+        { value: "flexible",    label: "Flexible",            desc: "No hard deadline",           icon: "prototype" },
+        { value: "exploring",   label: "Just exploring",      desc: "Working out if it's worth doing", icon: "other" }
       ]
     },
     {
-      id: "details",
+      id: "scope",
+      type: "choice",
+      question: "Budget & scope comfort.",
+      lede: "A rough sense of size — I quote a fixed price either way.",
+      options: [
+        { value: "small",    label: "Small & contained", desc: "A focused first version · lower budget", icon: "prototype" },
+        { value: "standard", label: "Standard build",    desc: "A few connected pieces · mid budget",    icon: "dashboard" },
+        { value: "larger",   label: "Larger project",    desc: "Multiple features or ongoing work",      icon: "automation" },
+        { value: "unsure",   label: "Not sure yet",      desc: "Help me work out the right scope",       icon: "other" }
+      ]
+    },
+    {
+      id: "constraints",
       type: "text",
-      question: "What's the problem you're solving?",
-      lede: "A sentence or two about the problem, the user, and what \"done\" looks like.",
+      question: "Anything I should know?",
+      lede: "Optional — but it helps me scope accurately and avoid surprises.",
       fields: [
-        { id: "description", label: "Project description", hint: "e.g. I need a booking page that lets clients pick a service and send an enquiry…", type: "textarea", required: true },
-        { id: "features",    label: "Key features (optional)", hint: "List the main things the app needs to do — one per line.", type: "textarea", required: false },
-        { id: "links",       label: "Links or examples (optional)", hint: "Existing site, competitor, sketches, Notion docs", type: "textarea", required: false }
+        { id: "constraints", label: "Constraints or must-haves", hint: "Existing tools, brand, platforms, data, hard requirements", type: "textarea", required: false },
+        { id: "links",       label: "Links or examples",        hint: "Existing site, a competitor, sketches, a doc", type: "textarea", required: false }
       ]
     },
     {
       id: "contact",
       type: "text",
       question: "How do I reach you?",
-      lede: "Last step — just your name and contact details.",
+      lede: "Last step — just so I can send the reply to the right place.",
       fields: [
-        { id: "name",           label: "Your name", hint: "Who should I address the reply to?", type: "text", required: true },
-        { id: "project",        label: "Business or project name (optional)", hint: "The company or working title", type: "text", required: false },
-        { id: "contact-method", label: "Preferred contact method", hint: "WhatsApp, iMessage, Discord, Telegram, etc.", type: "text", required: true },
-        { id: "contact-details", label: "Contact handle / details", hint: "@username or best way to reach you", type: "text", required: true }
+        { id: "name",            label: "Your name",                       hint: "Who should I address the reply to?", type: "text", required: true },
+        { id: "project",         label: "Business or project name",        hint: "Company or working title", type: "text", required: false },
+        { id: "contact-method",  label: "Preferred contact method",        hint: "Email, WhatsApp, iMessage, Discord, etc.", type: "text", required: true },
+        { id: "contact-details", label: "Contact handle / details",        hint: "@username, number, or best way to reach you", type: "text", required: true }
       ]
     },
     {
       id: "summary",
       type: "summary",
       question: "Your project brief",
-      lede: "Here's your consulting-style brief. Copy it and send it through, or go back to edit."
+      lede: "Here's everything in one place. Send it straight to me, copy it, or go back and edit."
     }
   ];
 
-  // ---- State ----
-  var state = { stepIndex: 0, answers: {} };
-  var contentSteps = steps.filter(function(s){ return s.type === "choice" || s.type === "text"; });
-  var totalContentSteps = contentSteps.length;
-
-  // ---- Pricing engine — independent of customer budget ----
-  // Base prices in AUD per project type
-  var typePricing = {
-    "desktop-app":  { base: 3000, range: 5000, label: "Desktop app" },
-    "internal-tool": { base: 1200, range: 2300, label: "Internal tool" },
-    "automation":   { base: 600,  range: 1400, label: "Automation" },
-    "dashboard":    { base: 2800, range: 4200, label: "Dashboard" },
-    "website":      { base: 800,  range: 2200, label: "Website / landing page" },
-    "improvement":  { base: 1000, range: 4000, label: "Existing app improvement" },
-    "other":        { base: 1500, range: 3500, label: "Other" }
-  };
-
-  // Stack multipliers
-  var stackMultipliers = {
-    "python":  1.0,
-    "swift":   1.25,
-    "react":   1.15,
-    "node":    1.0,
-    "bash":    0.7,
-    "tauri":   1.2,
-    "mixed":   1.15,
-    "not-sure": 1.0
-  };
-
-  // Platform multipliers
-  var platformMultipliers = {
-    "macos": 1.0,
-    "linux": 0.95,
-    "mac-linux": 1.15,
-    "web-dashboard": 1.0,
-    "ios": 1.0,
-    "android": 1.0,
-    "windows": 1.0
-  };
-
-  // Size multipliers
-  var sizeMultipliers = {
-    "small": 0.5,
-    "medium": 1.0,
-    "large": 2.2,
-    "not-sure": 1.0
-  };
-
-  // Timeline urgency multipliers
-  var timelineMultipliers = {
-    "asap": 1.2,
-    "1-2-weeks": 1.05,
-    "1-month": 1.0,
-    "flexible": 0.95,
-    "exploring": 1.0
-  };
-
-  // Budget ranges for comparison (AUD)
-  var budgetRanges = {
-    "under-1k": { min: 0,    max: 1000 },
-    "1k-3k":    { min: 1000, max: 3000 },
-    "3k-5k":    { min: 3000, max: 5000 },
-    "5k-10k":   { min: 5000, max: 10000 },
-    "10k+":     { min: 10000, max: 999999 },
-    "not-sure": { min: null, max: null }
-  };
-
-  // Labels for display
+  /* ---------- Labels ---------- */
   var labels = {
     type: {
-      "desktop-app": "Desktop app", "internal-tool": "Internal tool", "automation": "Automation",
-      "dashboard": "Dashboard", "website": "Website / landing page", "improvement": "Existing app improvement", "other": "Other"
+      "website": "Small business website", "booking": "Booking / enquiry page",
+      "dashboard": "Admin dashboard", "automation": "Automation workflow",
+      "mac": "Mac utility", "prototype": "Working prototype", "other": "Something else"
     },
-    stack: {
-      "python": "Python", "swift": "Swift / macOS", "react": "React / TypeScript",
-      "node": "Node.js", "bash": "Bash / CLI", "tauri": "Tauri desktop",
-      "mixed": "Mixed codebase", "not-sure": "Not sure yet (I'll recommend)"
+    deadline: {
+      "asap": "As soon as possible", "few-weeks": "Within a few weeks",
+      "this-quarter": "This quarter", "flexible": "Flexible", "exploring": "Just exploring"
     },
-    platform: {
-      "macos": "macOS", "linux": "Linux", "mac-linux": "macOS + Linux",
-      "web-dashboard": "Web dashboard", "ios": "iOS (unsupported)", "android": "Android (unsupported)", "windows": "Windows (unsupported)"
-    },
-    size: {
-      "small": "Small · 1–3 days", "medium": "Medium · 1–2 weeks",
-      "large": "Large · 1+ month", "not-sure": "Not sure"
-    },
-    budget: {
-      "under-1k": "Under A$1,000", "1k-3k": "A$1,000 – A$3,000",
-      "3k-5k": "A$3,000 – A$5,000", "5k-10k": "A$5,000 – A$10,000",
-      "10k+": "A$10,000+", "not-sure": "Not sure yet"
-    },
-    timeline: {
-      "asap": "ASAP", "1-2-weeks": "1–2 weeks", "1-month": "Within a month",
-      "flexible": "Flexible", "exploring": "Just exploring"
+    scope: {
+      "small": "Small & contained", "standard": "Standard build",
+      "larger": "Larger project", "unsure": "Not sure yet"
     }
   };
 
-  // ---- Calculate estimate independently ----
-  function calculateEstimate() {
-    var a = state.answers;
-    var typeData = typePricing[a.type];
-    if (!typeData) return null;
+  /* ---------- State ---------- */
+  var state = { stepIndex: 0, answers: {} };
+  var contentSteps = steps.filter(function (s) { return s.type === "choice" || s.type === "text"; });
+  var totalContentSteps = contentSteps.length;
 
-    var base = typeData.base;
-    var range = typeData.range;
+  /* ---------- DOM refs ---------- */
+  var elWizard   = document.getElementById("wizardContent");
+  var elProgress = document.getElementById("progressFill");
+  var elNavProg  = document.getElementById("navProgress");
+  var elBriefSub = document.getElementById("briefSub");
+  var elBrief    = document.getElementById("briefContent");
+  var elMobile   = document.getElementById("mobileBrief");
 
-    // Stack multiplier
-    var stackMult = stackMultipliers[a.stack] || 1.0;
-
-    // Platform multiplier
-    var platMult = platformMultipliers[a.platform] || 1.0;
-
-    // Size multiplier
-    var sizeMult = sizeMultipliers[a.size] || 1.0;
-
-    // Timeline multiplier
-    var tlMult = timelineMultipliers[a.timeline] || 1.0;
-
-    // Feature count modifier (from details.features textarea)
-    var featureCount = 0;
-    if (a.features && a.features.trim()) {
-      featureCount = a.features.trim().split("\n").filter(function(l){ return l.trim(); }).length;
-    }
-    var featureMult = 1.0 + (featureCount * 0.05); // +5% per feature
-
-    // Calculate
-    var minRaw = base * stackMult * platMult * sizeMult * tlMult * featureMult;
-    var maxRaw = minRaw + (range * sizeMult * stackMult);
-
-    // Round to nearest $100
-    var minVal = Math.round(minRaw / 100) * 100;
-    var maxVal = Math.round(maxRaw / 100) * 100;
-
-    // Clamp minimums
-    if (minVal < 300) minVal = 300;
-    if (maxVal < minVal + 400) maxVal = minVal + 400;
-
-    return {
-      min: minVal,
-      max: maxVal,
-      minStr: "A$" + minVal.toLocaleString(),
-      maxStr: "A$" + maxVal.toLocaleString(),
-      rangeStr: "A$" + minVal.toLocaleString() + "–A$" + maxVal.toLocaleString()
-    };
-  }
-
-  // ---- Budget fit analysis ----
-  function getBudgetFit() {
-    var est = calculateEstimate();
-    var a = state.answers;
-    if (!est) return null;
-    if (!a.budget || a.budget === "not-sure") return null;
-    var br = budgetRanges[a.budget];
-    if (!br) return null;
-
-    // Good match: budget overlaps with estimate range
-    if (br.max >= est.min * 0.85 && br.min <= est.max * 1.05) {
-      return { level: "good", label: "✓ Good Match", class: "good" };
-    }
-    // Stretch: budget is below estimate but not by much
-    if (br.max < est.min * 0.85 && br.max >= est.min * 0.55) {
-      return { level: "warn", label: "⚠ Stretch budget", class: "warn" };
-    }
-    // Over budget: budget is way below estimate
-    if (br.max < est.min * 0.55) {
-      return { level: "over", label: "⚠ Budget likely too low", class: "warn" };
-    }
-    // Budget much higher than estimate — still good
-    return { level: "good", label: "✓ Good Match", class: "good" };
-  }
-
-  // ---- Confidence score ----
-  function getConfidence() {
-    var a = state.answers;
-    var score = 0;
-    var maxScore = 0;
-
-    // Type selected
-    maxScore += 15;
-    if (a.type) score += 15;
-
-    // Stack certainty
-    maxScore += 15;
-    if (a.stack && a.stack !== "not-sure") score += 15;
-    else if (a.stack === "not-sure") score += 7;
-
-    // Platform selected
-    maxScore += 10;
-    if (a.platform && unsupportedPlatforms.indexOf(a.platform) === -1) score += 10;
-
-    // Size selected
-    maxScore += 10;
-    if (a.size && a.size !== "not-sure") score += 10;
-    else if (a.size === "not-sure") score += 5;
-
-    // Budget selected
-    maxScore += 10;
-    if (a.budget && a.budget !== "not-sure") score += 10;
-    else if (a.budget === "not-sure") score += 5;
-
-    // Timeline selected
-    maxScore += 10;
-    if (a.timeline) score += 10;
-
-    // Description detail
-    maxScore += 20;
-    if (a.description && a.description.trim()) {
-      var descLen = a.description.trim().length;
-      if (descLen > 100) score += 20;
-      else if (descLen > 40) score += 12;
-      else score += 6;
-    }
-
-    // Features list
-    maxScore += 10;
-    if (a.features && a.features.trim()) {
-      var featCount = a.features.trim().split("\n").filter(function(l){ return l.trim(); }).length;
-      if (featCount >= 3) score += 10;
-      else if (featCount >= 1) score += 5;
-    }
-
-    var pct = Math.round((score / maxScore) * 100);
-
-    if (pct >= 70) return { level: "high", label: "HIGH", pct: pct };
-    if (pct >= 40) return { level: "medium", label: "MEDIUM", pct: pct };
-    return { level: "low", label: "LOW", pct: pct };
-  }
-
-  // ---- DOM refs ----
-  var elWizard    = document.getElementById("wizardContent");
-  var elProgress  = document.getElementById("progressFill");
-  var elNavProg   = document.getElementById("navProgressText");
-  var elSnapTitle = document.getElementById("snapTitle");
-  var elSnapSub   = document.getElementById("snapSub");
-  var elSnap      = document.getElementById("snapContent");
-  var elSnapFoot  = document.getElementById("snapFoot");
-
-  // ---- Helpers ----
+  /* ---------- Helpers ---------- */
   function esc(str) {
-    return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
+  function truncate(str, n) { str = String(str).trim(); return str.length > n ? str.slice(0, n - 1).trim() + "…" : str; }
+  function getChoiceNumber(step) { return contentSteps.indexOf(step) + 1; }
 
-  function fmtAUD(n) {
-    return "A$" + n.toLocaleString();
-  }
-
-  // ---- Update progress bar + nav text ----
+  /* ---------- Progress ---------- */
   function updateProgress() {
     var idx = state.stepIndex;
     if (idx === 0) {
@@ -1025,165 +933,161 @@
     }
     var pct = Math.round((idx / (steps.length - 1)) * 100);
     elProgress.style.width = pct + "%";
-    var stepNum = getChoiceNumber(steps[idx]);
-    elNavProg.textContent = "Step " + stepNum + " of " + totalContentSteps + " · " + pct + "%";
+    elNavProg.textContent = "Step " + getChoiceNumber(steps[idx]) + " of " + totalContentSteps;
     elNavProg.classList.add("visible");
   }
 
-  // ---- Update snapshot panel ----
-  function updateSnapshot() {
+  /* ---------- Live brief ---------- */
+  function briefRows() {
     var a = state.answers;
-    var est = calculateEstimate();
-    var fit = getBudgetFit();
-    var conf = getConfidence();
-
-    // If no answers yet — show defaults
-    var hasAnyAnswer = Object.keys(a).length > 0 && (a.type || a.stack || a.platform || a.size || a.budget || a.timeline);
-
-    if (!hasAnyAnswer) {
-      elSnapSub.textContent = "Typical ranges for Cashie projects.";
-      var html = '';
-      html += '<div class="snap-default">';
-      html += '<div class="snap-default-label">Typical Projects</div>';
-      html += '<ul><li>Swift utilities</li><li>Tauri desktop apps</li><li>Internal dashboards</li><li>Automation tools</li></ul>';
-      html += '<div class="snap-default-label">Typical Investment</div>';
-      html += '<p style="font-family:var(--serif);font-size:1.4rem;color:var(--cream);margin:0 0 14px;">A$500–A$5,000</p>';
-      html += '<div class="snap-default-label">Typical Timeline</div>';
-      html += '<p style="font-family:var(--serif);font-size:1.05rem;color:var(--cream);margin:0;">1–4 weeks</p>';
-      html += '</div>';
-      elSnap.innerHTML = html;
-      elSnapFoot.style.display = "block";
-      return;
+    function row(label, value) {
+      var has = value && String(value).trim();
+      return '<div class="bp-row"><dt>' + esc(label) + '</dt><dd class="' + (has ? '' : 'empty') + '">' +
+        (has ? esc(value) : "—") + '</dd></div>';
     }
-
-    // Live snapshot with answers
-    elSnapSub.textContent = "Updates as you answer.";
-
-    var html = '';
-
-    // Estimate
-    html += '<div class="est-label-mini">Estimated Investment</div>';
-    html += '<div class="est-summary">';
-    if (est) {
-      html += '<span class="est-big">' + esc(est.minStr) + '</span>';
-      html += '<span class="est-small">– ' + esc(est.maxStr) + '</span>';
-    } else {
-      html += '<span class="est-big empty">A$500–A$5,000</span>';
-      html += '<span class="est-small">typical range</span>';
+    var html = "";
+    if (a.type && previews[a.type]) {
+      html += '<div class="bp-thumb" aria-hidden="true">' + previews[a.type] + '</div>';
     }
-    html += '</div>';
-
-    // Stats rows
-    html += '<div class="est-row"><span class="est-label">Project</span><span class="est-value ' + (a.type ? '' : 'empty') + '">' + esc(a.type ? labels.type[a.type] : 'Not selected') + '</span></div>';
-    html += '<div class="est-row"><span class="est-label">Platform</span><span class="est-value ' + (a.platform ? '' : 'empty') + '">' + esc(a.platform ? labels.platform[a.platform] : 'Not selected') + '</span></div>';
-    html += '<div class="est-row"><span class="est-label">Stack</span><span class="est-value ' + (a.stack ? '' : 'empty') + '">' + esc(a.stack ? labels.stack[a.stack] : 'Not selected') + '</span></div>';
-    html += '<div class="est-row"><span class="est-label">Complexity</span><span class="est-value ' + (a.size ? '' : 'empty') + '">' + esc(a.size ? labels.size[a.size] : 'Not selected') + '</span></div>';
-    html += '<div class="est-row"><span class="est-label">Timeline</span><span class="est-value ' + (a.timeline ? '' : 'empty') + '">' + esc(a.timeline ? labels.timeline[a.timeline] : 'Not selected') + '</span></div>';
-
-    // Customer budget vs budget fit
-    if (a.budget && a.budget !== "not-sure") {
-      html += '<div class="est-row"><span class="est-label">Your Budget</span><span class="est-value">' + esc(labels.budget[a.budget]) + '</span></div>';
-      if (fit) {
-        html += '<div class="est-row"><span class="est-label">Budget Fit</span><span class="est-value"><span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span></span></div>';
-      }
-    }
-
-    // Confidence score
-    if (conf) {
-      html += '<div class="est-row"><span class="est-label">Confidence</span><span class="est-value"><span class="conf-badge ' + esc(conf.level) + '">' + esc(conf.label) + ' · ' + conf.pct + '%</span></span></div>';
-    }
-
-    elSnap.innerHTML = html;
-    elSnapFoot.style.display = "block";
+    html += row("Project", a.type ? labels.type[a.type] : "");
+    html += row("For", a.audience ? truncate(a.audience, 34) : "");
+    html += row("Goal", a.outcome ? truncate(a.outcome, 40) : "");
+    html += row("Deadline", a.deadline ? labels.deadline[a.deadline] : "");
+    html += row("Scope", a.scope ? labels.scope[a.scope] : "");
+    return html;
   }
 
-  // ---- Render step dots ----
+  function updateBrief() {
+    var a = state.answers;
+    var hasAny = a.type || a.audience || a.outcome || a.deadline || a.scope || a.problem;
+
+    var html;
+    if (!hasAny) {
+      elBriefSub.textContent = "Fills in as you answer.";
+      html = '<div class="bp-default">' +
+        '<div class="bp-label">What I build best</div>' +
+        '<ul>' +
+          '<li>Small business sites &amp; booking pages</li>' +
+          '<li>Admin dashboards</li>' +
+          '<li>Automations &amp; Mac utilities</li>' +
+          '<li>Working prototypes</li>' +
+        '</ul>' +
+        '<div class="bp-label">What happens next</div>' +
+        '<ul>' +
+          '<li>You send this brief</li>' +
+          '<li>I reply with a fit check</li>' +
+          '<li>Clear scope + fixed quote</li>' +
+        '</ul>' +
+      '</div>';
+    } else {
+      elBriefSub.textContent = "Updates as you answer.";
+      html = briefRows();
+    }
+    elBrief.innerHTML = html;
+    syncMobileBrief();
+  }
+
+  function syncMobileBrief() {
+    // Mirror the desktop panel into the mobile slot (only meaningful once answers exist)
+    var a = state.answers;
+    var hasAny = a.type || a.audience || a.outcome || a.deadline || a.scope || a.problem;
+    if (!hasAny || state.stepIndex === 0 || steps[state.stepIndex].type === "summary") {
+      elMobile.innerHTML = "";
+      return;
+    }
+    elMobile.innerHTML = '<aside class="brief-panel"><h3>Your brief so far</h3>' +
+      '<p class="bp-sub">Updates as you answer.</p>' + briefRows() + '</aside>';
+  }
+
+  /* ---------- Dots ---------- */
   function renderDots() {
     var step = steps[state.stepIndex];
     if (step.type === "welcome" || step.type === "summary") return "";
     var activeIdx = contentSteps.indexOf(step);
     if (activeIdx < 0) return "";
-
     var html = '<div class="dots">';
     for (var i = 0; i < contentSteps.length; i++) {
-      var cls = "";
-      if (i < activeIdx) cls = "done";
-      else if (i === activeIdx) cls = "active";
+      var cls = i < activeIdx ? "done" : (i === activeIdx ? "active" : "");
       html += '<span class="dot ' + cls + '"></span>';
     }
-    html += '</div>';
-    return html;
+    return html + '</div>';
   }
 
-  // ---- Render functions ----
+  /* ---------- Render ---------- */
   function render() {
     var step = steps[state.stepIndex];
     var html = "";
-
-    if (step.type === "welcome")          html = renderWelcome(step);
-    else if (step.type === "choice")      html = renderChoice(step);
-    else if (step.type === "text")         html = renderTextStep(step);
-    else if (step.type === "summary")      html = renderSummary(step);
+    if (step.type === "welcome")      html = renderWelcome();
+    else if (step.type === "choice")  html = renderChoice(step);
+    else if (step.type === "text")    html = renderTextStep(step);
+    else if (step.type === "summary") html = renderSummary(step);
 
     elWizard.innerHTML = html;
     attachHandlers();
     updateProgress();
-    updateSnapshot();
-
+    updateBrief();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function renderWelcome(step) {
-    var feats = step.features.map(function(f) {
-      return '<div class="welcome-feature"><span class="wf-icon">' + f.icon + '</span>' + esc(f.text) + '</div>';
+  function renderWelcome() {
+    var proc = [
+      { n: "01", name: "Define", desc: "Clarify the job, users, and what's out of scope." },
+      { n: "02", name: "Shape",  desc: "Map the flow, screens, and handoff points." },
+      { n: "03", name: "Build",  desc: "Working version in short passes against scope." },
+      { n: "04", name: "Hand over", desc: "Finished work with clear notes to use or extend." }
+    ].map(function (p) {
+      return '<div class="process-step"><div class="pnum">' + p.n + '</div>' +
+        '<div class="pname">' + p.name + '</div><div class="pdesc">' + p.desc + '</div></div>';
     }).join("");
 
-    return '' +
-      '<div class="welcome-screen">' +
-        '<div class="welcome-tag"><span class="pip"></span> Project Brief Builder</div>' +
-        '<h2>' + step.title + '</h2>' +
-        '<p>' + step.lede + '</p>' +
-        '<div class="welcome-features">' + feats + '</div>' +
-        '<button class="btn btn-primary" data-action="start">' + esc(step.cta) + '</button>' +
+    return '<div class="welcome-screen">' +
+        '<div class="welcome-tag">Project brief</div>' +
+        '<h2>Tell me what you need built.</h2>' +
+        '<p class="intro">A short, guided brief — about a minute. You\'ll get a <strong>live summary</strong> as you go and a clean, ready-to-send brief at the end. <strong>Small, clear scopes are preferred</strong> — a focused first version beats a vague big build.</p>' +
+        '<div class="process-row">' + proc + '</div>' +
+        '<div class="welcome-actions">' +
+          '<button class="btn btn-primary" data-action="start">Start the brief →</button>' +
+          '<a class="btn btn-ghost" href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">Just email me instead</a>' +
+        '</div>' +
       '</div>';
   }
 
   function renderChoice(step) {
-    var counter = renderDots();
-    var optionsHtml = step.options.map(function(opt) {
+    var isVisual = step.visual === true;
+    var optionsHtml = step.options.map(function (opt) {
       var selected = state.answers[step.id] === opt.value ? " selected" : "";
-      var unsup = opt.unsupported ? " unsupported" : "";
-      return '' +
-        '<label class="option-card' + selected + unsup + '" data-value="' + esc(opt.value) + '"' + (opt.unsupported ? '' : '') + '>' +
-          '<span class="icon">' + opt.icon + '</span>' +
+      if (isVisual) {
+        var preview = previews[opt.value] || previews[opt.icon] || "";
+        return '<label class="option-card visual' + selected + '" data-value="' + esc(opt.value) + '">' +
+            '<div class="card-preview" aria-hidden="true">' + preview + '</div>' +
+            '<div class="card-body">' +
+              '<div class="card-text">' +
+                '<div class="label">' + esc(opt.label) + '</div>' +
+                '<div class="desc">' + esc(opt.desc) + '</div>' +
+                (opt.example ? '<div class="card-example">e.g. ' + esc(opt.example) + '</div>' : '') +
+              '</div>' +
+              '<span class="check"></span>' +
+            '</div>' +
+          '</label>';
+      }
+      return '<label class="option-card' + selected + '" data-value="' + esc(opt.value) + '">' +
+          '<span class="icon">' + (icons[opt.icon] || "") + '</span>' +
           '<span>' +
-            '<div class="label">' + esc(opt.label) + '</div>' +
-            '<div class="desc">' + esc(opt.desc) + '</div>' +
+            '<span class="label">' + esc(opt.label) + '</span>' +
+            '<span class="desc">' + esc(opt.desc) + '</span>' +
           '</span>' +
           '<span class="check"></span>' +
         '</label>';
     }).join("");
 
-    // Check if current answer is unsupported
-    var showAlert = state.answers[step.id] && step.options.some(function(o) {
-      return o.value === state.answers[step.id] && o.unsupported;
-    });
+    var nextDisabled = state.answers[step.id] ? "" : " disabled";
+    var gridClass = "option-grid" + (step.twoCol ? " two" : "") + (isVisual ? " visual" : "");
 
-    var alertHtml = showAlert ? '<div class="unsupported-alert show"><strong>Not currently supported.</strong> I focus on macOS, Linux, and web dashboards. I don\'t take iOS, Android, or Windows-only projects. Feel free to pick a different platform, or describe it as "Other" in the first step.</div>' : '';
-
-    // If showing unsupported, the "Next" should be disabled
-    var nextDisabled = showAlert ? " disabled" : (state.answers[step.id] ? "" : " disabled");
-
-    return '' +
-      '<div class="step-counter">' +
-        '<span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' +
-        counter +
-      '</div>' +
+    return '<div class="step-counter"><span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' + renderDots() + '</div>' +
       '<div class="step-content">' +
-        alertHtml +
         '<h2>' + esc(step.question) + '</h2>' +
         '<p class="lede">' + esc(step.lede) + '</p>' +
-        '<div class="option-grid">' + optionsHtml + '</div>' +
+        '<div class="' + gridClass + '">' + optionsHtml + '</div>' +
       '</div>' +
       '<div class="step-nav">' +
         '<button class="btn btn-ghost btn-back" data-action="back">← Back</button>' +
@@ -1192,26 +1096,17 @@
   }
 
   function renderTextStep(step) {
-    var counter = renderDots();
-    var fieldsHtml = step.fields.map(function(f) {
+    var fieldsHtml = step.fields.map(function (f) {
       var val = state.answers[f.id] || "";
-      var tag = f.type === "textarea" ? "textarea" : 'input type="text"';
-      var closeTag = f.type === "textarea" ? '>' + esc(val) + '</textarea>' : ' value="' + esc(val) + '">';
-      var req = f.required ? " <span style=\"color:var(--ink-mute);font-weight:400;\">(required)</span>" : "";
-      return '' +
-        '<div class="input-field">' +
-          '<label>' + esc(f.label) + req + '</label>' +
-          '<p class="hint">' + esc(f.hint) + '</p>' +
-          '<' + tag + ' id="field-' + f.id + '" data-field="' + esc(f.id) + '" data-required="' + f.required + '"' +
-          (f.type === "textarea" ? "" : ' autocomplete="off"') + closeTag +
-        '</div>';
+      var req = f.required ? ' <span class="req">(required)</span>' : ' <span class="req">(optional)</span>';
+      var control = f.type === "textarea"
+        ? '<textarea id="field-' + f.id + '" data-field="' + esc(f.id) + '" data-required="' + f.required + '">' + esc(val) + '</textarea>'
+        : '<input type="text" id="field-' + f.id + '" data-field="' + esc(f.id) + '" data-required="' + f.required + '" autocomplete="off" value="' + esc(val) + '">';
+      return '<div class="input-field"><label>' + esc(f.label) + req + '</label>' +
+        '<p class="hint">' + esc(f.hint) + '</p>' + control + '</div>';
     }).join("");
 
-    return '' +
-      '<div class="step-counter">' +
-        '<span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' +
-        counter +
-      '</div>' +
+    return '<div class="step-counter"><span class="pill">Step ' + getChoiceNumber(step) + ' of ' + totalContentSteps + '</span>' + renderDots() + '</div>' +
       '<div class="step-content">' +
         '<h2>' + esc(step.question) + '</h2>' +
         '<p class="lede">' + esc(step.lede) + '</p>' +
@@ -1223,189 +1118,101 @@
       '</div>';
   }
 
+  function bsection(label, value, extraClass) {
+    return '<div class="bsection"><div class="bs-label">' + esc(label) + '</div>' +
+      '<div class="bs-value ' + (extraClass || "") + '">' + value + '</div></div>';
+  }
+
   function renderSummary(step) {
     var a = state.answers;
-    var est = calculateEstimate();
-    var fit = getBudgetFit();
-    var conf = getConfidence();
 
-    // Build features list
     var featuresList = "";
-    if (a.features && a.features.trim()) {
-      var feats = a.features.trim().split("\n").filter(function(l){ return l.trim(); });
-      featuresList = feats.map(function(f) {
-        return '<li>' + esc(f.trim()) + '</li>';
-      }).join("");
+    if (a.constraints && a.constraints.trim()) {
+      featuresList = a.constraints.trim().split("\n").filter(function (l) { return l.trim(); })
+        .map(function (f) { return '<li>' + esc(f.trim()) + '</li>'; }).join("");
     }
 
-    // Build description
-    var descHtml = a.description && a.description.trim()
-      ? esc(a.description.trim())
-      : '<span class="muted">No description provided</span>';
+    var contactParts = [];
+    if (a.name) contactParts.push(a.name);
+    if (a.project) contactParts.push(a.project);
+    if (a["contact-method"]) contactParts.push(a["contact-method"]);
+    if (a["contact-details"]) contactParts.push(a["contact-details"]);
+    var contactHtml = contactParts.length ? esc(contactParts.join(" · ")) : '<span class="muted">Not provided</span>';
 
-    // Build links
-    var linksHtml = a.links && a.links.trim() ? esc(a.links.trim()) : '<span class="muted">None provided</span>';
-
-    // Contact
-    var contactHtml = "";
-    if (a.name) contactHtml += esc(a.name);
-    if (a.project) contactHtml += " · " + esc(a.project);
-    if (a["contact-method"]) contactHtml += " · " + esc(a["contact-method"]);
-    if (a["contact-details"]) contactHtml += " · " + esc(a["contact-details"]);
-    if (!contactHtml.trim()) contactHtml = '<span class="muted">Not provided</span>';
-
-    var html = '' +
-      '<div class="step-counter">' +
-        '<span class="pill">Summary</span>' +
-      '</div>' +
+    var html = '<div class="step-counter"><span class="pill">Summary</span></div>' +
       '<div class="summary-screen">' +
         '<h2>' + esc(step.question) + '</h2>' +
         '<p class="lede">' + esc(step.lede) + '</p>' +
-        '<div class="summary-brief">';
+        '<div class="summary-brief">' +
+          '<div class="brief-head"><div class="bh-title">Project brief</div>' +
+          '<div class="bh-sub">For Cashie — built with the project brief tool</div></div>';
 
-    // Brief header
-    html += '<div class="brief-header">';
-    html += '<div class="brief-title">Cashie Project Brief</div>';
-    html += '<div class="brief-sub">Generated by the Cashie Project Brief Builder</div>';
-    html += '<div class="brief-badges">';
-    if (conf) html += '<span class="conf-badge ' + esc(conf.level) + '">Confidence: ' + esc(conf.label) + '</span>';
-    if (fit)  html += '<span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span>';
-    html += '</div>';
-    html += '</div>';
+    html += bsection("Project type", a.type ? labels.type[a.type] : '<span class="muted">Not specified</span>', a.type ? "" : "muted");
+    html += bsection("The problem", a.problem && a.problem.trim() ? esc(a.problem.trim()) : '<span class="muted">Not provided</span>', a.problem ? "" : "muted");
+    html += bsection("Who it's for", a.audience && a.audience.trim() ? esc(a.audience.trim()) : '<span class="muted">Not provided</span>', a.audience ? "" : "muted");
+    html += bsection("Desired outcome", a.outcome && a.outcome.trim() ? esc(a.outcome.trim()) : '<span class="muted">Not provided</span>', a.outcome ? "" : "muted");
+    html += bsection("Deadline", a.deadline ? labels.deadline[a.deadline] : '<span class="muted">Not specified</span>', a.deadline ? "" : "muted");
+    html += bsection("Budget / scope comfort", a.scope ? labels.scope[a.scope] : '<span class="muted">Not specified</span>', a.scope ? "" : "muted");
 
-    // Project type
-    html += briefSection("Project", a.type ? labels.type[a.type] : '<span class="muted">Not specified</span>', a.type ? "" : "muted");
-
-    // Platform
-    html += briefSection("Platform", a.platform ? labels.platform[a.platform] : '<span class="muted">Not specified</span>', a.platform ? "" : "muted");
-
-    // Recommended Stack
-    html += briefSection("Recommended Stack", a.stack ? labels.stack[a.stack] : '<span class="muted">Not specified</span>', a.stack ? "" : "muted");
-
-    // Complexity
-    html += briefSection("Complexity", a.size ? labels.size[a.size] : '<span class="muted">Not specified</span>', a.size ? "" : "muted");
-
-    // Estimated Investment
-    if (est) {
-      html += briefSection("Estimated Investment", est.rangeStr, "bold");
-    } else {
-      html += briefSection("Estimated Investment", '<span class="muted">Insufficient data — needs project type</span>', "muted");
-    }
-
-    // Customer Budget
-    html += briefSection("Customer Budget", a.budget ? labels.budget[a.budget] : '<span class="muted">Not specified</span>', a.budget ? "" : "muted");
-
-    // Budget Fit
-    if (fit) {
-      html += briefSection("Budget Fit", '<span class="fit-badge ' + esc(fit.class) + '">' + esc(fit.label) + '</span>', "");
-    } else if (a.budget && a.budget !== "not-sure" && !est) {
-      html += briefSection("Budget Fit", '<span class="muted">Needs more info</span>', "muted");
-    } else {
-      html += briefSection("Budget Fit", '<span class="muted">—</span>', "muted");
-    }
-
-    // Timeline
-    html += briefSection("Timeline", a.timeline ? labels.timeline[a.timeline] : '<span class="muted">Not specified</span>', a.timeline ? "" : "muted");
-
-    // Features
     if (featuresList) {
-      html += '<div class="brief-section"><div class="bs-label">Features</div><ul class="bs-list">' + featuresList + '</ul></div>';
+      html += '<div class="bsection"><div class="bs-label">Constraints / must-haves</div><ul class="bs-list">' + featuresList + '</ul></div>';
     } else {
-      html += briefSection("Features", '<span class="muted">Not specified</span>', "muted");
+      html += bsection("Constraints / must-haves", '<span class="muted">None noted</span>', "muted");
     }
 
-    // Project Notes
-    html += '<div class="brief-section"><div class="bs-label">Project Notes</div><div class="bs-value">' + descHtml + '</div></div>';
+    html += bsection("Links / examples", a.links && a.links.trim() ? esc(a.links.trim()) : '<span class="muted">None provided</span>', a.links ? "" : "muted");
+    html += bsection("Contact", contactHtml, "");
+    html += '</div>'; // summary-brief
 
-    // Links
-    html += '<div class="brief-section"><div class="bs-label">Links / Examples</div><div class="bs-value">' + linksHtml + '</div></div>';
+    html += '<div class="next-box"><div class="nb-label">What happens next</div>' +
+      '<ol><li><strong>You send this brief</strong> by email or copy &amp; paste.</li>' +
+      '<li><strong>I reply within ~2 days</strong> with an honest fit check.</li>' +
+      '<li><strong>You get a clear scope and a fixed quote</strong> before any work starts.</li></ol></div>';
 
-    // Contact
-    html += '<div class="brief-section"><div class="bs-label">Contact</div><div class="bs-value">' + contactHtml + '</div></div>';
-
-    html += '</div>'; // close summary-brief
-
-    // Confidence detail
-    if (conf) {
-      html += '<div style="font-size:0.82rem;color:var(--ink-mute);margin:-12px 0 20px;padding:0 4px;">Confidence score: ' + conf.label + ' (' + conf.pct + '%) — based on completeness, stack certainty, and detail provided.</div>';
-    }
-
-    // Actions
     html += '<div class="summary-actions">' +
-      '<button class="btn btn-primary" data-action="email">✉ Email this brief to Cashie</button>' +
-      '<button class="btn btn-ghost" data-action="copy">📋 Copy brief</button>' +
-      '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
-      '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
-    '</div>' +
-    '<div class="copy-feedback" id="copyFeedback">✓ Brief copied to clipboard. Paste it anywhere.</div>' +
-    '</div>';
+        '<button class="btn btn-primary" data-action="email">Email this brief to Cashie</button>' +
+        '<button class="btn btn-ghost" data-action="copy">Copy brief</button>' +
+        '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
+        '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
+      '</div>' +
+      '<div class="copy-feedback" id="copyFeedback">✓ Brief copied. Paste it anywhere.</div>' +
+      '</div>';
 
     return html;
   }
 
-  function briefSection(label, value, extraClass) {
-    return '<div class="brief-section"><div class="bs-label">' + esc(label) + '</div><div class="bs-value ' + (extraClass || "") + '">' + value + '</div></div>';
-  }
-
-  function getChoiceNumber(step) {
-    return contentSteps.indexOf(step) + 1;
-  }
-
-  // ---- Event handlers ----
+  /* ---------- Handlers ---------- */
   function attachHandlers() {
-    var startBtn = elWizard.querySelector('[data-action="start"]');
-    if (startBtn) { startBtn.addEventListener("click", function() { goNext(); }); }
-
-    var actions = elWizard.querySelectorAll('[data-action]');
-    actions.forEach(function(btn) {
+    elWizard.querySelectorAll("[data-action]").forEach(function (btn) {
       var action = btn.getAttribute("data-action");
-      if (action === "back")         btn.addEventListener("click", goBack);
-      else if (action === "next")    btn.addEventListener("click", goNext);
+      if (action === "start" || action === "next") btn.addEventListener("click", goNext);
+      else if (action === "back") btn.addEventListener("click", goBack);
       else if (action === "restart") btn.addEventListener("click", restart);
-      else if (action === "copy")    btn.addEventListener("click", copyBrief);
-      else if (action === "email")   btn.addEventListener("click", emailBrief);
+      else if (action === "copy") btn.addEventListener("click", copyBrief);
+      else if (action === "email") btn.addEventListener("click", emailBrief);
     });
 
-    // Option cards
     var cards = elWizard.querySelectorAll(".option-card");
-    cards.forEach(function(card) {
-      // Skip unsupported platforms — they show the alert but don't select
-      var isUnsupported = card.classList.contains("unsupported");
-      card.addEventListener("click", function(e) {
+    cards.forEach(function (card) {
+      card.addEventListener("click", function (e) {
         e.preventDefault();
-        var val = card.getAttribute("data-value");
         var step = steps[state.stepIndex];
-
-        // Check if this option is unsupported
-        var optData = step.options.find(function(o) { return o.value === val; });
-        if (optData && optData.unsupported) {
-          // Select it to show the alert, but disable Next
-          cards.forEach(function(c){ c.classList.remove("selected"); });
-          card.classList.add("selected");
-          state.answers[step.id] = val;
-          updateSnapshot();
-          // Re-render to show alert
-          render();
-          return;
-        }
-
-        cards.forEach(function(c){ c.classList.remove("selected"); });
+        cards.forEach(function (c) { c.classList.remove("selected"); });
         card.classList.add("selected");
-        state.answers[step.id] = val;
-        updateSnapshot();
+        state.answers[step.id] = card.getAttribute("data-value");
+        updateBrief();
         var nextBtn = elWizard.querySelector('[data-action="next"]');
         if (nextBtn) nextBtn.disabled = false;
       });
     });
 
-    // Text inputs
     var inputs = elWizard.querySelectorAll("[data-field]");
     if (inputs.length) {
-      inputs.forEach(function(input) {
-        input.addEventListener("input", function() {
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
           state.answers[input.getAttribute("data-field")] = input.value;
           updateNextBtnState();
-          updateSnapshot();
+          updateBrief();
         });
       });
       updateNextBtnState();
@@ -1415,7 +1222,7 @@
   function updateNextBtnState() {
     var step = steps[state.stepIndex];
     if (step.type !== "text") return;
-    var allValid = step.fields.every(function(f) {
+    var allValid = step.fields.every(function (f) {
       if (!f.required) return true;
       var v = state.answers[f.id];
       return v && v.trim().length > 0;
@@ -1424,159 +1231,89 @@
     if (nextBtn) nextBtn.disabled = !allValid;
   }
 
-  function goNext() {
-    if (state.stepIndex < steps.length - 1) {
-      state.stepIndex++;
-      render();
-    }
-  }
+  function goNext() { if (state.stepIndex < steps.length - 1) { state.stepIndex++; render(); } }
+  function goBack() { if (state.stepIndex > 0) { state.stepIndex--; render(); } }
+  function restart() { state.stepIndex = 0; state.answers = {}; render(); }
 
-  function goBack() {
-    if (state.stepIndex > 0) {
-      state.stepIndex--;
-      render();
-    }
-  }
-
-  function restart() {
-    state.stepIndex = 0;
-    state.answers = {};
-    render();
-  }
-
-  // ---- Build the consulting-style brief text ----
+  /* ---------- Brief text ---------- */
   function buildBrief() {
     var a = state.answers;
-    var est = calculateEstimate();
-    var fit = getBudgetFit();
-    var conf = getConfidence();
     var now = new Date();
     var dateStr = now.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
 
     var lines = [];
-    lines.push("Cashie Project Brief");
-    lines.push("====================");
+    lines.push("Project brief");
+    lines.push("=============");
     lines.push("Generated: " + dateStr);
     lines.push("");
-
-    // Confidence
-    if (conf) {
-      lines.push("Confidence: " + conf.label + " (" + conf.pct + "%)");
-      lines.push("");
-    }
-
-    lines.push("Project");
+    lines.push("Project type");
     lines.push(a.type ? labels.type[a.type] : "Not specified");
     lines.push("");
-
-    lines.push("Platform");
-    lines.push(a.platform ? labels.platform[a.platform] : "Not specified");
+    lines.push("The problem");
+    lines.push(a.problem && a.problem.trim() ? a.problem.trim() : "Not provided");
     lines.push("");
-
-    lines.push("Recommended Stack");
-    lines.push(a.stack ? labels.stack[a.stack] : "Not specified");
+    lines.push("Who it's for");
+    lines.push(a.audience && a.audience.trim() ? a.audience.trim() : "Not provided");
     lines.push("");
-
-    lines.push("Complexity");
-    lines.push(a.size ? labels.size[a.size] : "Not specified");
+    lines.push("Desired outcome");
+    lines.push(a.outcome && a.outcome.trim() ? a.outcome.trim() : "Not provided");
     lines.push("");
-
-    lines.push("Estimated Investment");
-    if (est) lines.push(est.rangeStr);
-    else     lines.push("Insufficient data");
+    lines.push("Deadline");
+    lines.push(a.deadline ? labels.deadline[a.deadline] : "Not specified");
     lines.push("");
-
-    lines.push("Customer Budget");
-    lines.push(a.budget ? labels.budget[a.budget] : "Not specified");
+    lines.push("Budget / scope comfort");
+    lines.push(a.scope ? labels.scope[a.scope] : "Not specified");
     lines.push("");
-
-    lines.push("Budget Fit");
-    if (fit)        lines.push(fit.label);
-    else if (est && a.budget && a.budget !== "not-sure") lines.push("See estimate vs budget above");
-    else            lines.push("—");
+    lines.push("Constraints / must-haves");
+    if (a.constraints && a.constraints.trim()) {
+      a.constraints.trim().split("\n").forEach(function (f) { if (f.trim()) lines.push("  - " + f.trim()); });
+    } else { lines.push("None noted"); }
     lines.push("");
-
-    lines.push("Timeline");
-    lines.push(a.timeline ? labels.timeline[a.timeline] : "Not specified");
-    lines.push("");
-
-    lines.push("Features");
-    if (a.features && a.features.trim()) {
-      a.features.trim().split("\n").forEach(function(f) {
-        if (f.trim()) lines.push("  · " + f.trim());
-      });
-    } else {
-      lines.push("Not specified");
-    }
-    lines.push("");
-
-    lines.push("Project Notes");
-    lines.push(a.description && a.description.trim() ? a.description.trim() : "Not provided");
-    lines.push("");
-
-    lines.push("Links / Examples");
+    lines.push("Links / examples");
     lines.push(a.links && a.links.trim() ? a.links.trim() : "None provided");
     lines.push("");
-
     lines.push("Contact");
-    var contactParts = [];
-    if (a.name) contactParts.push(a.name);
-    if (a.project) contactParts.push(a.project);
-    if (a["contact-method"]) contactParts.push(a["contact-method"]);
-    if (a["contact-details"]) contactParts.push(a["contact-details"]);
-    lines.push(contactParts.length ? contactParts.join(" · ") : "Not provided");
+    var cp = [];
+    if (a.name) cp.push(a.name);
+    if (a.project) cp.push(a.project);
+    if (a["contact-method"]) cp.push(a["contact-method"]);
+    if (a["contact-details"]) cp.push(a["contact-details"]);
+    lines.push(cp.length ? cp.join(" · ") : "Not provided");
     lines.push("");
-
     lines.push("---");
-    lines.push("Built with Cashie's Project Brief Builder");
-    lines.push("https://cashie1597.github.io/cashie-portfolio/apply.html");
-
+    lines.push("Sent from cashie.dev/apply.html");
     return lines.join("\n");
-  }
-
-  // ---- Copy / email the generated brief ----
-  function copyBrief() {
-    var brief = buildBrief();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(brief).then(function() {
-        showCopyFeedback();
-      }).catch(function() { fallbackCopy(brief); });
-    } else {
-      fallbackCopy(brief);
-    }
   }
 
   function emailBrief() {
     var brief = buildBrief();
     var subject = "Project brief — " + (state.answers.name ? state.answers.name : "new enquiry");
-    var mailto = "mailto:lochieboo1208@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(brief);
-    window.location.href = mailto;
+    window.location.href = "mailto:lochieboo1208@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(brief);
+  }
+
+  function copyBrief() {
+    var brief = buildBrief();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(brief).then(showCopyFeedback).catch(function () { fallbackCopy(brief); });
+    } else { fallbackCopy(brief); }
   }
 
   function fallbackCopy(text) {
     var ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand("copy"); showCopyFeedback(); } catch(e) {}
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); showCopyFeedback(); } catch (e) {}
     document.body.removeChild(ta);
   }
 
   function showCopyFeedback() {
     var fb = document.getElementById("copyFeedback");
-    if (fb) {
-      fb.classList.add("show");
-      setTimeout(function(){ fb.classList.remove("show"); }, 3000);
-    }
+    if (fb) { fb.classList.add("show"); setTimeout(function () { fb.classList.remove("show"); }, 3000); }
   }
 
-  // ---- Init ----
+  /* ---------- Init ---------- */
   render();
 })();
 </script>
-
-<script src="assets/motion.js?v=3"></script>
 </body>
 </html>

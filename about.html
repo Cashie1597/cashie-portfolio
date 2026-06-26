@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Developer — Cashie.dev">
 <meta name="twitter:description" content="Independent software builder making native macOS apps, Linux tools, automation systems and internal dashboards. Based in Sydney.">
 <meta name="twitter:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <style>
   :root {
     --bg:          #182642;
@@ -95,7 +95,13 @@
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .brand { font-family: var(--serif); font-size: 1.22rem; letter-spacing: 0.2px; display: inline-flex; align-items: center; gap: 10px; }
-  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--plum); }
+  .brand-mark {
+    width: 28px; height: 28px; flex-shrink: 0; display: block;
+    filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.42));
+    transition: transform 0.22s var(--ease), filter 0.22s var(--ease);
+  }
+  .brand:hover .brand-mark { transform: scale(1.05); filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.62)); }
+  .brand-mark.sm { width: 22px; height: 22px; }
   .nav-links { display: flex; gap: 30px; align-items: center; }
   .nav-links a { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); transition: color .2s ease; }
   .nav-links a:hover { color: var(--ink); }
@@ -433,7 +439,7 @@
     color: var(--ink-mute); font-size: 0.84rem;
   }
   footer .brand { font-size: 1rem; color: var(--ink-soft); }
-  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
+
 
   /* ---------- Reveal + motion ---------- */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
@@ -449,7 +455,7 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html"><span class="dot"></span> Cashie.dev</a>
+    <a class="brand" href="index.html"><img src="assets/logo-mark.svg" alt="" class="brand-mark" width="28" height="28"> Cashie.dev</a>
     <nav class="nav-links">
       <a href="products.html">Products</a>
       <a href="index.html#services">Services</a>
@@ -899,7 +905,7 @@
 </main>
 
 <footer class="wrap">
-  <span class="brand"><span class="dot"></span> Cashie.dev — Sydney</span>
+  <span class="brand"><img src="assets/logo-mark.svg" alt="" class="brand-mark sm" width="22" height="22"> Cashie.dev — Sydney</span>
   <span>Designed &amp; built by Cashie · © 2026</span>
 </footer>
 

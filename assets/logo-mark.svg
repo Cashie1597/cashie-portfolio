@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="csh-gem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9d7bfb"/>
+      <stop offset="100%" stop-color="#5534d0"/>
+    </linearGradient>
+    <radialGradient id="csh-dot" cx="38%" cy="36%" r="65%">
+      <stop offset="0%" stop-color="#b4f5d6"/>
+      <stop offset="100%" stop-color="#6ee7b7"/>
+    </radialGradient>
+    <filter id="csh-dot-glow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="4" y="4" width="192" height="192" rx="44" fill="url(#csh-gem)"/>
+  <rect x="4" y="4" width="192" height="110" rx="44" fill="rgba(255,255,255,0.055)"/>
+  <path d="M 154 55 A 70 70 0 1 0 154 145" stroke="#c7e6ff" stroke-width="20" stroke-linecap="butt" fill="none"/>
+  <line x1="138" y1="55" x2="168" y2="55" stroke="#c7e6ff" stroke-width="7" stroke-linecap="butt"/>
+  <line x1="138" y1="145" x2="168" y2="145" stroke="#c7e6ff" stroke-width="7" stroke-linecap="butt"/>
+  <circle cx="163" cy="100" r="21" fill="none" stroke="#6ee7b7" stroke-width="1.4" opacity="0.52"/>
+  <circle cx="163" cy="100" r="8.2" fill="url(#csh-dot)" filter="url(#csh-dot-glow)"/>
+</svg>

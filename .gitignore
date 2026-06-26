@@ -31,3 +31,5 @@ storage-refresh.sh
 *dashboard*
 *r2_upload*
 .claude/
+
+.local-backups/

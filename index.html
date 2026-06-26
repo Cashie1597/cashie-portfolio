@@ -1,874 +1,1421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cashie.dev — Independent software builder, Sydney</title>
-<meta name="description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation. Based in Sydney.">
-<link rel="canonical" href="https://cashie1597.github.io/cashie-portfolio/">
-<meta name="theme-color" content="#182642">
-<meta property="og:title" content="Cashie.dev — Independent software builder, Sydney">
-<meta property="og:description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://cashie1597.github.io/cashie-portfolio/">
-<meta property="og:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cashie.dev — Independent software builder, Sydney">
-<meta name="twitter:description" content="Cashie.dev builds native macOS apps, Linux applications, internal dashboards and workflow automation.">
-<meta name="twitter:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
-<style>
-  :root {
-    --bg:          #182642;
-    --bg-soft:     #223053;
-    --panel:       rgba(50, 70, 120, 0.50);
-    --panel-line:  rgba(200, 220, 255, 0.18);
-    --ink:         #f1f5ff;
-    --ink-soft:    #c8d9f8;
-    --ink-mute:    #95a7cc;
-    --plum:        #a78bfa;
-    --plum-deep:   #7c5dfa;
-    --cyan:        #e0ffff;
-    --cream:       #c7e6ff;
-    --radius:      18px;
-    --maxw:        1140px;
-    --serif:       "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-    --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashie.dev — Software builder in Sydney</title>
+  <meta name="description" content="Cashie builds small business websites, booking pages, admin dashboards, automations, and Mac utilities in Sydney.">
+  <meta name="theme-color" content="#131f38">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #131f38;
+      --bg-soft: #1d2b4c;
+      --panel: rgba(50, 70, 120, 0.42);
+      --panel-2: rgba(11, 16, 32, 0.4);
+      --panel-line: rgba(200, 220, 255, 0.16);
+      --ink: #f1f5ff;
+      --ink-soft: #c8d9f8;
+      --ink-mute: #93a6cc;
+      --muted: #93a6cc;
+      --soft: #7a8eb8;
+      --line: rgba(200, 220, 255, 0.16);
+      --charcoal: rgba(8, 12, 24, 0.85);
+      --green: #6ee7b7;
+      --plum: #a78bfa;
+      --plum-deep: #7c5dfa;
+      --cyan: #e0ffff;
+      --cream: #c7e6ff;
+      --amber: #fcd34d;
+      --paper: #f7f4ee;
+      --paper-2: #ebe5da;
+      --radius: 18px;
+      --max: 1160px;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-  * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-  body {
-    margin: 0;
-    background:
-      radial-gradient(1200px 600px at 78% -8%, rgba(167,139,250,0.28), transparent 60%),
-      radial-gradient(900px 520px at -5% 12%, rgba(124,93,250,0.22), transparent 55%),
-      radial-gradient(1100px 560px at 110% 105%, rgba(224,255,255,0.18), transparent 55%),
-      linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 55%, var(--bg) 100%);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-  ::selection { background: linear-gradient(135deg, rgba(167,139,250,0.38), rgba(224,255,255,0.30)); color: #fff; }
+    a { color: inherit; text-decoration: none; }
 
-  a { color: inherit; text-decoration: none; }
+    p, h1, h2, h3 { margin-top: 0; }
 
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+    ::selection { background: rgba(167, 139, 250, 0.4); color: #fff; }
 
-  /* ---------- Nav ---------- */
-  header.nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    background: rgba(24,38,66,0.72);
-    border-bottom: 1px solid var(--panel-line);
-  }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-  }
-  .brand {
-    font-family: var(--serif);
-    font-size: 1.22rem; letter-spacing: 0.2px;
-    display: inline-flex; align-items: center; gap: 10px;
-  }
-  .brand .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--plum);
-  }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a {
-    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-soft); transition: color .2s ease;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    border: 1px solid var(--panel-line);
-    padding: 9px 18px; border-radius: 999px;
-    background: rgba(199,230,255,0.05);
-    color: var(--cream) !important;
-  }
-  .nav-cta:hover { border-color: var(--plum); }
-  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
+    :focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; border-radius: 4px; }
 
-  /* ---------- Section scaffolding ---------- */
-  section { padding: 116px 0; }
-  .eyebrow {
-    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--plum); margin: 0 0 18px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .eyebrow::before {
-    content: ""; width: 28px; height: 1px; background: var(--plum-deep);
-  }
-  h2.section-title {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(1.9rem, 4vw, 2.9rem);
-    line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.01em;
-  }
-  .section-lede {
-    color: var(--ink-soft); max-width: 56ch; margin: 0 0 56px; font-size: 1.05rem;
-  }
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(720px circle at 82% -8%, rgba(167, 139, 250, 0.32), transparent 62%),
+        radial-gradient(640px circle at -8% 88%, rgba(124, 93, 250, 0.26), transparent 60%),
+        linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 52%, var(--bg) 100%);
+    }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 92px 0 96px; position: relative; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 0.8rem; color: var(--ink-soft);
-    border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 7px 15px; margin-bottom: 34px;
-    background: var(--panel);
-  }
-  .hero-tag .pip { width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); }
-  .hero h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2.6rem, 6.6vw, 5rem);
-    line-height: 1.04; letter-spacing: -0.02em;
-    margin: 0 0 28px; max-width: 16ch;
-  }
-  .hero h1 em { font-style: italic; color: var(--cream); }
-  .hero-sub {
-    font-size: clamp(1.05rem, 2vw, 1.32rem);
-    color: var(--ink-soft); max-width: 60ch; margin: 0 0 40px; line-height: 1.6;
-  }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border-radius: 999px;
-    font-size: 0.95rem; font-weight: 500;
-    transition: transform .18s ease, background .2s ease, border-color .2s ease;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 60%, rgba(224,255,255,0.35) 100%);
-    color: #182642;
-  }
-  .btn-primary:hover { transform: translateY(-2px); }
-  .btn-ghost {
-    border: 1px solid var(--panel-line); color: var(--ink);
-    background: var(--panel);
-  }
-  .btn-ghost:hover { border-color: var(--plum); }
-  .hero-meta {
-    margin-top: 64px; display: flex; flex-wrap: wrap; gap: 44px;
-    border-top: 1px solid var(--panel-line); padding-top: 34px;
-  }
-  .hero-meta .stat { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta .num { font-family: var(--serif); font-size: 1.7rem; color: var(--cream); }
-  .hero-meta .lbl { font-size: 0.82rem; color: var(--ink-mute); letter-spacing: 0.04em; }
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
 
-  /* ---------- Work (premium) ---------- */
-  .work-premium-grid {
-    display: flex; flex-direction: column; gap: 72px;
-    max-width: 880px; margin: 0 auto;
-  }
-  .work-card-premium { position: relative; }
-  .work-card-premium .mac-window {
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(11,16,32,0.55);
-    border: 1px solid rgba(200,220,255,0.14);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.40), 0 8px 24px rgba(0,0,0,0.20);
-    transition: transform .30s ease, box-shadow .30s ease, border-color .30s ease;
-  }
-  .work-card-premium:hover .mac-window {
-    transform: translateY(-6px);
-    box-shadow: 0 40px 100px rgba(0,0,0,0.50), 0 12px 32px rgba(0,0,0,0.28);
-    border-color: rgba(167,139,250,0.30);
-  }
-  .mac-titlebar {
-    display: flex; align-items: center; gap: 8px;
-    padding: 11px 16px;
-    background: rgba(11,16,32,0.80);
-    border-bottom: 1px solid rgba(200,220,255,0.10);
-    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  }
-  .mac-titlebar .tl { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-  .mac-titlebar .tl-red    { background: #ff5f57; }
-  .mac-titlebar .tl-yellow { background: #ffbd2e; }
-  .mac-titlebar .tl-green  { background: #28c940; }
-  .mac-titlebar .mac-title {
-    flex: 1; text-align: center; font-size: 0.78rem; color: var(--ink-mute);
-    font-weight: 500; letter-spacing: 0.02em;
-  }
-  .mac-window-body {
-    overflow: hidden; position: relative;
-    transition: transform .30s ease;
-  }
-  .work-card-premium:hover .mac-window-body { transform: scale(1.01); }
+    .wrap {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
 
-  .work-card-info { padding: 24px 6px 0; }
-  .work-card-header {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
-    margin-bottom: 8px;
-  }
-  .work-card-info h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.5rem; margin: 0; letter-spacing: -0.01em;
-  }
-  .work-card-kind {
-    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--plum); white-space: nowrap; font-weight: 600;
-  }
-  .work-card-info > p {
-    color: var(--ink-soft); font-size: 0.96rem; margin: 0 0 16px; line-height: 1.5;
-  }
-  .tech-badges { display: flex; flex-wrap: wrap; gap: 7px; }
-  .tech-badge {
-    font-size: 0.73rem; color: var(--ink-soft);
-    border: 1px solid var(--panel-line); border-radius: 999px;
-    padding: 4px 11px; background: rgba(199,230,255,0.04);
-    font-weight: 500; letter-spacing: 0.01em;
-  }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(19, 31, 56, 0.62);
+      border-bottom: 1px solid var(--panel-line);
+    }
 
-  /* === Faux screenshot shared === */
-  .faux { width: 100%; height: 440px; overflow: hidden; position: relative; }
-  @media (max-width: 760px) { .faux { height: 320px; } }
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-  /* === Runtime Session Dashboard faux === */
-  .faux-runtime {
-    background: #0b0d17;
-    color: #e2e6f0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    font-size: 12px; line-height: 1.4;
-    padding: 18px; display: flex; flex-direction: column; gap: 14px;
-  }
-  .faux-runtime .rt-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  .faux-runtime .rt-stat {
-    background: rgba(18,22,40,0.75); border: 1px solid rgba(120,140,255,0.15);
-    border-radius: 10px; padding: 12px;
-  }
-  .faux-runtime .rt-stat .rt-label { font-size: 0.62rem; color: #8890a8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-  .faux-runtime .rt-stat .rt-value { font-size: 1.45rem; font-weight: 700; }
-  .faux-runtime .rt-stat .rt-value.green { color: #4ade80; }
-  .faux-runtime .rt-stat .rt-value.blue { color: #7b8cff; }
-  .faux-runtime .rt-stat .rt-value.cyan { color: #22d3ee; }
-  .faux-runtime .rt-stat .rt-value.amber { color: #facc15; }
-  .faux-runtime .rt-body { display: grid; grid-template-columns: 180px 1fr; gap: 14px; flex: 1; min-height: 0; }
-  .faux-runtime .rt-rail { background: rgba(18,22,40,0.60); border: 1px solid rgba(120,140,255,0.10); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
-  .faux-runtime .rt-rail-label { font-size: 0.6rem; color: #8890a8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .faux-runtime .rt-agent { display: flex; align-items: center; gap: 8px; padding: 5px 4px; border-radius: 6px; }
-  .faux-runtime .rt-agent.active { background: rgba(74,222,128,0.06); }
-  .faux-runtime .rt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .faux-runtime .rt-dot.green { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.4); }
-  .faux-runtime .rt-dot.blue { background: #7b8cff; }
-  .faux-runtime .rt-dot.gray { background: #555a6e; }
-  .faux-runtime .rt-agent-name { font-size: 0.7rem; color: #e2e6f0; font-weight: 500; }
-  .faux-runtime .rt-agent-msg { font-size: 0.6rem; color: #8890a8; margin-left: auto; }
-  .faux-runtime .rt-main { background: rgba(18,22,40,0.60); border: 1px solid rgba(120,140,255,0.10); border-radius: 10px; padding: 12px; overflow: hidden; }
-  .faux-runtime .rt-main-label { font-size: 0.6rem; color: #8890a8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-  .faux-runtime .rt-row { display: grid; grid-template-columns: 1fr 70px 60px 50px; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(120,140,255,0.06); align-items: center; font-size: 0.7rem; }
-  .faux-runtime .rt-row:last-child { border-bottom: none; }
-  .faux-runtime .rt-row-name { color: #e2e6f0; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .faux-runtime .rt-badge { font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; text-align: center; font-weight: 600; }
-  .faux-runtime .rt-badge.green { background: rgba(74,222,128,0.15); color: #4ade80; }
-  .faux-runtime .rt-badge.cyan { background: rgba(34,211,238,0.15); color: #22d3ee; }
-  .faux-runtime .rt-badge.gray { background: rgba(136,144,168,0.15); color: #8890a8; }
-  .faux-runtime .rt-row-time, .faux-runtime .rt-row-id { color: #8890a8; font-size: 0.62rem; text-align: right; }
-  @media (max-width: 760px) {
-    .faux-runtime .rt-stats { grid-template-columns: repeat(2,1fr); }
-    .faux-runtime .rt-body { grid-template-columns: 1fr; }
-    .faux-runtime .rt-rail { display: none; }
-  }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 1.22rem;
+      font-weight: 500;
+    }
 
-  /* === Recto faux === */
-  .faux-recto {
-    background: #16181d; color: #e7e9ee;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    font-size: 13px; line-height: 1.6;
-    display: grid; grid-template-columns: 160px 1fr; height: 100%;
-  }
-  .faux-recto .rc-rail {
-    background: #121419; border-right: 1px solid #2a2e37; padding: 16px 12px;
-  }
-  .faux-recto .rc-rail-title { font-size: 0.6rem; color: #9aa0ad; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; font-weight: 700; }
-  .faux-recto .rc-outline-item { font-size: 0.7rem; color: #9aa0ad; padding: 3px 0; cursor: default; }
-  .faux-recto .rc-outline-item.active { color: #7c5cff; font-weight: 600; }
-  .faux-recto .rc-outline-item.indent { padding-left: 12px; }
-  .faux-recto .rc-content { padding: 28px 36px; overflow: hidden; }
-  .faux-recto .rc-content h1 {
-    font-family: "Charter","Iowan Old Style",Georgia,serif; font-size: 1.5rem; font-weight: 600;
-    color: #e7e9ee; margin: 0 0 10px; letter-spacing: -0.01em;
-  }
-  .faux-recto .rc-content h2 {
-    font-family: "Charter","Iowan Old Style",Georgia,serif; font-size: 1.05rem; font-weight: 600;
-    color: #e7e9ee; margin: 18px 0 8px;
-  }
-  .faux-recto .rc-content p {
-    font-family: "Charter","Iowan Old Style",Georgia,serif; font-size: 0.78rem;
-    color: #b8bcc4; margin: 0 0 10px; line-height: 1.6;
-  }
-  .faux-recto .rc-code {
-    background: #0f1115; border: 1px solid #2a2e37; border-radius: 8px;
-    padding: 10px 14px; margin: 10px 0; font-family: "SF Mono",monospace; font-size: 0.65rem; line-height: 1.5;
-  }
-  .faux-recto .rc-code .ck { color: #7c5cff; }
-  .faux-recto .rc-code .cf { color: #22d3ee; }
-  .faux-recto .rc-code .cs { color: #3ddc97; }
-  .faux-recto .rc-code .cv { color: #e7e9ee; }
-  .faux-recto .rc-callout {
-    background: rgba(124,92,255,0.08); border: 1px solid rgba(124,92,255,0.20); border-radius: 8px;
-    padding: 8px 14px; margin: 10px 0; font-size: 0.72rem; color: #c4c0d6;
-  }
-  .faux-recto .rc-callout strong { color: #7c5cff; }
-  @media (max-width: 760px) {
-    .faux-recto { grid-template-columns: 1fr; }
-    .faux-recto .rc-rail { display: none; }
-    .faux-recto .rc-content { padding: 16px 18px; }
-  }
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: block;
+      animation: logo-glow 3.6s ease-in-out infinite;
+    }
 
-  /* === Project Brief Builder faux === */
-  .faux-brief {
-    background: #182642; color: #f1f5ff;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; line-height: 1.5;
-    display: flex; flex-direction: column; height: 100%;
-  }
-  .faux-brief .fb-progress { height: 3px; background: rgba(11,16,32,0.4); }
-  .faux-brief .fb-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #a78bfa, #7c5dfa, #e0ffff); border-radius: 0 3px 3px 0; }
-  .faux-brief .fb-body { display: grid; grid-template-columns: 1fr 200px; gap: 20px; padding: 24px; flex: 1; overflow: hidden; }
-  .faux-brief .fb-main h2 {
-    font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.15rem; font-weight: 500;
-    margin: 0 0 6px; letter-spacing: -0.01em;
-  }
-  .faux-brief .fb-main .fb-lede { font-size: 0.7rem; color: #c8d9f8; margin: 0 0 14px; }
-  .faux-brief .fb-options { display: flex; flex-direction: column; gap: 8px; }
-  .faux-brief .fb-option {
-    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-    border: 1.5px solid rgba(200,220,255,0.18); border-radius: 10px; background: rgba(11,16,32,0.22);
-    font-size: 0.7rem;
-  }
-  .faux-brief .fb-option.selected { border-color: #a78bfa; background: rgba(167,139,250,0.10); box-shadow: 0 0 0 3px rgba(167,139,250,0.10); }
-  .faux-brief .fb-option-icon { width: 28px; height: 28px; border-radius: 7px; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-  .faux-brief .fb-option-label { font-weight: 600; color: #f1f5ff; font-size: 0.7rem; }
-  .faux-brief .fb-option-desc { color: #95a7cc; font-size: 0.6rem; }
-  .faux-brief .fb-option-check { margin-left: auto; width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(200,220,255,0.18); flex-shrink: 0; }
-  .faux-brief .fb-option.selected .fb-option-check { border-color: #a78bfa; background: #a78bfa; }
-  .faux-brief .fb-snap {
-    background: rgba(50,70,120,0.50); border: 1px solid rgba(200,220,255,0.18); border-radius: 12px;
-    padding: 14px; display: flex; flex-direction: column; gap: 8px;
-  }
-  .faux-brief .fb-snap-title { font-family: "Iowan Old Style", Palatino, serif; font-size: 0.8rem; font-weight: 500; color: #f1f5ff; }
-  .faux-brief .fb-snap-sub { font-size: 0.55rem; color: #95a7cc; margin-bottom: 4px; }
-  .faux-brief .fb-snap-est { font-family: "Iowan Old Style",serif; font-size: 1.1rem; color: #c7e6ff; font-weight: 500; }
-  .faux-brief .fb-snap-row { display: flex; justify-content: space-between; font-size: 0.58rem; padding-top: 6px; border-top: 1px solid rgba(200,220,255,0.12); }
-  .faux-brief .fb-snap-row span:first-child { color: #c8d9f8; }
-  .faux-brief .fb-snap-row span:last-child { color: #c7e6ff; font-family: "Iowan Old Style",serif; }
-  .faux-brief .fb-snap-conf { display: inline-flex; align-items: center; font-size: 0.55rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: rgba(110,231,183,0.12); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.25); }
-  @media (max-width: 760px) {
-    .faux-brief .fb-body { grid-template-columns: 1fr; padding: 16px; }
-    .faux-brief .fb-snap { display: none; }
-  }
+    .brand-mark.sm {
+      width: 22px;
+      height: 22px;
+    }
 
-  /* ---------- Services ---------- */
-  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 880px) { .svc-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } }
-  .svc {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 26px 24px;
-    transition: border-color .2s ease, background .2s ease;
-  }
-  .svc:hover { border-color: rgba(167,139,250,0.40); background: rgba(50,70,120,0.62); }
-  .svc .no { font-family: var(--serif); font-size: 0.95rem; color: var(--plum); margin-bottom: 14px; }
-  .svc h3 { font-size: 1.12rem; margin: 0 0 9px; font-weight: 600; letter-spacing: -0.01em; }
-  .svc p { color: var(--ink-soft); margin: 0; font-size: 0.92rem; line-height: 1.55; }
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+    }
 
-  /* ---------- Process ---------- */
-  .process-band { background: var(--bg-soft); border-top: 1px solid var(--panel-line); border-bottom: 1px solid var(--panel-line); }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  @media (max-width: 880px) { .steps { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
-  .step { position: relative; padding-top: 30px; }
-  .step::before {
-    content: ""; position: absolute; top: 0; left: 0; width: 38px; height: 2px;
-    background: linear-gradient(90deg, var(--plum), transparent);
-  }
-  .step .step-n { font-family: var(--serif); font-size: 0.85rem; color: var(--plum); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin: 0 0 10px; }
-  .step p { color: var(--ink-soft); margin: 0; font-size: 0.94rem; line-height: 1.55; }
+    .links a {
+      color: var(--ink-soft);
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
 
-  /* ---------- FAQ ---------- */
-  .faq-grid { display: grid; gap: 16px; }
-  .faq {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 22px 24px;
-  }
-  .faq h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.08rem; margin: 0 0 8px; letter-spacing: -0.01em;
-  }
-  .faq p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; line-height: 1.55; }
+    .links a:not(.nav-cta):hover {
+      color: var(--ink);
+      background: rgba(199, 230, 255, 0.06);
+    }
 
-  /* ---------- Trust ---------- */
-  .trust-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: var(--radius); padding: 32px 34px;
-  }
-  .trust-card ul {
-    margin: 0; padding: 0;
-    list-style: none;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px;
-  }
-  @media (max-width: 560px) { .trust-card ul { grid-template-columns: 1fr; } }
-  .trust-card li {
-    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
-    padding-left: 22px; position: relative;
-  }
-  .trust-card li::before {
-    content: "✓"; position: absolute; left: 0; top: 1px;
-    color: var(--plum); font-size: 0.85rem; font-weight: 600;
-  }
+    .links .nav-cta {
+      border: 1px solid var(--panel-line);
+      color: var(--cream) !important;
+      background: rgba(199, 230, 255, 0.05);
+      font-weight: 600;
+    }
 
-  /* ---------- Contact ---------- */
-  .contact-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: 26px; padding: 64px 56px;
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    position: relative; overflow: hidden;
-  }
-  .contact-card .glow {
-    position: absolute; inset: auto -10% -50% 40%; height: 300px;
-    background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.24), transparent 60%),
-                radial-gradient(circle at 80% 90%, rgba(224,255,255,0.16), transparent 55%);
-  }
-  .contact-card h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.08;
-    margin: 0 0 20px; letter-spacing: -0.015em; max-width: 18ch;
-  }
-  .contact-card p { color: var(--ink-soft); max-width: 52ch; margin: 0 0 36px; font-size: 1.06rem; }
-  .contact-card .pricing-anchor { color: var(--cream); font-size: 0.98rem; margin: -18px 0 28px; }
-  .contact-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-  .contact-meta {
-    margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--panel-line);
-    display: flex; flex-wrap: wrap; gap: 40px;
-  }
-  .contact-meta div span { display: block; }
-  .contact-meta .k { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 5px; }
-  .contact-meta .v { color: var(--ink); }
-  @media (max-width: 560px) { .contact-card { padding: 44px 26px; } }
+    .links .nav-cta:hover {
+      border-color: var(--plum);
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+    }
 
-  /* ---------- Footer ---------- */
-  footer {
-    padding: 44px 0; border-top: 1px solid var(--panel-line);
-    display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center;
-    color: var(--ink-mute); font-size: 0.84rem;
-  }
-  footer .brand { font-size: 1rem; color: var(--ink-soft); }
-  footer .dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--plum), var(--cyan)); display: inline-block; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 26px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 55%, rgba(224, 255, 255, 0.4) 120%);
+      color: #14203a;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
 
-  /* ---------- Ecosystem card ---------- */
-  .ecosystem-card {
-    background: var(--panel); border: 1px solid var(--panel-line);
-    border-radius: 26px; padding: 48px; overflow: hidden; position: relative;
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    transition: border-color .30s ease, transform .30s ease;
-  }
-  .ecosystem-card:hover { border-color: rgba(167,139,250,0.35); }
-  .ecosystem-card .ecosystem-glow {
-    position: absolute; inset: -30% 50% auto -10%; height: 280px;
-    background: radial-gradient(circle at 30% 30%, rgba(167,139,250,0.20), transparent 60%),
-                radial-gradient(circle at 70% 80%, rgba(224,255,255,0.12), transparent 55%);
-    pointer-events: none;
-  }
-  .ecosystem-card-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-    position: relative;
-  }
-  @media (max-width: 760px) {
-    .ecosystem-card { padding: 32px 28px; }
-    .ecosystem-card-inner { grid-template-columns: 1fr; gap: 28px; }
-  }
-  .ecosystem-brand {
-    font-family: var(--serif); font-size: 2.2rem; font-weight: 500;
-    letter-spacing: -0.01em; margin: 0 0 14px; color: var(--cream);
-  }
-  .ecosystem-card-inner p { color: var(--ink-soft); font-size: 1rem; margin: 0 0 24px; line-height: 1.6; }
-  .ecosystem-preview-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-  }
-  .ecosystem-app-pip {
-    background: rgba(11,16,32,0.40); border: 1px solid var(--panel-line);
-    border-radius: 14px; padding: 16px 10px; text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    transition: border-color .20s ease;
-  }
-  .ecosystem-app-pip:hover { border-color: rgba(167,139,250,0.30); }
-  .ecosystem-app-pip .pip-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.22);
-    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-  }
-  .ecosystem-app-pip .pip-name { font-size: 0.74rem; color: var(--ink-soft); font-weight: 500; }
+    .button:not(.secondary) {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
 
-  /* ---------- See all link ---------- */
-  .see-all-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.92rem; color: var(--plum); letter-spacing: 0.02em;
-    margin: 48px auto 0; justify-content: center; width: 100%;
-    transition: gap .20s ease, color .20s ease;
-  }
-  .see-all-link:hover { gap: 12px; color: var(--cream); }
+    .button:not(.secondary)::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.28) 50%, transparent 62%);
+      transform: translateX(-130%);
+      transition: transform 0.55s var(--ease);
+      pointer-events: none;
+    }
 
-  /* ---------- Reveal ---------- */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-  }
-</style>
-<link rel="stylesheet" href="assets/motion.css?v=3">
+    .button:not(.secondary):hover::after {
+      transform: translateX(130%);
+    }
+
+    .button:hover {
+      box-shadow: 0 8px 24px rgba(124, 93, 250, 0.32);
+    }
+
+    .button.secondary {
+      border: 1px solid var(--panel-line);
+      color: var(--ink);
+      background: var(--panel);
+    }
+
+    .button.secondary:hover {
+      border-color: var(--plum);
+      box-shadow: none;
+    }
+
+    .hero {
+      padding: 80px 0 64px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      border: 1px solid var(--panel-line);
+      border-radius: 999px;
+      padding: 7px 16px;
+      margin-bottom: 30px;
+      background: var(--panel);
+    }
+
+    .badge .pip {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      animation: status-dot 2.8s ease-in-out infinite;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0 0 26px;
+      font-family: var(--serif);
+      font-size: clamp(2.7rem, 7vw, 4.6rem);
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .lede {
+      max-width: 690px;
+      color: var(--ink-soft);
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      line-height: 1.6;
+      margin-bottom: 34px;
+    }
+
+    .lede strong { color: var(--cream); font-weight: 600; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-chip {
+      border: 1px solid var(--panel-line);
+      background: var(--panel-2);
+      color: var(--ink-soft);
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 999px;
+    }
+
+    section {
+      padding: 72px 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 38px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      margin: 0;
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--plum);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--plum-deep);
+      flex-shrink: 0;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      max-width: 790px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.4vw, 3.1rem);
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+    }
+
+    .section-head .section-note {
+      margin: 16px 0 0;
+      max-width: 58ch;
+      color: var(--ink-soft);
+      font-size: 1.06rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service {
+      min-height: 205px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 26px;
+      background: var(--panel);
+      border: 1px solid var(--panel-line);
+      border-radius: var(--radius);
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .service:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+
+    .service strong {
+      display: block;
+      margin-bottom: 12px;
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .service span {
+      color: var(--plum);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--panel);
+      border: 1px solid var(--panel-line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .work-card:hover {
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .work-preview {
+      height: 168px;
+      border-bottom: 1px solid var(--panel-line);
+      background: rgba(8, 12, 24, 0.35);
+      overflow: hidden;
+    }
+
+    .work-card-body {
+      padding: 20px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .work-head {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .work-title {
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .work-status {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .work-status.shipped {
+      color: var(--green);
+      border-color: rgba(110, 231, 183, 0.35);
+      background: rgba(110, 231, 183, 0.1);
+    }
+
+    .work-status.dev {
+      color: var(--amber);
+      border-color: rgba(252, 211, 77, 0.35);
+      background: rgba(252, 211, 77, 0.1);
+    }
+
+    .work-status.not-shipped {
+      color: var(--ink-mute);
+      border-color: var(--panel-line);
+      background: var(--panel-2);
+    }
+
+    .work-type {
+      color: var(--ink-mute);
+      font-size: 0.88rem;
+    }
+
+    .work-outcome {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .work-points {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-mute);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .chip {
+      border: 1px solid var(--panel-line);
+      background: var(--panel-2);
+      color: var(--ink-soft);
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Mockup interiors keep light-theme tokens */
+    .work-preview .shot {
+      --ink: #171717;
+      --paper: #fffdf8;
+      --paper-2: #ebe5da;
+      --muted: #5e625d;
+      --soft: #9a9b93;
+      --line: #d3ccc0;
+      --plum: #7b5c71;
+      --green: #5e7d68;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      font-size: 8px;
+      line-height: 1.35;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    }
+
+    .os-traffic {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .work-preview .tl {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 0.5px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .work-preview .tl-red { background: #ff5f57; }
+    .work-preview .tl-yellow { background: #febc2e; }
+    .work-preview .tl-green { background: #28c840; }
+
+    .os-frame.os-safari {
+      background: #fff;
+      border-radius: 9px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .os-safari-toolbar {
+      background: linear-gradient(180deg, #ececec 0%, #e3e3e3 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 5px 7px 6px;
+      flex-shrink: 0;
+    }
+
+    .os-safari-toolbar .os-traffic { margin-bottom: 5px; }
+
+    .os-safari-tabs {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 5px;
+    }
+
+    .os-safari-tabs span {
+      padding: 2px 7px;
+      border-radius: 5px 5px 0 0;
+      background: rgba(255, 255, 255, 0.45);
+      color: #555;
+      font-size: 6.5px;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: none;
+    }
+
+    .os-safari-tabs span.on { background: #fff; color: #111; }
+
+    .os-safari-urlbar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 3px 8px;
+    }
+
+    .os-url-icon {
+      width: 6px;
+      height: 7px;
+      border-radius: 1px;
+      background: #28c840;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    .os-url-text {
+      flex: 1;
+      font-size: 6.5px;
+      font-weight: 500;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .os-safari .os-content.os-web {
+      flex: 1;
+      background: #fff;
+      padding: 8px 9px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .os-frame.os-mac {
+      background: #f5f5f7;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
+    }
+
+    .os-mac-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(236, 236, 236, 0.98) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px 10px 0 0;
+      flex-shrink: 0;
+    }
+
+    .os-mac-title {
+      flex: 1;
+      text-align: center;
+      font-size: 7px;
+      font-weight: 600;
+      color: #3c3c43;
+      margin-right: 28px;
+    }
+
+    .os-mac .os-content.os-mac-ui {
+      flex: 1;
+      background: #f5f5f7;
+      padding: 7px 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .os-mac.os-mac-sidebar .os-content.os-mac-ui {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      background: #fff;
+    }
+
+    .os-mac-sidebar-pane {
+      background: #ececee;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 6px 5px;
+    }
+
+    .os-mac-sidebar-pane span {
+      display: block;
+      font-size: 6px;
+      font-weight: 600;
+      color: #6e6e73;
+      padding: 4px 5px;
+      border-radius: 4px;
+      margin-bottom: 2px;
+    }
+
+    .os-mac-sidebar-pane span.on {
+      background: rgba(0, 0, 0, 0.07);
+      color: #1d1d1f;
+    }
+
+    .os-mac-main-pane { padding: 7px 8px; background: #fff; }
+
+    .os-frame.os-menubar {
+      background: linear-gradient(180deg, #d8dce3 0%, #c8cdd6 55%, #b8bec8 100%);
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .os-menubar-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 245, 247, 0.92) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 6.5px;
+      font-weight: 600;
+      color: #1d1d1f;
+      flex-shrink: 0;
+    }
+
+    .os-apple {
+      width: 7px;
+      height: 7px;
+      border-radius: 1px;
+      background: #1d1d1f;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    .os-menu-filler { flex: 1; }
+
+    .os-menubar-item {
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #3c3c43;
+    }
+
+    .os-menubar-item.on {
+      background: rgba(0, 0, 0, 0.08);
+      color: #000;
+    }
+
+    .os-popover {
+      margin: 4px 6px 6px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 9px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      padding: 8px 9px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .work-preview .sp-brand { font-family: var(--serif); font-size: 9px; font-weight: 600; color: var(--plum); margin-bottom: 4px; }
+    .work-preview .sp-hero {
+      font-size: 8px; font-weight: 800; color: var(--ink); margin-bottom: 6px;
+      padding: 5px 6px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--line);
+    }
+    .work-preview .sp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .work-preview .sp-card {
+      border: 1px solid var(--line); border-radius: 3px; background: var(--paper);
+      padding: 5px 2px; text-align: center; font-weight: 700; color: var(--muted); font-size: 7px;
+    }
+    .work-preview .sp-card:nth-child(2) { border-color: var(--plum); color: var(--plum); background: rgba(123,92,113,0.08); }
+
+    .work-preview .sa-metrics { display: flex; gap: 4px; margin-bottom: 5px; }
+    .work-preview .sa-metrics div {
+      flex: 1; padding: 4px; border-radius: 3px; border: 1px solid var(--line);
+      background: var(--paper); text-align: center;
+    }
+    .work-preview .sa-metrics b { display: block; font-size: 10px; font-weight: 800; color: var(--green); line-height: 1; }
+    .work-preview .sa-metrics small { font-size: 5.5px; color: var(--soft); text-transform: uppercase; }
+    .work-preview .sa-row {
+      display: flex; align-items: center; gap: 5px; padding: 3px 0;
+      font-weight: 700; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 7px;
+    }
+    .work-preview .sa-row i { width: 5px; height: 5px; border-radius: 50%; background: var(--line); }
+    .work-preview .sa-row.on i { background: var(--green); }
+    .work-preview .sa-row em { margin-left: auto; font-style: normal; font-size: 6px; font-weight: 800; color: var(--green); text-transform: uppercase; }
+
+    .work-preview .sc-menu {
+      font-weight: 600; color: #6e6e73; margin-bottom: 4px; font-size: 7px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .work-preview .sc-item {
+      display: flex; align-items: center; gap: 5px; padding: 4px 5px;
+      color: #1d1d1f; font-weight: 500;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06); font-size: 7px; border-radius: 4px;
+    }
+    .work-preview .sc-item.on { background: #007aff; color: #fff; font-weight: 600; border-bottom-color: transparent; }
+    .work-preview .sc-item.on .sc-pin { background: #fff; opacity: 0.9; }
+    .work-preview .sc-pin { width: 3px; height: 7px; border-radius: 1px; background: #8e8e93; opacity: 0.7; }
+
+    .work-preview .pw-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 5px; }
+    .work-preview .pw-tile {
+      aspect-ratio: 4/3; border-radius: 3px; border: 1px solid var(--line);
+      background: linear-gradient(135deg, var(--paper-2), var(--line));
+    }
+    .work-preview .pw-tile.on { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+    .work-preview .pw-label { font-size: 6.5px; font-weight: 700; color: var(--soft); }
+
+    .work-preview .ss-bar {
+      font-size: 7px; font-weight: 700; color: #6e6e73;
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px;
+    }
+    .work-preview .ss-item {
+      display: flex; align-items: center; gap: 5px; padding: 4px 6px; border-radius: 5px;
+      margin-bottom: 1px; font-weight: 500; color: #1d1d1f; font-size: 7px;
+    }
+    .work-preview .ss-item.on { background: #007aff; color: #fff; font-weight: 600; }
+    .work-preview .ss-item i { width: 5px; height: 5px; border-radius: 50%; background: #8e8e93; flex-shrink: 0; }
+    .work-preview .ss-item.on i { background: #fff; opacity: 0.9; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      min-height: 200px;
+      padding: 24px;
+      border: 1px solid var(--panel-line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .step:hover {
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .step-num {
+      color: var(--plum);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .step h3 {
+      margin: 28px 0 10px;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .contact {
+      padding-bottom: 80px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 42px;
+      padding: 48px;
+      background: var(--panel);
+      border: 1px solid var(--panel-line);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .contact-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at 20% 0%, rgba(167, 139, 250, 0.12), transparent 55%);
+      pointer-events: none;
+    }
+
+    .contact-panel > * { position: relative; z-index: 1; }
+
+    .contact-panel h2 {
+      margin-bottom: 18px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .contact-panel p {
+      max-width: 640px;
+      color: var(--ink-soft);
+      font-size: 1.06rem;
+      margin-bottom: 28px;
+    }
+
+    .contact-panel .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--panel-line);
+    }
+
+    .contact-facts {
+      display: grid;
+      gap: 14px;
+      align-content: end;
+    }
+
+    .fact {
+      padding-top: 14px;
+      border-top: 1px solid var(--panel-line);
+    }
+
+    .fact span {
+      display: block;
+      color: var(--ink-mute);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .fact strong {
+      font-size: 16px;
+      color: var(--ink-soft);
+    }
+
+    footer {
+      padding: 28px 0 44px;
+      color: var(--ink-mute);
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--panel-line);
+      padding-top: 20px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--serif);
+    }
+
+    @keyframes logo-glow {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.32)); }
+      50% { filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.52)); }
+    }
+
+    @keyframes status-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.35); }
+      50% { box-shadow: 0 0 8px 2px rgba(110, 231, 183, 0.5); }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero .badge { animation: fade-up 0.7s var(--ease) 0.04s both; }
+    .hero h1 { animation: fade-up 0.7s var(--ease) 0.1s both; }
+    .hero .lede { animation: fade-up 0.7s var(--ease) 0.16s both; }
+    .hero .actions { animation: fade-up 0.7s var(--ease) 0.22s both; }
+    .hero .hero-chips { animation: fade-up 0.7s var(--ease) 0.28s both; }
+
+    .section-head { animation: fade-up 0.65s var(--ease) both; }
+
+    #builds .service { animation: fade-up 0.6s var(--ease) both; }
+    #builds .service:nth-child(1) { animation-delay: 0.06s; }
+    #builds .service:nth-child(2) { animation-delay: 0.1s; }
+    #builds .service:nth-child(3) { animation-delay: 0.14s; }
+    #builds .service:nth-child(4) { animation-delay: 0.18s; }
+    #builds .service:nth-child(5) { animation-delay: 0.22s; }
+    #builds .service:nth-child(6) { animation-delay: 0.26s; }
+
+    #work .work-card { animation: fade-up 0.6s var(--ease) both; }
+    #work .work-card:nth-child(1) { animation-delay: 0.06s; }
+    #work .work-card:nth-child(2) { animation-delay: 0.1s; }
+    #work .work-card:nth-child(3) { animation-delay: 0.14s; }
+    #work .work-card:nth-child(4) { animation-delay: 0.18s; }
+    #work .work-card:nth-child(5) { animation-delay: 0.22s; }
+
+    #process .step { animation: fade-up 0.6s var(--ease) both; }
+    #process .step:nth-child(1) { animation-delay: 0.06s; }
+    #process .step:nth-child(2) { animation-delay: 0.1s; }
+    #process .step:nth-child(3) { animation-delay: 0.14s; }
+    #process .step:nth-child(4) { animation-delay: 0.18s; }
+
+    #contact .contact-panel { animation: fade-up 0.7s var(--ease) 0.08s both; }
+
+    @media (max-width: 900px) {
+      .links a:not(.nav-cta) { display: none; }
+
+      .section-head,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      h1 { font-size: 52px; }
+
+      .services-grid,
+      .steps,
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 28px, var(--max)); }
+
+      .hero { padding-top: 62px; }
+
+      h1 { font-size: 40px; line-height: 1.04; }
+
+      .lede { font-size: 18px; }
+
+      section { padding: 58px 0; }
+
+      .section-head h2 { font-size: 30px; }
+
+      .services-grid,
+      .steps,
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel { padding: 24px; }
+
+      .contact-panel h2 { font-size: 36px; }
+
+      .footer-row { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .brand-mark,
+      .badge .pip,
+      .hero .badge,
+      .hero h1,
+      .hero .lede,
+      .hero .actions,
+      .hero .hero-chips,
+      .section-head,
+      #builds .service,
+      #work .work-card,
+      #process .step,
+      #contact .contact-panel {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      .button:not(.secondary)::after {
+        display: none;
+      }
+
+      .button, .service, .step, .work-card {
+        transition: none;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top"><span class="dot"></span> Cashie.dev</a>
-    <nav class="nav-links">
-      <a href="products.html">Products</a>
-      <a href="#services">Services</a>
-      <a class="nav-cta" href="apply.html">Start a Project</a>
-      <a href="https://github.com/Cashie1597" target="_blank" rel="noopener">GitHub</a>
-      <a href="about.html">Developer</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-tag reveal"><span class="pip"></span> Independent software studio · Sydney, AU</div>
-      <h1 class="reveal">Native apps. Dashboards.<br><em>Automation systems.</em></h1>
-      <p class="hero-sub reveal">Built for macOS, Linux and modern workflows. Cashie.dev is an independent software studio building focused tools that ship and stay in use.</p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="apply.html">Start a Project →</a>
-        <a class="btn btn-ghost" href="products.html">Explore products</a>
-      </div>
-      <div class="hero-meta reveal">
-        <div class="stat"><span class="num">Native apps</span><span class="lbl">macOS + Linux</span></div>
-        <div class="stat"><span class="num">Dashboards</span><span class="lbl">Real-time operations</span></div>
-        <div class="stat"><span class="num">Automation</span><span class="lbl">Scripts &amp; workflows</span></div>
-        <div class="stat"><span class="num">Fixed price</span><span class="lbl">Quoted up front</span></div>
-      </div>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Cashie home">
+        <img src="assets/logo-mark.svg" alt="" class="brand-mark" width="28" height="28">
+        <span>Cashie.dev</span>
+      </a>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="#builds">Builds</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="apply.html" class="nav-cta">Start a project</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- ECOSYSTEM: PLUM OS -->
-  <section id="ecosystem">
-    <div class="wrap">
-      <p class="eyebrow reveal">Ecosystem</p>
-      <h2 class="section-title reveal">PLUM OS</h2>
-      <p class="section-lede reveal">A growing ecosystem of native productivity tools, automation utilities and operator-focused software.</p>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="badge"><span class="pip"></span> Sydney software builder · client work</p>
+        <h1 id="hero-title">Practical <em>websites</em>, dashboards, automations, and Mac tools.</h1>
+        <p class="lede">Cashie builds focused software for small businesses and solo operators — <strong>booking pages</strong> that are easy to update, admin screens that reduce busywork, and local utilities that make a Mac feel calmer to use.</p>
+        <div class="actions">
+          <a class="button" href="apply.html">Start a project</a>
+          <a class="button secondary" href="#work">View selected work</a>
+        </div>
+        <div class="hero-chips" aria-label="Builder profile">
+          <span class="hero-chip">Sydney, Australia</span>
+          <span class="hero-chip">Fixed scope</span>
+          <span class="hero-chip">Handover docs</span>
+          <span class="hero-chip">Readable &amp; maintainable</span>
+        </div>
+      </div>
+    </section>
 
-      <div class="ecosystem-card reveal">
-        <div class="ecosystem-glow"></div>
-        <div class="ecosystem-card-inner">
+    <section id="builds" aria-labelledby="builds-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-label">Builds</p>
+          <h2 id="builds-title">Small, useful builds with a clear owner, scope, and finish line.</h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="service">
+            <div>
+              <strong>Small business websites</strong>
+              <p>Clean sites for services, local operators, portfolios, and simple product offers.</p>
+            </div>
+            <span>01</span>
+          </article>
+          <article class="service">
+            <div>
+              <strong>Booking pages</strong>
+              <p>Service menus, intake questions, enquiry flows, and handoff to email or calendar.</p>
+            </div>
+            <span>02</span>
+          </article>
+          <article class="service">
+            <div>
+              <strong>Admin dashboards</strong>
+              <p>Internal screens for tracking jobs, files, statuses, scripts, and routine checks.</p>
+            </div>
+            <span>03</span>
+          </article>
+          <article class="service">
+            <div>
+              <strong>Automations</strong>
+              <p>Repeatable tasks such as naming, sorting, exporting, reporting, and local workflows.</p>
+            </div>
+            <span>04</span>
+          </article>
+          <article class="service">
+            <div>
+              <strong>Mac utilities</strong>
+              <p>Small local tools for clipboard, wallpaper, menu bar, file, and system workflows.</p>
+            </div>
+            <span>05</span>
+          </article>
+          <article class="service">
+            <div>
+              <strong>Working prototypes</strong>
+              <p>Serious first versions you can test, show, use, and decide on without a long build cycle.</p>
+            </div>
+            <span>06</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-label">Selected Work</p>
           <div>
-            <h3 class="ecosystem-brand">PLUM OS</h3>
-            <p>A growing ecosystem of native productivity tools, automation utilities and operator-focused software. Built for macOS, designed for people who run things.</p>
-            <a class="btn btn-ghost" href="products.html#plum-os">Explore PLUM OS →</a>
-          </div>
-          <div class="ecosystem-preview-grid">
-            <div class="ecosystem-app-pip"><span class="pip-icon">📋</span><span class="pip-name">PlumClip</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">🖼</span><span class="pip-name">PlumWall</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">🧹</span><span class="pip-name">PlumSweep</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">📊</span><span class="pip-name">PlumWatch</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">📄</span><span class="pip-name">PlumDocs</span></div>
-            <div class="ecosystem-app-pip"><span class="pip-icon">⚡</span><span class="pip-name">PlumCore</span></div>
+            <h2 id="work-title">Built around specific jobs: get booked, see status, save time, stay in flow.</h2>
+            <p class="section-note">Five recent builds — shipped client work and active Mac utilities.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="wrap">
-      <p class="eyebrow reveal">Featured products</p>
-      <h2 class="section-title reveal">Selected work.</h2>
-      <p class="section-lede reveal">Interface previews of products in active development. The code is public on GitHub, and live tools are linked where available.</p>
-
-      <div class="work-premium-grid">
-
-        <!-- Card 1: Runtime Session Dashboard -->
-        <article class="work-card-premium reveal">
-          <div class="mac-window">
-            <div class="mac-titlebar">
-              <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
-              <span class="mac-title">Runtime Session Dashboard</span>
-            </div>
-            <div class="mac-window-body">
-              <div class="faux faux-runtime">
-                <div class="rt-stats">
-                  <div class="rt-stat"><div class="rt-label">Agents Running</div><div class="rt-value green">6</div></div>
-                  <div class="rt-stat"><div class="rt-label">Repositories</div><div class="rt-value blue">24</div></div>
-                  <div class="rt-stat"><div class="rt-label">System Pressure</div><div class="rt-value cyan">42%</div></div>
-                  <div class="rt-stat"><div class="rt-label">Tasks Queued</div><div class="rt-value amber">3</div></div>
-                </div>
-                <div class="rt-body">
-                  <div class="rt-rail">
-                    <div class="rt-rail-label">Active Agents</div>
-                    <div class="rt-agent active"><span class="rt-dot green"></span><span class="rt-agent-name">build-runner</span><span class="rt-agent-msg">12m</span></div>
-                    <div class="rt-agent active"><span class="rt-dot green"></span><span class="rt-agent-name">git-sync</span><span class="rt-agent-msg">3m</span></div>
-                    <div class="rt-agent"><span class="rt-dot blue"></span><span class="rt-agent-name">test-suite</span><span class="rt-agent-msg">idle</span></div>
-                    <div class="rt-agent"><span class="rt-dot gray"></span><span class="rt-agent-name">deploy-bot</span><span class="rt-agent-msg">off</span></div>
-                    <div class="rt-agent active"><span class="rt-dot green"></span><span class="rt-agent-name">scanner</span><span class="rt-agent-msg">6m</span></div>
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="work-preview">
+              <div class="shot os-frame os-safari">
+                <div class="os-safari-toolbar">
+                  <div class="os-traffic">
+                    <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
                   </div>
-                  <div class="rt-main">
-                    <div class="rt-main-label">Session Log</div>
-                    <div class="rt-row"><span class="rt-row-name">build-runner</span><span class="rt-badge green">active</span><span class="rt-row-time">00:12:04</span><span class="rt-row-id">#A7F2</span></div>
-                    <div class="rt-row"><span class="rt-row-name">git-sync</span><span class="rt-badge cyan">running</span><span class="rt-row-time">00:03:18</span><span class="rt-row-id">#B3C1</span></div>
-                    <div class="rt-row"><span class="rt-row-name">test-suite</span><span class="rt-badge gray">queued</span><span class="rt-row-time">—</span><span class="rt-row-id">#D9E4</span></div>
-                    <div class="rt-row"><span class="rt-row-name">scanner</span><span class="rt-badge green">active</span><span class="rt-row-time">00:06:42</span><span class="rt-row-id">#E5A0</span></div>
-                    <div class="rt-row"><span class="rt-row-name">deploy-bot</span><span class="rt-badge gray">stopped</span><span class="rt-row-time">—</span><span class="rt-row-id">#F1B3</span></div>
+                  <div class="os-safari-tabs">
+                    <span class="on">Home</span><span>Services</span>
+                  </div>
+                  <div class="os-safari-urlbar">
+                    <span class="os-url-icon"></span>
+                    <span class="os-url-text">polishbypiper.com</span>
+                  </div>
+                </div>
+                <div class="os-content os-web">
+                  <div class="sp-brand">Polish By Piper</div>
+                  <div class="sp-hero">Nail artistry · mobile-first</div>
+                  <div class="sp-cards">
+                    <div class="sp-card">Gel</div>
+                    <div class="sp-card">Acrylic</div>
+                    <div class="sp-card">Lashes</div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="work-card-info">
-            <div class="work-card-header">
-              <h3>Runtime Session Dashboard</h3>
-              <span class="work-card-kind">Operations Dashboard</span>
-            </div>
-            <p>Internal operations dashboard for monitoring agents, repositories and system status.</p>
-            <div class="tech-badges">
-              <span class="tech-badge">HTML/CSS</span>
-              <span class="tech-badge">JavaScript</span>
-              <span class="tech-badge">Shell</span>
-              <span class="tech-badge">JSON</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2: Recto -->
-        <article class="work-card-premium reveal">
-          <div class="mac-window">
-            <div class="mac-titlebar">
-              <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
-              <span class="mac-title">Recto — README.md</span>
-            </div>
-            <div class="mac-window-body">
-              <div class="faux faux-recto">
-                <div class="rc-rail">
-                  <div class="rc-rail-title">Outline</div>
-                  <div class="rc-outline-item active">Recto</div>
-                  <div class="rc-outline-item indent">Features</div>
-                  <div class="rc-outline-item indent">Architecture</div>
-                  <div class="rc-outline-item indent">Theming</div>
-                  <div class="rc-outline-item indent">Build</div>
-                </div>
-                <div class="rc-content">
-                  <h1>Recto</h1>
-                  <p>A native desktop markdown reader focused on speed and simplicity. Built with Tauri, Rust, and a token-based theme engine.</p>
-                  <h2>Features</h2>
-                  <p>Instant file open, six built-in themes, syntax-highlighted code blocks, and a typographic reading mode — all in a lightweight native window.</p>
-                  <div class="rc-code"><span class="ck">export</span> <span class="cv">function</span> <span class="cf">loadTheme</span><span class="cv">(</span><span class="cv">name</span><span class="cv">: string) {</span><br>&nbsp;&nbsp;<span class="ck">return</span> <span class="cf">themes</span><span class="cv">[name] ??</span> <span class="cs">defaultTheme</span><span class="cv">;</span><br><span class="cv">}</span></div>
-                  <div class="rc-callout"><strong>Note:</strong> Themes are CSS custom properties — no rebuild required.</div>
-                </div>
+            <div class="work-card-body">
+              <div class="work-head">
+                <h3 class="work-title">Polish By Piper</h3>
+                <span class="work-status shipped">Shipped</span>
+              </div>
+              <p class="work-type">Booking and marketing website</p>
+              <p class="work-outcome">Local business site with a clear path from browsing to enquiry.</p>
+              <ul class="work-points">
+                <li>Service pages with plain pricing and mobile-first layout</li>
+                <li>Booking enquiry flow with service picker and time slots</li>
+                <li>Handover so the owner can update copy without a developer</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Website</span>
+                <span class="chip">Booking flow</span>
+                <span class="chip">Mobile</span>
               </div>
             </div>
-          </div>
-          <div class="work-card-info">
-            <div class="work-card-header">
-              <h3>Recto</h3>
-              <span class="work-card-kind">Desktop Markdown Reader</span>
-            </div>
-            <p>Native desktop markdown reader focused on speed and simplicity.</p>
-            <div class="tech-badges">
-              <span class="tech-badge">Tauri</span>
-              <span class="tech-badge">Rust</span>
-              <span class="tech-badge">React</span>
-              <span class="tech-badge">TypeScript</span>
-              <span class="tech-badge">CSS Theming</span>
-            </div>
-          </div>
-        </article>
+          </article>
 
-        <!-- Card 3: Project Brief Builder -->
-        <article class="work-card-premium reveal">
-          <div class="mac-window">
-            <div class="mac-titlebar">
-              <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
-              <span class="mac-title">Project Brief Builder — Cashie</span>
-            </div>
-            <div class="mac-window-body">
-              <div class="faux faux-brief">
-                <div class="fb-progress"><div class="fb-progress-fill"></div></div>
-                <div class="fb-body">
-                  <div class="fb-main">
-                    <h2>What do you want to build?</h2>
-                    <p class="fb-lede">Pick the closest match — you can add detail later.</p>
-                    <div class="fb-options">
-                      <div class="fb-option selected">
-                        <span class="fb-option-icon">🖥</span>
-                        <span><div class="fb-option-label">Desktop app</div><div class="fb-option-desc">A native macOS or Linux application</div></span>
-                        <span class="fb-option-check"></span>
-                      </div>
-                      <div class="fb-option">
-                        <span class="fb-option-icon">📊</span>
-                        <span><div class="fb-option-label">Dashboard</div><div class="fb-option-desc">Visual control panel for data</div></span>
-                        <span class="fb-option-check"></span>
-                      </div>
-                      <div class="fb-option">
-                        <span class="fb-option-icon">⚙</span>
-                        <span><div class="fb-option-label">Automation</div><div class="fb-option-desc">Script or workflow that runs itself</div></span>
-                        <span class="fb-option-check"></span>
-                      </div>
+          <article class="work-card">
+            <div class="work-preview">
+              <div class="shot os-frame os-mac os-mac-sidebar">
+                <div class="os-mac-toolbar">
+                  <div class="os-traffic">
+                    <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
+                  </div>
+                  <div class="os-mac-title">Cashie Admin Hub</div>
+                </div>
+                <div class="os-content os-mac-ui">
+                  <div class="os-mac-sidebar-pane">
+                    <span class="on">Projects</span><span>Scripts</span><span>Services</span>
+                  </div>
+                  <div class="os-mac-main-pane">
+                    <div class="sa-metrics">
+                      <div><b>4</b><small>projects</small></div>
+                      <div><b>2</b><small>running</small></div>
                     </div>
-                  </div>
-                  <div class="fb-snap">
-                    <div class="fb-snap-title">Project Snapshot</div>
-                    <div class="fb-snap-sub">Updates as you answer.</div>
-                    <div class="fb-snap-est">A$2,000–A$8,000+</div>
-                    <div class="fb-snap-row"><span>Project</span><span>Desktop app</span></div>
-                    <div class="fb-snap-row"><span>Complexity</span><span>Medium</span></div>
-                    <div class="fb-snap-row"><span>Timeline</span><span>Flexible</span></div>
-                    <div class="fb-snap-row"><span>Confidence</span><span class="fb-snap-conf">HIGH</span></div>
+                    <div class="sa-row on"><i></i>cashie-portfolio <em>active</em></div>
+                    <div class="sa-row"><i></i>plumclip <em>build</em></div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="work-card-info">
-            <div class="work-card-header">
-              <h3>Project Brief Builder</h3>
-              <span class="work-card-kind">Client Intake Workflow</span>
+            <div class="work-card-body">
+              <div class="work-head">
+                <h3 class="work-title">Cashie Admin Hub</h3>
+                <span class="work-status shipped">Shipped</span>
+              </div>
+              <p class="work-type">Local dashboard and control panel</p>
+              <p class="work-outcome">Central view for projects, scripts, and routine checks.</p>
+              <ul class="work-points">
+                <li>Project status at a glance — active, building, or idle</li>
+                <li>Script runner panel for recurring checks and deploy tasks</li>
+                <li>Replaces scattered terminal commands with one readable surface</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Dashboard</span>
+                <span class="chip">Controls</span>
+                <span class="chip">Operations</span>
+              </div>
             </div>
-            <p>Premium client intake and project scoping workflow with live estimation.</p>
-            <div class="tech-badges">
-              <span class="tech-badge">HTML/CSS</span>
-              <span class="tech-badge">JavaScript</span>
-              <span class="tech-badge">GitHub Pages</span>
+          </article>
+
+          <article class="work-card">
+            <div class="work-preview">
+              <div class="shot os-frame os-mac">
+                <div class="os-mac-toolbar">
+                  <div class="os-traffic">
+                    <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
+                  </div>
+                  <div class="os-mac-title">PlumClip</div>
+                </div>
+                <div class="os-content os-mac-ui">
+                  <div class="sc-menu">Recent clips</div>
+                  <div class="sc-item on"><span class="sc-pin"></span>project brief v2.md</div>
+                  <div class="sc-item"><span class="sc-pin"></span>npm run build</div>
+                  <div class="sc-item"><span class="sc-pin"></span>lochieboo1208@...</div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <div class="work-head">
+                <h3 class="work-title">PlumClip</h3>
+                <span class="work-status dev">In development</span>
+              </div>
+              <p class="work-type">macOS clipboard utility</p>
+              <p class="work-outcome">Find recent text and keep useful snippets close without repeat copy-paste.</p>
+              <ul class="work-points">
+                <li>Clipboard history with fast search across recent copies</li>
+                <li>Pin snippets you reuse — commands, templates, paths</li>
+                <li>Local-first: nothing leaves the machine unless you paste it</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">SwiftUI</span>
+                <span class="chip">AppKit</span>
+                <span class="chip">Local-first</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-preview">
+              <div class="shot os-frame os-mac">
+                <div class="os-mac-toolbar">
+                  <div class="os-traffic">
+                    <span class="tl tl-red"></span><span class="tl tl-yellow"></span><span class="tl tl-green"></span>
+                  </div>
+                  <div class="os-mac-title">PlumWall</div>
+                </div>
+                <div class="os-content os-mac-ui">
+                  <div class="pw-grid">
+                    <div class="pw-tile on"></div><div class="pw-tile"></div>
+                    <div class="pw-tile"></div><div class="pw-tile"></div>
+                  </div>
+                  <div class="pw-label">Sydney collection · 24 wallpapers</div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <div class="work-head">
+                <h3 class="work-title">PlumWall</h3>
+                <span class="work-status dev">In development</span>
+              </div>
+              <p class="work-type">macOS wallpaper manager</p>
+              <p class="work-outcome">Organise collections, prepare images, and keep output separate from originals.</p>
+              <ul class="work-points">
+                <li>Organise collections across displays without touching originals</li>
+                <li>Preview and apply wallpapers per screen</li>
+                <li>Enhancement pipeline keeps exports separate from source files</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">SwiftUI</span>
+                <span class="chip">Library</span>
+                <span class="chip">Non-destructive</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-preview">
+              <div class="shot os-frame os-menubar">
+                <div class="os-menubar-strip">
+                  <span class="os-apple"></span>
+                  <span>Finder</span>
+                  <span>File</span>
+                  <span>Edit</span>
+                  <span class="os-menu-filler"></span>
+                  <span class="os-menubar-item on">Signal Shelf</span>
+                  <span>Wed 9:41 AM</span>
+                </div>
+                <div class="os-popover">
+                  <div class="ss-bar">Live status</div>
+                  <div class="ss-item on"><i></i>Backup due in 2h</div>
+                  <div class="ss-item"><i></i>3 quick actions ready</div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <div class="work-head">
+                <h3 class="work-title">Signal Shelf</h3>
+                <span class="work-status not-shipped">Not shipped</span>
+              </div>
+              <p class="work-type">Menu bar workflow utility</p>
+              <p class="work-outcome">Live status, quick actions, and reminders in one unobtrusive menu bar place.</p>
+              <ul class="work-points">
+                <li>Live status and reminders in the menu bar — no extra window</li>
+                <li>Quick actions for routines you run often</li>
+                <li>Designed to stay out of the way until you need it</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">SwiftUI</span>
+                <span class="chip">Menu bar</span>
+                <span class="chip">Prototype</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-label">Process</p>
+          <h2 id="process-title">A simple path from rough idea to usable v1.</h2>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">01</div>
+            <h3>Define</h3>
+            <p>Clarify the job, users, must-haves, and what should stay out of scope.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">02</div>
+            <h3>Shape</h3>
+            <p>Map the flow, key screens, data, and handoff points before build work gets heavy.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">03</div>
+            <h3>Build</h3>
+            <p>Create the working version in short passes with regular checks against the agreed scope.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">04</div>
+            <h3>Hand over</h3>
+            <p>Package the finished work with clear notes so it can be used, updated, or extended.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div>
+            <h2 id="contact-title">Have a small build that needs to become real?</h2>
+            <p>Send the problem, the audience, and the ideal outcome. Cashie will reply with a practical next step, a likely scope, and whether the job is a good fit.</p>
+            <div class="actions">
+              <a class="button" href="apply.html">Start the brief</a>
+              <a class="button secondary" href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">Email instead</a>
             </div>
           </div>
-        </article>
-
-      </div>
-
-      <a class="see-all-link reveal" href="products.html">See all products →</a>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="wrap">
-      <p class="eyebrow reveal">Services</p>
-      <h2 class="section-title reveal">What I build.</h2>
-      <p class="section-lede reveal">Scoped, fixed-price, and built to be handed over. Native apps, dashboards and automation for macOS and Linux.</p>
-
-      <div class="svc-grid">
-        <div class="svc reveal">
-          <div class="no">01</div>
-          <h3>Native macOS Apps</h3>
-          <p>Menu bar utilities, clipboard tools and native desktop apps built with Swift and Tauri. Small, focused, fast.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">02</div>
-          <h3>Linux Applications</h3>
-          <p>Command-line tools, desktop utilities and automation scripts for Linux workflows. Built to run quietly in the background.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">03</div>
-          <h3>Internal Dashboards</h3>
-          <p>Real-time operations dashboards for monitoring projects, agents and infrastructure. One screen to see what's running.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">04</div>
-          <h3>Workflow Automation</h3>
-          <p>Scripts and systems that handle repetitive work — syncing, exporting, reporting, deploying. Set once, run on its own.</p>
-        </div>
-        <div class="svc reveal">
-          <div class="no">05</div>
-          <h3>Custom Internal Tools</h3>
-          <p>Bespoke tools built around how your team actually operates. Not off-the-shelf — fitted to the problem.</p>
+          <div class="contact-facts" aria-label="Contact details">
+            <div class="fact">
+              <span>Location</span>
+              <strong>Sydney, Australia</strong>
+            </div>
+            <div class="fact">
+              <span>Typical work</span>
+              <strong>Web apps, dashboards, automations, Mac tools</strong>
+            </div>
+            <div class="fact">
+              <span>Preferred brief</span>
+              <strong>Plain problem, clear deadline, honest constraints</strong>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span class="footer-brand"><img src="assets/logo-mark.svg" alt="" class="brand-mark sm" width="22" height="22"> Cashie.dev — Sydney</span>
+      <span>Client builds · PLUM OS utilities · © 2026</span>
     </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="process-band">
-    <div class="wrap">
-      <p class="eyebrow reveal">How it works</p>
-      <h2 class="section-title reveal">A simple request-first process.</h2>
-      <p class="section-lede reveal">You send the details, I scope the smallest useful version, then I build it in clear passes.</p>
-
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-n">STEP 01</div>
-          <h3>Request</h3>
-          <p>You tell me what you need using the request form. I review it and decide whether it is a good fit.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 02</div>
-          <h3>Scope</h3>
-          <p>If it is a fit, I send back a proposed scope, timeline, and fixed quote.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 03</div>
-          <h3>Build</h3>
-          <p>I build in short passes and share progress as I go.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-n">STEP 04</div>
-          <h3>Hand-off</h3>
-          <p>You get the working result, plain setup instructions, and a short window for final tweaks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- START A PROJECT -->
-  <section id="start">
-    <div class="wrap">
-      <div class="contact-card reveal">
-        <div class="glow"></div>
-        <p class="eyebrow">Start a Project</p>
-        <h2>Got something you want built well?</h2>
-        <p>Tell me the problem in a few lines. I'll come back with whether I'm the right fit, a clear scope, and a fixed quote.</p>
-        <p class="pricing-anchor">Most starter projects fall between <strong>A$500 and A$3,500</strong>. Larger systems are quoted after scope review.</p>
-        <div class="contact-row">
-          <a class="btn btn-primary" href="apply.html">Start a Project →</a>
-          <a class="btn btn-ghost" href="mailto:lochieboo1208@gmail.com?subject=Project%20enquiry">Email me →</a>
-        </div>
-        <div class="contact-meta">
-          <div><span class="k">Based in</span><span class="v">Sydney, Australia</span></div>
-          <div><span class="k">Working</span><span class="v">Remote · AEST</span></div>
-          <div><span class="k">Pricing</span><span class="v">Fixed, quoted up front</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="wrap">
-  <span class="brand"><span class="dot"></span> Cashie.dev — Sydney</span>
-  <span>Designed &amp; built by Cashie · © 2026</span>
-</footer>
-
-<script>
-  // Lightweight scroll reveal — no dependencies.
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (Math.min(i % 6, 5) * 60) + 'ms';
-    io.observe(el);
-  });
-</script>
-
-<script src="assets/motion.js?v=3"></script>
+  </footer>
 </body>
 </html>
