@@ -1,0 +1,126 @@
+/* ============================================================
+   Cashie.dev — Motion Layer
+   The visual design is unchanged. This adds purposeful, 60fps,
+   reduced-motion-safe motion on top of existing class hooks:
+   refined reveals, ambient gradient drift, live product previews,
+   subtle card + nav interactions. Transform/opacity only.
+   Inspired by Apple / Arc / Linear / Raycast / Vercel restraint.
+   ============================================================ */
+
+/* 1 — Reveal easing (refines the existing .reveal / .in) ---------- */
+.reveal {
+  transition: opacity .72s cubic-bezier(.22, 1, .36, 1),
+              transform .72s cubic-bezier(.22, 1, .36, 1) !important;
+  will-change: opacity, transform;
+}
+.reveal.in { will-change: auto; }
+
+/* 2 — Ambient gradient drift (JS-injected layer, behind content) -- */
+.cashie-ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.cashie-ambient i {
+  position: absolute; display: block; border-radius: 50%;
+  filter: blur(80px); will-change: transform, opacity;
+}
+.cashie-ambient .a1 {
+  width: 58vw; height: 58vw; top: -18vw; right: -10vw; opacity: .85;
+  background: radial-gradient(circle, rgba(167,139,250,.34), transparent 62%);
+  animation: cashieDrift1 15s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+.cashie-ambient .a2 {
+  width: 52vw; height: 52vw; bottom: -20vw; left: -12vw; opacity: .7;
+  background: radial-gradient(circle, rgba(224,255,255,.18), transparent 60%);
+  animation: cashieDrift2 19s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+.cashie-ambient .a3 {
+  width: 44vw; height: 44vw; top: 28%; left: 46%; opacity: .6;
+  background: radial-gradient(circle, rgba(124,93,250,.30), transparent 60%);
+  animation: cashieDrift3 13s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+@keyframes cashieDrift1 { to { transform: translate3d(-12vw, 10vw, 0) scale(1.2); } }
+@keyframes cashieDrift2 { to { transform: translate3d(12vw, -9vw, 0) scale(1.25); } }
+@keyframes cashieDrift3 { to { transform: translate3d(-10vw, -8vw, 0) scale(.86); } }
+
+/* 3 — Live product previews -------------------------------------- */
+/* pulse active status dots so dashboards feel alive */
+.faux-runtime .rt-dot.green,
+.mini-runtime .mr-dot:not(.gray) {
+  animation: cashiePulse 1.8s ease-in-out infinite;
+}
+@keyframes cashiePulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 9px rgba(74,222,128,.55); }
+  50%      { opacity: .4; transform: scale(.66); box-shadow: 0 0 2px rgba(74,222,128,.2); }
+}
+/* live scan sweep across the runtime dashboards */
+.faux-runtime, .mini-runtime { position: relative; }
+.faux-runtime::after, .mini-runtime::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 42%;
+  pointer-events: none; z-index: 2;
+  background: linear-gradient(180deg, rgba(124,200,255,.12), transparent 72%);
+  animation: cashieScan 4.2s cubic-bezier(.4, 0, .6, 1) infinite;
+}
+@keyframes cashieScan {
+  0%        { transform: translateY(-100%); opacity: 0; }
+  12%       { opacity: 1; }
+  60%, 100% { transform: translateY(270%); opacity: 0; }
+}
+/* steady digits during count-up (no width jitter) */
+.faux-runtime .rt-value, .mini-runtime .mr-v { font-variant-numeric: tabular-nums; }
+/* progress fills ease to their target width when scrolled into view */
+.faux-brief .fb-progress-fill, .mini-brief .mb-bar-fill {
+  transition: width 1.2s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* 4 — Subtle card interaction: pointer glow on premium work cards - */
+.work-card-premium .mac-window { position: relative; will-change: transform; }
+.work-card-premium .mac-window::after {
+  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  border-radius: inherit; opacity: 0; transition: opacity .35s ease;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%),
+              rgba(167,139,250,.16), transparent 46%);
+}
+.work-card-premium:hover .mac-window::after { opacity: 1; }
+
+/* 5 — Nav gains depth once the page is scrolled ------------------- */
+header.nav { transition: box-shadow .3s ease; }
+header.nav.scrolled { box-shadow: 0 10px 34px rgba(0,0,0,.24); }
+
+/* 6 — Button press feedback (rest state unchanged) --------------- */
+.btn { transition: transform .2s cubic-bezier(.22, 1, .36, 1), box-shadow .25s ease, background .2s ease, border-color .2s ease; }
+.btn-primary:active, .btn-ghost:active { transform: translateY(0) scale(.985); }
+
+/* 8 — Extra life --------------------------------------------------- */
+/* organic reveal settle (entrance only; revealed state stays identical) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { transform: translateY(22px) scale(.99); }
+  .reveal.in { transform: none; }
+}
+/* "live" ping radiating from hero / welcome status pips */
+.hero-tag .pip, .welcome-tag .pip { position: relative; }
+.hero-tag .pip::after, .welcome-tag .pip::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  box-shadow: 0 0 0 2px rgba(224,255,255,.7); opacity: .6;
+  animation: cashiePing 2.8s cubic-bezier(.22, 1, .36, 1) infinite;
+}
+@keyframes cashiePing { 0% { transform: scale(1); opacity: .6; } 70%, 100% { transform: scale(3.4); opacity: 0; } }
+/* sheen sweep across primary buttons on hover (affordance) */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: ""; position: absolute; top: 0; left: -60%; width: 45%; height: 100%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-18deg); opacity: 0;
+}
+.btn-primary:hover::after { animation: cashieSheen .85s ease; }
+@keyframes cashieSheen { 0% { left: -60%; opacity: 0; } 18% { opacity: 1; } 100% { left: 135%; opacity: 0; } }
+
+/* 9 — Reduced motion: freeze back to the exact current design ----- */
+@media (prefers-reduced-motion: reduce) {
+  .cashie-ambient { display: none; }
+  .faux-runtime .rt-dot.green, .mini-runtime .mr-dot:not(.gray) { animation: none !important; }
+  .faux-brief .fb-progress-fill, .mini-brief .mb-bar-fill { transition: none !important; }
+  .reveal { transition: none !important; }
+  .work-card-premium .mac-window::after { display: none; }
+  .faux-runtime::after, .mini-runtime::after { display: none; }
+  .hero-tag .pip::after, .welcome-tag .pip::after { display: none; }
+  .btn-primary:hover::after { animation: none; }
+  header.nav { transition: none; }
+}

@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Project Brief Builder — Cashie.dev</title>
 <meta name="description" content="Build your project brief step by step. One question at a time, with a live project snapshot and a ready-to-send consulting-style summary.">
+<link rel="canonical" href="https://cashie1597.github.io/cashie-portfolio/apply.html">
+<meta name="theme-color" content="#182642">
+<meta property="og:title" content="Project Brief Builder — Cashie.dev">
+<meta property="og:description" content="Build your project brief step by step, with a live project snapshot and a ready-to-send summary.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cashie1597.github.io/cashie-portfolio/apply.html">
+<meta property="og:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Project Brief Builder — Cashie.dev">
+<meta name="twitter:description" content="Build your project brief step by step, with a live project snapshot and a ready-to-send summary.">
+<meta name="twitter:image" content="https://cashie1597.github.io/cashie-portfolio/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a78bfa'/%3E%3C/svg%3E">
 <style>
   :root {
     --bg:          #182642;
@@ -566,6 +578,7 @@
     html { scroll-behavior: auto; }
   }
 </style>
+<link rel="stylesheet" href="assets/motion.css?v=3">
 </head>
 <body>
 
@@ -1319,7 +1332,8 @@
 
     // Actions
     html += '<div class="summary-actions">' +
-      '<button class="btn btn-primary" data-action="copy">📋 Copy brief</button>' +
+      '<button class="btn btn-primary" data-action="email">✉ Email this brief to Cashie</button>' +
+      '<button class="btn btn-ghost" data-action="copy">📋 Copy brief</button>' +
       '<button class="btn btn-ghost" data-action="back">← Edit answers</button>' +
       '<button class="btn btn-ghost" data-action="restart">Start over</button>' +
     '</div>' +
@@ -1349,6 +1363,7 @@
       else if (action === "next")    btn.addEventListener("click", goNext);
       else if (action === "restart") btn.addEventListener("click", restart);
       else if (action === "copy")    btn.addEventListener("click", copyBrief);
+      else if (action === "email")   btn.addEventListener("click", emailBrief);
     });
 
     // Option cards
@@ -1429,8 +1444,8 @@
     render();
   }
 
-  // ---- Copy brief (consulting-style output) ----
-  function copyBrief() {
+  // ---- Build the consulting-style brief text ----
+  function buildBrief() {
     var a = state.answers;
     var est = calculateEstimate();
     var fit = getBudgetFit();
@@ -1516,8 +1531,12 @@
     lines.push("Built with Cashie's Project Brief Builder");
     lines.push("https://cashie1597.github.io/cashie-portfolio/apply.html");
 
-    var brief = lines.join("\n");
+    return lines.join("\n");
+  }
 
+  // ---- Copy / email the generated brief ----
+  function copyBrief() {
+    var brief = buildBrief();
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(brief).then(function() {
         showCopyFeedback();
@@ -1525,6 +1544,13 @@
     } else {
       fallbackCopy(brief);
     }
+  }
+
+  function emailBrief() {
+    var brief = buildBrief();
+    var subject = "Project brief — " + (state.answers.name ? state.answers.name : "new enquiry");
+    var mailto = "mailto:lochieboo1208@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(brief);
+    window.location.href = mailto;
   }
 
   function fallbackCopy(text) {
@@ -1551,5 +1577,6 @@
 })();
 </script>
 
+<script src="assets/motion.js?v=3"></script>
 </body>
 </html>
