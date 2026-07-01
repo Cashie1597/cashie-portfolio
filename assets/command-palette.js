@@ -28,7 +28,7 @@
       summary: "Show shipped and building work",
       run: function () {
         write("Projects", [
-          "<strong>Shipped:</strong> Polish By Piper, Cashie Admin Hub",
+          "<strong>Shipped:</strong> <a href=\"https://plumfile.space\" target=\"_blank\" rel=\"noopener noreferrer\">PlumFile</a>, Polish By Piper, Cashie Admin Hub",
           "<strong>Building:</strong> PlumClip, PlumWall",
           "<strong>Prototype:</strong> Signal Shelf"
         ]);
@@ -91,13 +91,25 @@
       }
     },
     {
+      name: "plumfile",
+      summary: "Open PlumFile — browser PDF tools",
+      run: function () {
+        window.open("https://plumfile.space", "_blank", "noopener,noreferrer");
+        write("PlumFile", [
+          "Opening <a href=\"https://plumfile.space\" target=\"_blank\" rel=\"noopener noreferrer\">plumfile.space</a>",
+          "60 browser-side PDF and file tools · no upload · neon UI"
+        ]);
+      }
+    },
+    {
       name: "status",
       summary: "Show studio status",
       run: function () {
         write("Studio status", [
           "Cashie.dev online",
           "Sydney builder",
-          "Current focus: small builds, dashboards, Mac tools"
+          "Current focus: small builds, dashboards, Mac tools",
+          "Latest ship: <a href=\"https://plumfile.space\" target=\"_blank\" rel=\"noopener noreferrer\">PlumFile</a> at plumfile.space"
         ]);
       }
     },

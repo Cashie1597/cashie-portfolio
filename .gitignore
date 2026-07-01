@@ -33,3 +33,4 @@ storage-refresh.sh
 .claude/
 
 .local-backups/
+.vercel
