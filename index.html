@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cashie.dev — Software builder in Sydney</title>
-  <meta name="description" content="Cashie builds small business websites, booking pages, admin dashboards, automations, and Mac utilities in Sydney.">
+  <meta name="description" content="Cashie builds practical software for small businesses — less admin, more done. Websites, dashboards, automations, and Mac tools in Sydney.">
   <meta name="theme-color" content="#131f38">
   <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
   <style>
@@ -157,6 +157,13 @@
       box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
     }
 
+    .command-trigger svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
     .command-trigger {
       display: inline-flex;
       align-items: center;
@@ -249,6 +256,106 @@
 
     .hero {
       padding: 80px 0 64px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .hero-aside {
+      position: sticky;
+      top: 96px;
+    }
+
+    .now-panel {
+      border: 1px solid var(--panel-line);
+      border-radius: 20px;
+      background: linear-gradient(165deg, rgba(50, 70, 120, 0.38), rgba(11, 16, 32, 0.55));
+      padding: 22px 24px;
+      box-shadow: 0 18px 50px rgba(8, 12, 24, 0.28);
+    }
+
+    .now-label {
+      margin: 0 0 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--plum);
+      font-weight: 700;
+    }
+
+    .now-panel h3 {
+      margin: 0 0 6px;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .now-panel h3 a {
+      color: var(--cream);
+      transition: color 0.2s ease;
+    }
+
+    .now-panel h3 a:hover { color: var(--plum); }
+
+    .now-desc {
+      margin: 0 0 18px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .now-divider {
+      border: 0;
+      border-top: 1px solid var(--panel-line);
+      margin: 0 0 18px;
+    }
+
+    .now-available {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .now-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .now-metrics div {
+      border: 1px solid var(--panel-line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: rgba(8, 12, 24, 0.25);
+    }
+
+    .now-metrics b {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--green);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .now-metrics span {
+      font-size: 0.72rem;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
     .badge {
@@ -502,10 +609,18 @@
       font-size: 0.88rem;
     }
 
+    .work-impact {
+      margin: 0 0 8px;
+      color: var(--cream);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
     .work-outcome {
       margin: 0;
       color: var(--ink-soft);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       line-height: 1.5;
     }
 
@@ -1244,6 +1359,7 @@
     .hero .lede { animation: fade-up 0.7s var(--ease) 0.16s both; }
     .hero .actions { animation: fade-up 0.7s var(--ease) 0.22s both; }
     .hero .hero-chips { animation: fade-up 0.7s var(--ease) 0.28s both; }
+    .hero .hero-aside { animation: fade-up 0.7s var(--ease) 0.34s both; }
 
     .section-head { animation: fade-up 0.65s var(--ease) both; }
 
@@ -1402,8 +1518,9 @@
         <a href="#builds">Builds</a>
         <a href="#work">Work</a>
         <a href="#process">Process</a>
-        <button class="command-trigger" type="button" data-command-open aria-haspopup="dialog" aria-controls="command-palette">
-          <span>Command</span>
+        <button class="command-trigger" type="button" data-command-open aria-haspopup="dialog" aria-controls="command-palette" title="Quick navigation — search pages and site info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <span>Quick nav</span>
           <kbd>⌘K</kbd>
         </button>
         <a href="apply.html" class="nav-cta">Start a project</a>
@@ -1416,9 +1533,9 @@
     <section class="command-panel" aria-describedby="command-desc">
       <div class="command-head">
         <div>
-          <p class="command-kicker">Cashie.dev command</p>
-          <h2 id="command-title">Operator palette</h2>
-          <p id="command-desc">Type a site command. This navigates and shows site info only.</p>
+          <p class="command-kicker">Quick navigation</p>
+          <h2 id="command-title">Search the site</h2>
+          <p id="command-desc">Jump to a section, open a project, or view studio info. No file access — navigation only.</p>
         </div>
         <button class="command-close" type="button" data-command-close aria-label="Close command palette">×</button>
       </div>
@@ -1440,20 +1557,37 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <p class="badge"><span class="pip"></span> Sydney software builder · client work</p>
-        <h1 id="hero-title">Practical <em>websites</em>, dashboards, automations, and Mac tools.</h1>
-        <p class="lede">Cashie builds focused software for small businesses and solo operators — <strong>booking pages</strong> that are easy to update, admin screens that reduce busywork, and local utilities that make a Mac feel calmer to use.</p>
-        <div class="actions">
-          <a class="button" href="apply.html">Start a project</a>
-          <a class="button secondary" href="#work">View selected work</a>
+      <div class="wrap hero-layout">
+        <div class="hero-main">
+          <p class="badge"><span class="pip"></span> Sydney software builder · client work</p>
+          <h1 id="hero-title">Practical software for businesses that want <em>less admin</em> and more done.</h1>
+          <p class="lede">Cashie builds focused software for small businesses and solo operators — booking pages owners can update themselves, admin screens that cut busywork, and local utilities that make a Mac feel calmer to use.</p>
+          <div class="actions">
+            <a class="button" href="apply.html">Start a project</a>
+            <a class="button secondary" href="#work">View selected work</a>
+          </div>
+          <div class="hero-chips" aria-label="Builder profile">
+            <span class="hero-chip">Sydney, Australia</span>
+            <span class="hero-chip">Fixed scope</span>
+            <span class="hero-chip">Handover docs</span>
+            <span class="hero-chip">Readable &amp; maintainable</span>
+          </div>
         </div>
-        <div class="hero-chips" aria-label="Builder profile">
-          <span class="hero-chip">Sydney, Australia</span>
-          <span class="hero-chip">Fixed scope</span>
-          <span class="hero-chip">Handover docs</span>
-          <span class="hero-chip">Readable &amp; maintainable</span>
-        </div>
+
+        <aside class="hero-aside" aria-label="Current focus">
+          <div class="now-panel">
+            <p class="now-label">Currently shipping</p>
+            <h3><a href="https://plumfile.space" target="_blank" rel="noopener noreferrer">PlumFile</a></h3>
+            <p class="now-desc">Privacy-first browser file tools — 45 live processors, no upload.</p>
+            <hr class="now-divider">
+            <p class="now-label">Available for</p>
+            <p class="now-available">Small business software · Internal tools · macOS apps</p>
+            <div class="now-metrics">
+              <div><b>6+</b><span>shipped builds</span></div>
+              <div><b>45</b><span>live processors</span></div>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -1468,42 +1602,42 @@
           <article class="service">
             <div>
               <strong>Small business websites</strong>
-              <p>Clean sites for services, local operators, portfolios, and simple product offers.</p>
+              <p>Help customers understand what you offer and take the next step without phone tag.</p>
             </div>
             <span>01</span>
           </article>
           <article class="service">
             <div>
               <strong>Booking pages</strong>
-              <p>Service menus, intake questions, enquiry flows, and handoff to email or calendar.</p>
+              <p>Reduce back-and-forth with clear services, intake questions, and enquiry handoff.</p>
             </div>
             <span>02</span>
           </article>
           <article class="service">
             <div>
               <strong>Admin dashboards</strong>
-              <p>Internal screens for tracking jobs, files, statuses, scripts, and routine checks.</p>
+              <p>See jobs, files, and status in one place instead of checking five tabs.</p>
             </div>
             <span>03</span>
           </article>
           <article class="service">
             <div>
               <strong>Automations</strong>
-              <p>Repeatable tasks such as naming, sorting, exporting, reporting, and local workflows.</p>
+              <p>Remove repeat sorting, naming, exporting, and reporting from the weekly routine.</p>
             </div>
             <span>04</span>
           </article>
           <article class="service">
             <div>
               <strong>Mac utilities</strong>
-              <p>Small local tools for clipboard, wallpaper, menu bar, file, and system workflows.</p>
+              <p>Small local tools that make everyday Mac work faster and less noisy.</p>
             </div>
             <span>05</span>
           </article>
           <article class="service">
             <div>
               <strong>Working prototypes</strong>
-              <p>Serious first versions you can test, show, use, and decide on without a long build cycle.</p>
+              <p>Test a real v1, decide what matters, then invest in the right production build.</p>
             </div>
             <span>06</span>
           </article>
@@ -1554,7 +1688,8 @@
                 <span class="work-status shipped">Shipped</span>
               </div>
               <p class="work-type">Booking and marketing website</p>
-              <p class="work-outcome">Local business site with a clear path from browsing to enquiry.</p>
+              <p class="work-impact">Reduced booking friction for a local salon with a mobile-first appointment flow.</p>
+              <p class="work-outcome">Owner can update services and pricing without calling a developer.</p>
               <ul class="work-points">
                 <li>Service pages with plain pricing and mobile-first layout</li>
                 <li>Booking enquiry flow with service picker and time slots</li>
@@ -1601,11 +1736,12 @@
                 <span class="work-status shipped">Live · Public Beta</span>
               </div>
               <p class="work-type">Browser-side PDF and file converter</p>
-              <p class="work-outcome">60 tools that process files locally — no server upload, no signup, no watermarks.</p>
+              <p class="work-impact">Processes PDFs entirely in the browser to keep sensitive documents off external servers.</p>
+              <p class="work-outcome">60 tools, 45 live processors — no upload, no signup, no watermarks.</p>
               <ul class="work-points">
                 <li>Client-side processors with pdf-lib, PDF.js, and WASM libraries</li>
                 <li>Neon UI with dark-first theme and privacy-first positioning</li>
-                <li>Live at plumfile.space with 39 processors shipping today</li>
+                <li>Live at plumfile.space with search, favorites, and recent tools</li>
               </ul>
               <div class="chips">
                 <span class="chip">Next.js</span>
@@ -1646,7 +1782,8 @@
                 <span class="work-status shipped">Shipped</span>
               </div>
               <p class="work-type">Local dashboard and control panel</p>
-              <p class="work-outcome">Central view for projects, scripts, and routine checks.</p>
+              <p class="work-impact">Replaced scattered terminal checks with one operations view for daily project work.</p>
+              <p class="work-outcome">See what is active, building, or idle before opening a single terminal tab.</p>
               <ul class="work-points">
                 <li>Project status at a glance — active, building, or idle</li>
                 <li>Script runner panel for recurring checks and deploy tasks</li>
@@ -1683,7 +1820,8 @@
                 <span class="work-status dev">In development</span>
               </div>
               <p class="work-type">macOS clipboard utility</p>
-              <p class="work-outcome">Find recent text and keep useful snippets close without repeat copy-paste.</p>
+              <p class="work-impact">Cuts repeat copy-paste by keeping recent clips searchable on the Mac.</p>
+              <p class="work-outcome">Pin commands, templates, and paths you reach for every day.</p>
               <ul class="work-points">
                 <li>Clipboard history with fast search across recent copies</li>
                 <li>Pin snippets you reuse — commands, templates, paths</li>
@@ -1721,7 +1859,8 @@
                 <span class="work-status dev">In development</span>
               </div>
               <p class="work-type">macOS wallpaper manager</p>
-              <p class="work-outcome">Organise collections, prepare images, and keep output separate from originals.</p>
+              <p class="work-impact">Organises wallpaper collections without touching original image files.</p>
+              <p class="work-outcome">Preview and apply per display from one calm library view.</p>
               <ul class="work-points">
                 <li>Organise collections across displays without touching originals</li>
                 <li>Preview and apply wallpapers per screen</li>
@@ -1760,7 +1899,8 @@
                 <span class="work-status prototype">Prototype</span>
               </div>
               <p class="work-type">Menu bar workflow utility</p>
-              <p class="work-outcome">Live status, quick actions, and reminders in one unobtrusive menu bar place.</p>
+              <p class="work-impact">Surfaces routine status and quick actions from the menu bar — no extra window.</p>
+              <p class="work-outcome">Designed to stay out of the way until a reminder or action is needed.</p>
               <ul class="work-points">
                 <li>Live status and reminders in the menu bar — no extra window</li>
                 <li>Quick actions for routines you run often</li>
